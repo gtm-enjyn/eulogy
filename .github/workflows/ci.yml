@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  bruin-validate:
+    name: bruin-validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Bruin CLI
+        run: curl -LsSf https://getbruin.com/install/cli | sh
+      - name: Validate pipeline (if present)
+        run: |
+          if [ -f bruin/eulogy/pipeline.yml ]; then
+            ~/.local/bin/bruin validate bruin/eulogy
+          else
+            echo "bruin/eulogy/pipeline.yml not found, skipping"
+          fi

@@ -1,0 +1,15 @@
+{
+  "_note": "Default shock weights used when Telem priors are unavailable. Values are rough published base rates, replace via packages/sim priors.ts.",
+  "illness_self": { "weight": 0.08, "source_url": null, "snippet": "default" },
+  "illness_relative": { "weight": 0.10, "source_url": null, "snippet": "default" },
+  "startup_success": { "weight": 0.06, "source_url": null, "snippet": "default" },
+  "startup_failure": { "weight": 0.18, "source_url": null, "snippet": "~90% of startups fail; ~50% within 5 years" },
+  "breakup": { "weight": 0.12, "source_url": null, "snippet": "US divorce rate ~40-50% of marriages" },
+  "birth": { "weight": 0.10, "source_url": null, "snippet": "default" },
+  "move_abroad": { "weight": 0.05, "source_url": null, "snippet": "default" },
+  "parent_death": { "weight": 0.09, "source_url": null, "snippet": "default" },
+  "burnout": { "weight": 0.12, "source_url": null, "snippet": "founder burnout prevalence often cited ~30-50%" },
+  "windfall": { "weight": 0.03, "source_url": null, "snippet": "default" },
+  "affair_discovered": { "weight": 0.04, "source_url": null, "snippet": "default" },
+  "lawsuit": { "weight": 0.03, "source_url": null, "snippet": "default" }
+}

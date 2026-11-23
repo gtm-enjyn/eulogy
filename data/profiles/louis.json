@@ -1,0 +1,18 @@
+{
+  "id": "louis-demo",
+  "name": "Louis",
+  "age": 31,
+  "city": "San Francisco",
+  "currentActivity": "Founding a B2B GTM tool, pre-revenue, 14 hours a day, second startup after one failure.",
+  "ambition10y": "A company at 50M ARR, a house with a garden, and still running marathons.",
+  "traits": ["ambitious", "competitive", "disciplined"],
+  "flaw": "short-tempered",
+  "fear": "Ending up admired by strangers and unknown to my own kid.",
+  "habits": { "sport": 7, "alcohol": 3, "sleep": 4 },
+  "relatives": [
+    { "id": "camille", "name": "Camille", "relation": "partner", "age": 30, "relationshipState": "We love each other and we schedule it. Sundays are the only real time.", "grievance": "You are here but you are never here. Your phone is the third person in this relationship." },
+    { "id": "lea", "name": "Léa", "relation": "child", "age": 2, "relationshipState": "She runs to the door when I come home. I am usually on a call.", "grievance": "She cannot say it yet. Camille says it for her: you missed the first steps." },
+    { "id": "anne", "name": "Anne", "relation": "parent", "age": 62, "relationshipState": "We talk every two weeks. Never about anything real.", "grievance": "You became your father: work first, apologies never." },
+    { "id": "jules", "name": "Jules", "relation": "cofounder", "age": 29, "relationshipState": "Brothers in the trenches. He has seen me lose my temper more than anyone.", "grievance": "When you are angry you say things you cannot take back, and then you act like nothing happened." }
+  ]
+}
