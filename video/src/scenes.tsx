@@ -247,7 +247,7 @@ export const Credits: React.FC<{ len: number }> = ({ len }) => {
         <div style={{ fontFamily: MONO, fontSize: 22, color: 'rgba(235,228,210,0.6)', letterSpacing: 3, marginTop: 10 }}>TRACK 1 · AGENT ANIMATED FILM</div>
         <div style={{ fontFamily: SERIF, fontSize: 30, color: 'rgba(235,228,210,0.9)', marginTop: 40, letterSpacing: 1 }}>A thousand lives. One decision. Yours.</div>
         <div style={{ fontFamily: SANS, fontSize: 24, color: 'rgba(235,228,210,0.7)', marginTop: 26, letterSpacing: 1 }}>Bruin &nbsp;·&nbsp; BAND &nbsp;·&nbsp; Telem &nbsp;·&nbsp; Runware &nbsp;·&nbsp; Claude</div>
-        <div style={{ fontFamily: MONO, fontSize: 20, color: 'rgba(235,228,210,0.5)', marginTop: 22 }}>github.com/gtm-enjyn/eulogy</div>
+        <div style={{ fontFamily: MONO, fontSize: 20, color: 'rgba(235,228,210,0.5)', marginTop: 22 }}>github.com/louisktj/eulogy</div>
       </div>
     </AbsoluteFill>
   );

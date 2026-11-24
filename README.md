@@ -1,6 +1,6 @@
 # Eulogy
 
-[![CI](https://github.com/gtm-enjyn/eulogy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/gtm-enjyn/eulogy/actions/workflows/ci.yml)
+[![CI](https://github.com/louisktj/eulogy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/louisktj/eulogy/actions/workflows/ci.yml)
 
 Live the rest of your life thirty ways, then take a seat at your funeral and hear which memories survive you.
 
@@ -22,7 +22,7 @@ Live the rest of your life thirty ways, then take a seat at your funeral and hea
 With Node 22 and npm installed, start from a shell.
 
 ```sh
-git clone https://github.com/gtm-enjyn/eulogy && cd eulogy
+git clone https://github.com/louisktj/eulogy && cd eulogy
 npm ci
 npm run demo
 ```
