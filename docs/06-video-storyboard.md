@@ -1,22 +1,23 @@
-# Bloc K/M — La vidéo (2 min) et la soumission
+# La vidéo — montage final (1 min 38, Remotion, 24 i/s, 1920×1080 letterboxé)
 
-Capture : OBS ou QuickTime plein écran 1920×1080, 60 fps, pas de curseur. Montage dans AdaL (obligatoire). Musique : orgue bas + silence. Pas de voix off sauf la ligne du début (voix du protagoniste, ElevenLabs ou Louis).
+Une seule voix off (Eleven v4, voix Arthur), intime, à la deuxième personne, phrases de moins de huit mots. Les sponsors ne sont jamais dits à la voix : ils apparaissent en légendes techniques monospace, bas gauche. Score ElevenLabs Music : drone d'orgue, cordes à 30 s, chute au silence à 45 s, violoncelle, une note de piano à la fin. Battement de cœur sur les 12 premières secondes. Silence total sous la phrase choc.
 
-| Temps | Plan | Source |
-|---|---|---|
-| 0:00-0:10 | Noir. Battement. Lumière qui pulse. "You were born." | `/` |
-| 0:10-0:22 | Le formulaire, accéléré ×4, les 5 lignes clés tapées en temps réel : nom, âge, "founder, pre-revenue", flaw "short-tempered", Léa 2 ans "I'm never there". | `/you` |
-| 0:22-0:30 | La photo prise à la webcam, les 3 portraits qui vieillissent en fondu. | `/you` |
-| 0:30-0:48 | La grille de vies qui défilent, compteur réel. En bas le canal privé BAND qui défile vite. | `/lives` |
-| 0:48-0:56 | La grille se replie. Une phrase blanche : "In 68 % of your lives, Léa does not speak at your funeral." (chiffre depuis marts.json) | `/lives` |
-| 0:56-1:30 | Chapelle, vie la plus probable. Cofondateur se lève, parle. Léa assise, tête baissée. Ledger à droite. Privé : "Léa → Anne: I don't know what to say about him." | `/chapel` |
-| 1:30-1:50 | "Life #212." Léa se lève. Son éloge. Mart Bruin en surimpression : "In 100 % of lives where Léa speaks, you made one decision before 33. In 94 %, the same one: <action>." | `/chapel` + marts |
-| 1:50-1:58 | Noir. "You have two years. Happy Thanksgiving." | carton |
-| 1:58-2:00 | Logos : Bruin, BAND, Telem, Runware, AdaL. Track 1. | carton |
+| Temps | Scène | Image | Son | Levier |
+|---|---|---|---|---|
+| 0:00–0:08 | Naissance | Noir, halo chaud qui pulse au rythme du cœur, main de nouveau-né qui serre un doigt (push-out) | Battement. VO : "You were born on a Tuesday. You don't remember it. Nobody asked you anything." | Pattern interrupt |
+| 0:08–0:20 | Cinq lignes | Formulaire tapé en temps réel : 31 · San Francisco / Founder, pre-revenue. 14 hours a day. / Short-tempered. / Léa, 2. "I'm never there." / Admired by strangers. Unknown to my kid. | VO : "So we asked. Five lines. The ones you don't say out loud." Légende : Profile → zod contract → 4 relative agents + Protagonist + Destiny | Spécificité |
+| 0:20–0:29 | Le visage | Même homme à 31, 56, 76 ans, fondus, push-in | VO : "This is you. This is you at fifty-six. This is you… the week before." Légende : Runware FLUX Kontext aging · TRELLIS.2 bust | Mortalité personnelle |
+| 0:29–0:45 | Mille vies | 64 lignes de vie procédurales qui se tracent en parallèle, compteur réel jusqu'à 1 000, canal privé qui défile | VO : "We let the people who love you live your life with you. Year by year. Then we did it again. And again." Cordes. Légendes : Monte Carlo + état émotionnel · BAND rooms + veto · Telem priors tracés | Awe |
+| 0:45–0:52 | La phrase | Noir. "In 68 % of your lives, Léa does not speak at your funeral." Le chiffre monte de 0 à 68. | Silence. Légende : mart_outcome_distribution · Bruin · 30 runs · 6 checks | Pic |
+| 0:52–1:12 | Vie n° 001 | Chapelle (clip Kling, dolly), cofondateur au pupitre (clip), Léa assise tête baissée (clip), buste et portrait vieilli. Ledger à droite : 33, 36, 41, 51, 66. Ligne privée : "Léa → Anne: I don't know what to say about him." | J-cut : voix du cofondateur "He built something enormous. He never stopped. Not once." VO : "Life number one. The one you're building right now." | Empathie |
+| 1:12–1:28 | Vie n° 212 | Carton "Life number 212." Léa debout au pupitre (clip 8 s). Ledger alternatif. Retour chapelle. Surimpression : "In 100 % of the lives where Léa speaks, you made one decision before 33. In 94 %, the same one." | Voix de Léa : "He closed his company when I was two. He said it was the best decision of his life. He was there. He was always there." | Résolution |
+| 1:28–1:38 | Deux ans | Noir. "Happy Thanksgiving." Carton EULOGY, Track 1, sponsors, repo. | VO : "You have two years." Note de piano. | Pic-fin |
 
 Règle : la vidéo finit sur la décision, jamais sur la tombe.
 
-## Soumission (17h00-17h15), hackathons.crewbasecollective.com
-- Repo public (scripts/setup-github.sh déjà fait). README = docs/00-pitch.md + "how to run" + captures.
-- Description : Track 1. Sponsors : Bruin (pipeline + mart_decision_impact), BAND (rooms + veto + human gate), Telem (priors tracés), Runware (portraits + textures), AdaL (montage). Coller la phrase du mart.
-- Lien vidéo AdaL. Lien Vercel.
+## Fabrication
+- Stills : Higgsfield Cinema Studio 2.5 (2K, 16:9), identité du protagoniste conservée par image-to-image depuis le portrait de base.
+- Clips : Kling 3.0 pro, image-to-video depuis les stills, 6 à 8 s, sans son.
+- Voix : Eleven v4 (Arthur = protagoniste, Desmond = cofondateur, Isla = Léa).
+- Score : ElevenLabs Music v2.5, 95 s, instrumental, prompt avec la chute au silence à 45 s.
+- Montage : Remotion (`video/`), rendu `npm run render`.
