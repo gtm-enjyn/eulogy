@@ -1,16 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
-import Intro from './pages/Intro';
-import Onboarding from './pages/Onboarding';
-import LivesGrid from './pages/LivesGrid';
+import Landing from './v2/Landing';
+import Face from './v2/Face';
+import Voice from './v2/Voice';
+import Simulate from './v2/Simulate';
+import Result from './v2/Result';
 import Chapel from './pages/Chapel';
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Intro />} />
-      <Route path="/you" element={<Onboarding />} />
-      <Route path="/lives" element={<LivesGrid />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/face" element={<Face />} />
+      <Route path="/voice" element={<Voice />} />
+      <Route path="/simulate" element={<Simulate />} />
+      <Route path="/result" element={<Result />} />
       <Route path="/chapel" element={<Chapel />} />
+      <Route path="*" element={<Landing />} />
     </Routes>
   );
 }
