@@ -37,6 +37,7 @@ export const ProfileSchema = z.object({
     sleep: score0to10,
   }),
   relatives: z.array(RelativeSchema).min(1).max(4),
+  bustUrl: z.string().url().optional(),
   photoUrl: z.string().optional(),
   portraits: z.array(z.string()).max(3).optional(),
 });
