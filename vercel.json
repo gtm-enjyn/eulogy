@@ -2,5 +2,27 @@
   "buildCommand": "npm run build -w apps/web",
   "outputDirectory": "apps/web/dist",
   "framework": "vite",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/you",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/lives",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/chapel",
+      "destination": "/index.html"
+    }
+  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/simulate.ts": {
+      "maxDuration": 300
+    },
+    "api/portraits.ts": {
+      "maxDuration": 300
+    }
+  }
 }
