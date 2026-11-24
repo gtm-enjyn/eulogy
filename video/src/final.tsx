@@ -65,16 +65,17 @@ const ROWS: [string, string, string, string][] = [
 export const MartQuery: React.FC<{ len: number }> = ({ len }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const o = useFade(len, 14, 14);
-  const rowsShown = Math.floor(interpolate(f, [3.2 * fps, 4.6 * fps], [0, ROWS.length], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }));
-  const hl = interpolate(f, [4.8 * fps, 5.4 * fps], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const o = useFade(len, 10, 12);
+  const k = len / fps / 7; // authored for 7 s
+  const rowsShown = Math.floor(interpolate(f, [3.2 * k * fps, 4.6 * k * fps], [0, ROWS.length], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }));
+  const hl = interpolate(f, [4.8 * k * fps, 5.4 * k * fps], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ background: '#050607', opacity: o, justifyContent: 'center' }}>
       <div style={{ marginLeft: 160, width: 1600 }}>
         <div style={{ fontFamily: MONO, fontSize: 19, letterSpacing: 2, color: '#e8a35a', marginBottom: 22 }}>BRUIN · DUCKDB · mart_decision_impact · lineage raw.runs → raw.decisions → stg_eulogies → mart</div>
         <div style={{ fontFamily: MONO, fontSize: 26, color: 'rgba(236,231,218,0.9)', lineHeight: 1.5 }}>
           <span style={{ color: '#6fcf8f' }}>$</span>{' '}
-          <TypeText text={`bruin query -c duckdb-default -q "select action, pct_speaks_with, pct_speaks_without, lift from mart_decision_impact order by lift desc"`} startFrame={4} cps={60} cursor={false} />
+          <TypeText text={`bruin query -c duckdb-default -q "select action, pct_speaks_with, pct_speaks_without, lift from mart_decision_impact order by lift desc"`} startFrame={4} cps={Math.round(60 / k)} cursor={false} />
         </div>
         <div style={{ marginTop: 26, fontFamily: MONO, fontSize: 24, color: 'rgba(236,231,218,0.85)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '560px 260px 260px 140px', color: 'rgba(235,228,210,0.5)', paddingBottom: 10, borderBottom: '1px solid rgba(255,255,255,0.12)', opacity: rowsShown > 0 ? 1 : 0 }}>

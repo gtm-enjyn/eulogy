@@ -1,4 +1,25 @@
-# La vidéo — montage final (2 min 26, Remotion, 24 i/s, 1920×1080 letterboxé)
+# La vidéo — coupe finale 1:31 (Remotion)
+
+Coupe courte pour le jury. Nouvelle scène « Your conversations » : cinq sources (WhatsApp, Instagram, iMessage, Snapchat, Gmail) connectées, console d'analyse locale, les cinq personnes de la table avec leur reproche. Narration resserrée (+12 % de tempo), fin joyeuse sur le toit, carton sponsors avec titre. Page de lecture : https://eulogy-film.vercel.app · source `video/src/Film.tsx` (scènes dans `connect.tsx`, `final.tsx`, `tech.tsx`, `scenes.tsx`).
+
+| Temps | Scène |
+|---|---|
+| 0:00–0:08 | Dortoir, Thanksgiving à Chicago, carton JULES |
+| 0:08–0:14 | « Who will be at your table when you're seventy? » |
+| 0:14–0:29 | Conversations : sources connectées, analyse, les cinq personnes |
+| 0:29–0:34 | Le visage à 20, 45, 74 ans |
+| 0:34–0:51 | Les agents (room BAND, bruin run, traces Telem) puis les mille vies |
+| 0:51–0:56 | Silence : « In 43 % of his lives, his sister's chair is empty. » |
+| 0:56–1:05 | Vie n° 001, table vide, ledger |
+| 1:05–1:08 | La requête Bruin sur mart_decision_impact |
+| 1:08–1:20 | Vie n° 212, table pleine, toast d'Inès |
+| 1:20–1:24 | Le toit : « Papa ? … C'est moi. » |
+| 1:24–1:31 | EULOGY · Built in one day with Bruin, BAND, Telem, Runware, Claude |
+
+---
+
+## Version longue précédente (2:26)
+
 
 Règle de montage : chaque phrase de la voix est illustrée par exactement ce qu'elle dit, chaque personnage est nommé à l'écran la première fois, la technique est montrée avec les vraies données du repo, et la fin est heureuse. Narration à la troisième personne (Eleven v4, voix Arthur), phrases courtes. Score ElevenLabs Music (drone, cordes, silence sous la révélation) puis un cue chaleureux pour la fin.
 
