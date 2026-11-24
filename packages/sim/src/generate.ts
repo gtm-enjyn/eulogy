@@ -7,16 +7,25 @@ import { simulateRun, type SimulationOptions } from './simulate';
 
 export async function simulateProfile(
   profile: Profile,
-  options: SimulationOptions & { runs: number; onRun?: (run: Run) => void | Promise<void> },
+  options: SimulationOptions & {
+    runs: number;
+    seedOffset?: number;
+    onRun?: (run: Run) => void | Promise<void>;
+  },
 ) {
   ProfileSchema.parse(profile);
   const count = z.number().int().min(1).max(50).parse(options.runs);
+  const offset = z
+    .number()
+    .int()
+    .nonnegative()
+    .parse(options.seedOffset ?? 0);
   const runs: Run[] = new Array(count);
   let next = 0;
   async function worker() {
     while (next < count) {
       const index = next++;
-      const run = await simulateRun(profile, index + 1, options);
+      const run = await simulateRun(profile, offset + index + 1, options);
       runs[index] = run;
       await options.onRun?.(run);
     }

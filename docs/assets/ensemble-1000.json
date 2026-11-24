@@ -1,0 +1,22 @@
+{
+  "mode": "deterministic",
+  "profile_id": "louis-demo",
+  "unique_ids": 1000,
+  "chapters": 6000,
+  "sha256": "9ffc003b631bd18c70b0f86755e1bb66a68fc0309ee8b1b9a4745474002fb04d",
+  "n_runs": 1000,
+  "pct_daughter_speaks": 69.9,
+  "pct_child_speaks": 69.9,
+  "pct_partner_speaks": 66.9,
+  "most_probable_run_id": "louis-demo-0001",
+  "best_run_id": "louis-demo-0409",
+  "generation": {
+    "mock": 6000
+  },
+  "clusters": {
+    "reconciled": 466,
+    "mixed": 265,
+    "estranged": 254,
+    "admired_not_loved": 15
+  }
+}

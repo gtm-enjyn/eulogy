@@ -6,6 +6,7 @@ import { simulateProfile, writeOutputs } from './generate';
 import { defaultPriors, PriorsSchema } from './shocks';
 import { researchPriors } from './priors';
 import { BandRooms } from './band';
+import { modelCredential } from './chapter';
 
 const root = process.env.INIT_CWD ?? process.cwd();
 async function main() {
@@ -30,7 +31,7 @@ async function main() {
       : existsSync(priorPath)
         ? PriorsSchema.parse(JSON.parse(readFileSync(priorPath, 'utf8')))
         : defaultPriors;
-  const mock = values.mock || values['dry-run'] || !process.env.ANTHROPIC_API_KEY;
+  const mock = values.mock || values['dry-run'] || !modelCredential();
   if (mock) console.log('DEGRADED · deterministic offline simulation');
   const band = await BandRooms.connect(profile, {
     dryRun: values['dry-run'] || values.mock,
