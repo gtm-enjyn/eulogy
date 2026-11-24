@@ -52,7 +52,7 @@ export default function Face() {
               <div className="stack" style={{ gap: 14 }}>
                 {phase === 'live' && <button className="shutter" onClick={capture} aria-label="Take photo"><i /></button>}
                 <label className="btn ghost" style={{ cursor: 'pointer' }}>Upload instead<input type="file" accept="image/*" hidden onChange={(e) => upload(e.target.files?.[0])} /></label>
-                <button className="btn ghost" onClick={() => nav('/voice')}>Skip</button>
+                <button className="btn ghost" onClick={() => nav('/connect')}>Skip</button>
               </div>
             )}
           </div>
@@ -68,7 +68,7 @@ export default function Face() {
               ))}
             </div>
             <h2 className="display h3" style={{ margin: 0 }}>This is you. This is you the week before.</h2>
-            <button className="btn primary" onClick={() => nav('/voice')}>Now tell us who you are</button>
+            <button className="btn primary" onClick={() => nav('/connect')}>Now, who do you talk to?</button>
           </div>
         )}
       </div>
