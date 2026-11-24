@@ -73,6 +73,9 @@ export const YearEventSchema = z.object({
   protagonist_age: z.number().int().min(0),
   shock: z.string(),
   shock_source: ShockSourceSchema.optional(),
+  shock_key: z.string().optional(),
+  source_url: z.string().url().optional(),
+  generation: z.enum(['claude', 'fallback', 'mock']).optional(),
   decisions: z.array(DecisionSchema),
   relative_states: z.array(RelativeStateSchema),
   private_messages: z.array(PrivateMessageSchema),
@@ -100,6 +103,11 @@ export const RunSchema = z.object({
 export const RunSummarySchema = z.object({
   n_runs: z.number().int().min(0),
   pct_daughter_speaks: z.number().min(0).max(100),
+  pct_child_speaks: z.number().min(0).max(100).nullable().optional(),
+  pct_partner_speaks: z.number().min(0).max(100).nullable().optional(),
+  most_probable_run_id: z.string().optional(),
+  best_run_id: z.string().optional(),
+  generation: z.record(z.string(), z.number().int().nonnegative()).optional(),
   clusters: z.record(z.string(), z.number().int().min(0)),
 });
 

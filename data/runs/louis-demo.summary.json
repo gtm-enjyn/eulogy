@@ -1,0 +1,16 @@
+{
+  "n_runs": 30,
+  "pct_daughter_speaks": 56.7,
+  "pct_child_speaks": 56.7,
+  "pct_partner_speaks": 56.7,
+  "most_probable_run_id": "louis-demo-0001",
+  "best_run_id": "louis-demo-0028",
+  "generation": {
+    "mock": 180
+  },
+  "clusters": {
+    "reconciled": 14,
+    "mixed": 3,
+    "estranged": 13
+  }
+}
