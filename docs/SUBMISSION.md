@@ -8,7 +8,7 @@
 
 **Live app** — [Eulogy](https://eulogy-ochre.vercel.app/)
 
-**Film** — Louis’s final public AdaL link is pending. [Video project](https://github.com/gtm-enjyn/eulogy/pull/10)
+**Film** — [Watch the final film](https://eulogy-hackathon-film.vercel.app/) · [Louis’s final cut](https://github.com/gtm-enjyn/eulogy/commit/6361a81)
 
 ## Short description
 

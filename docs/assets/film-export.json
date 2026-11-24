@@ -1,0 +1,34 @@
+{
+  "programs": [],
+  "stream_groups": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "codec_type": "video",
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "24/1",
+      "duration": "146.500000",
+      "nb_frames": "3516",
+      "side_data_list": [
+        {}
+      ]
+    },
+    {
+      "codec_name": "aac",
+      "codec_type": "audio",
+      "sample_rate": "48000",
+      "channels": 2,
+      "r_frame_rate": "0/0",
+      "duration": "146.560000",
+      "nb_frames": "6870"
+    }
+  ],
+  "format": {
+    "duration": "146.560000",
+    "size": "78574774"
+  },
+  "sha256": "7079b0d8d19d7bd07819fe5611a06e332be15a3e2f0aae73fc9bd1879a2acee4",
+  "source_commit": "6361a81",
+  "composition": "Eulogy"
+}

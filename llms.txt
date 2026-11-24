@@ -78,6 +78,8 @@
 - [packages/sim/src/runware.ts](packages/sim/src/runware.ts) — Portrait, texture and GLB requests with asynchronous resolution.
 - [data/runware/requests.json](data/runware/requests.json) — Reference-image and text-only examples, texture and 3D job requests.
 - [docs/SPONSOR-CONTRACTS.md](docs/SPONSOR-CONTRACTS.md) — Official provider references and credential requirements.
+- [video/src/Film.tsx](video/src/Film.tsx) — Louis’s final edit with the 146.5-second timeline, source clips and sound.
+- [docs/assets/chapel-performance-summary.json](docs/assets/chapel-performance-summary.json) — Actual three-camera Retina and battery-saver measurements.
 - [docs/SUBMISSION.md](docs/SUBMISSION.md) — Track, short description, public links and film status.
 - [docs/assets/production-http.json](docs/assets/production-http.json) — Anonymous verification of 23 deployed resources and endpoints.
 - [docs/ROADMAP.md](docs/ROADMAP.md) — Remaining production and evidence work.

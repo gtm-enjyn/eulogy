@@ -1,0 +1,252 @@
+{
+  "source": "Local Vite production preview on commit 8c3d44445e75df1b078f0c7abc3be672eaa40469",
+  "system": {
+    "model": "MacBook Air M5",
+    "macOS": "27.0",
+    "panelHz": 60
+  },
+  "chrome": "Google Chrome 158.0.8127.37",
+  "scope": "Focused foreground headed Chrome, VSync enabled. Render throughput counts distinct requestAnimationFrame timestamps that actually submitted WebGL draw calls. GPU duration is the elapsed-time query for each actual scene render. Per-shot raw traces are in the two adjacent JSON files.",
+  "trials": [
+    {
+      "mode": "default-temporary-profile",
+      "batterySaverPreferenceBefore": 1,
+      "batterySaverPreferenceUsed": 1,
+      "blank": {
+        "intervals": 121,
+        "elapsedMs": 4033,
+        "fps": 30,
+        "p95Ms": 34.3
+      },
+      "details": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerQuery": true,
+        "visibility": "visible",
+        "focus": true,
+        "cssViewport": [
+          1440,
+          900
+        ],
+        "canvas": [
+          1051,
+          844
+        ],
+        "canvasCssRect": [
+          0,
+          56,
+          1051.203125,
+          844
+        ],
+        "devicePixelRatio": 1,
+        "charging": false,
+        "battery": 0.11,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36"
+      },
+      "rawFile": "chapel-performance-2026-11-23.json",
+      "shots": {
+        "wide": {
+          "renderedFrames": 165,
+          "observedDurationMs": 5465.8,
+          "visibleRenderFps": 30.005,
+          "frameIntervalP50Ms": 33.3,
+          "frameIntervalP95Ms": 34.2,
+          "cpuSubmitP95Ms": 3.7,
+          "gpuQuerySamples": 165,
+          "gpuTimeP50Ms": 1.74,
+          "gpuTimeP95Ms": 1.762,
+          "gpuTimeMaxMs": 1.866,
+          "drawCallsP50": 103,
+          "gpuDisjointEvents": 0
+        },
+        "pulpit": {
+          "renderedFrames": 165,
+          "observedDurationMs": 5467.4,
+          "visibleRenderFps": 29.996,
+          "frameIntervalP50Ms": 33.3,
+          "frameIntervalP95Ms": 34.3,
+          "cpuSubmitP95Ms": 2.6,
+          "gpuQuerySamples": 165,
+          "gpuTimeP50Ms": 1.355,
+          "gpuTimeP95Ms": 1.375,
+          "gpuTimeMaxMs": 1.406,
+          "drawCallsP50": 46,
+          "gpuDisjointEvents": 0
+        },
+        "front row": {
+          "renderedFrames": 165,
+          "observedDurationMs": 5465.8,
+          "visibleRenderFps": 30.005,
+          "frameIntervalP50Ms": 33.3,
+          "frameIntervalP95Ms": 34.2,
+          "cpuSubmitP95Ms": 2.9,
+          "gpuQuerySamples": 165,
+          "gpuTimeP50Ms": 1.343,
+          "gpuTimeP95Ms": 1.362,
+          "gpuTimeMaxMs": 1.439,
+          "drawCallsP50": 63,
+          "gpuDisjointEvents": 0
+        }
+      }
+    },
+    {
+      "mode": "energy-saver-off-temporary-profile",
+      "batterySaverPreferenceBefore": 1,
+      "batterySaverPreferenceUsed": 0,
+      "blank": {
+        "intervals": 239,
+        "elapsedMs": 4000,
+        "fps": 59.749,
+        "p95Ms": 17.6
+      },
+      "details": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerQuery": true,
+        "visibility": "visible",
+        "focus": true,
+        "cssViewport": [
+          1440,
+          900
+        ],
+        "canvas": [
+          1051,
+          844
+        ],
+        "canvasCssRect": [
+          0,
+          56,
+          1051.203125,
+          844
+        ],
+        "devicePixelRatio": 1,
+        "charging": false,
+        "battery": 0.11,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36"
+      },
+      "rawFile": "chapel-performance-2026-11-23.json",
+      "shots": {
+        "wide": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5483.3,
+          "visibleRenderFps": 60,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.5,
+          "cpuSubmitP95Ms": 3.3,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 1.733,
+          "gpuTimeP95Ms": 1.784,
+          "gpuTimeMaxMs": 1.842,
+          "drawCallsP50": 103,
+          "gpuDisjointEvents": 0
+        },
+        "pulpit": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5483.1,
+          "visibleRenderFps": 60.003,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.6,
+          "cpuSubmitP95Ms": 2,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 1.358,
+          "gpuTimeP95Ms": 1.373,
+          "gpuTimeMaxMs": 1.428,
+          "drawCallsP50": 46,
+          "gpuDisjointEvents": 0
+        },
+        "front row": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5482.5,
+          "visibleRenderFps": 60.009,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.6,
+          "cpuSubmitP95Ms": 2.4,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 1.353,
+          "gpuTimeP95Ms": 1.377,
+          "gpuTimeMaxMs": 1.922,
+          "drawCallsP50": 63,
+          "gpuDisjointEvents": 0
+        }
+      }
+    },
+    {
+      "mode": "energy-saver-off-native-retina-profile",
+      "batterySaverPreferenceBefore": 1,
+      "batterySaverPreferenceUsed": 0,
+      "blank": {
+        "intervals": 241,
+        "elapsedMs": 4017,
+        "fps": 60.002,
+        "p95Ms": 17.6
+      },
+      "details": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerQuery": true,
+        "visibility": "visible",
+        "focus": true,
+        "cssViewport": [
+          1440,
+          690
+        ],
+        "canvas": [
+          1576,
+          951
+        ],
+        "canvasCssRect": [
+          0,
+          56,
+          1051.203125,
+          634
+        ],
+        "devicePixelRatio": 2,
+        "charging": false,
+        "battery": 0.11,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36"
+      },
+      "rawFile": "chapel-performance-retina-2026-11-23.json",
+      "shots": {
+        "wide": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5482.6,
+          "visibleRenderFps": 60.008,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.5,
+          "cpuSubmitP95Ms": 3.1,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 2.29,
+          "gpuTimeP95Ms": 2.343,
+          "gpuTimeMaxMs": 2.384,
+          "drawCallsP50": 109,
+          "gpuDisjointEvents": 0
+        },
+        "pulpit": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5482.7,
+          "visibleRenderFps": 60.007,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.5,
+          "cpuSubmitP95Ms": 1.8,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 1.964,
+          "gpuTimeP95Ms": 2.013,
+          "gpuTimeMaxMs": 5.549,
+          "drawCallsP50": 48,
+          "gpuDisjointEvents": 0
+        },
+        "front row": {
+          "renderedFrames": 330,
+          "observedDurationMs": 5484.3,
+          "visibleRenderFps": 59.989,
+          "frameIntervalP50Ms": 16.7,
+          "frameIntervalP95Ms": 17.5,
+          "cpuSubmitP95Ms": 2.6,
+          "gpuQuerySamples": 330,
+          "gpuTimeP50Ms": 2.142,
+          "gpuTimeP95Ms": 2.179,
+          "gpuTimeMaxMs": 2.334,
+          "drawCallsP50": 75,
+          "gpuDisjointEvents": 0
+        }
+      }
+    }
+  ]
+}

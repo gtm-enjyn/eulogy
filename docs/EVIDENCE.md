@@ -78,7 +78,15 @@ In `louis-demo-0006`, Léa remembers the same train ticket as in life 28, but he
 
 ![The chapel during a recorded service, with the decision ledger](assets/chapel.png)
 
-Chrome 158 on a MacBook Air M5 rendered a 1051×844 WebGL canvas in a 1440×900 viewport at DPR 1. A windowed sample captured **186 rendered intervals in 6.2 seconds, or 30.0 fps**. The blank-page reference measured 29.84 fps. The 60 fps target remains unverified. At a 390 px mobile width all four routes fit. The camera test used Chrome’s synthetic media input and the upload test supplied a PNG. [Measurements and replay steps](assets/browser-check.json)
+Chrome 158 on a MacBook Air M5 rendered a 1051×844 WebGL canvas in a 1440×900 viewport at DPR 1. A windowed sample captured **186 rendered intervals in 6.2 seconds, or 30.0 fps**. The blank-page reference measured 29.84 fps. At a 390 px mobile width all four routes fit. The camera test used Chrome’s synthetic media input and the upload test supplied a PNG. [Measurements and replay steps](assets/browser-check.json)
+
+A second test kept VSync active on the 60 Hz Retina panel. With Chrome Energy Saver disabled in a temporary profile, the three camera shots each rendered 330 frames in about 5.5 seconds on a 1576×951 drawing buffer. A separate foreground compositor trace recorded 365 presented frames across 6.067 seconds, or **60.000 fps**, with a 16.667 ms p95 presentation interval and a 33.333 ms maximum. With default power settings at 11% battery, the chapel and the blank control both ran at 30 fps. [Comparison](assets/chapel-performance-summary.json) · [Retina samples](assets/chapel-performance-retina-2026-11-23.json) · [Compositor measurements](assets/chapel-retina-presentation-summary.json) · [Presentation events](assets/chapel-retina-compositor-trace.json.gz)
+
+| Camera | WebGL frames/s, Retina | p95 GPU time |
+|---|---:|---:|
+| Wide | 60.008 | 2.343 ms |
+| Pulpit | 60.007 | 2.013 ms |
+| Front row | 59.989 | 2.179 ms |
 
 In life 1, Jules stayed seated. Anne, Léa and Camille each played a complete audio clip. The decision ledger advanced through all six chapter ages. The next two screenings were lives 28 and 29. Disabling WebGL preserved captions, navigation and audio controls. Six featured clips were generated with macOS voices. [Audio inventory](../apps/web/src/data/audio.json) · [Browser results](assets/browser-check.json)
 
@@ -108,4 +116,4 @@ Private Vercel Blob storage accepted a 68-byte test PNG. Its time-limited signed
 
 ## Film
 
-Louis owns the video, including its final edit and public watch URL. His video PR contains the Remotion project, stills, clips and audio. The final AdaL watch link had not been received at this check. A rendered film and the event's submission receipt are separate publication milestones. [Louis's video PR](https://github.com/gtm-enjyn/eulogy/pull/10) · [Submission portal](https://hackathons.crewbasecollective.com/h/12/submit)
+Louis delivered the final cut at 17:05 San Francisco time. The exported composition is `Eulogy`, 3,516 frames at 24 fps, or 2 minutes 26.5 seconds. FFprobe verified 1920×1080 H.264 video and 48 kHz stereo AAC in the 78,574,774-byte MP4. [Export metadata and SHA-256](assets/film-export.json) The interactive screening above follows Louis, while the film follows Jules. The source credits Remotion, Higgsfield, Kling and ElevenLabs. An AdaL provider receipt has not been published. [Watch the final film](https://eulogy-hackathon-film.vercel.app/) · [Final cut](https://github.com/gtm-enjyn/eulogy/commit/6361a81) · [Composition](../video/src/Film.tsx) · [Organizer portal](https://hackathons.crewbasecollective.com/h/12/submit)

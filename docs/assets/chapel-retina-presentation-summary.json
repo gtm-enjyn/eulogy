@@ -1,0 +1,95 @@
+{
+  "scene": "Eulogy chapel wide view, foreground Chrome 158, native Retina, VSync enabled, temp profile energy saver disabled, MacBook Air M5, local production build 8c3d444",
+  "timeWindowMs": 6103.214,
+  "trace": "chapel-retina-compositor-trace.json.gz",
+  "stages": {
+    "DrawFrame": {
+      "events": 366,
+      "durationMs": 6083.43,
+      "fps": 59.999,
+      "p50Ms": 16.667,
+      "p95Ms": 17.536,
+      "maxMs": 17.829,
+      "pids": [
+        40792
+      ]
+    },
+    "SkiaRenderer::SwapBuffers": {
+      "events": 366,
+      "durationMs": 6083.475,
+      "fps": 59.999,
+      "p50Ms": 16.676,
+      "p95Ms": 17.544,
+      "maxMs": 20.393,
+      "pids": [
+        40782
+      ]
+    },
+    "ImageTransportSurfaceOverlayMac::Present": {
+      "events": 366,
+      "durationMs": 6083.48,
+      "fps": 59.999,
+      "p50Ms": 16.674,
+      "p95Ms": 17.572,
+      "maxMs": 23.344,
+      "pids": [
+        40782
+      ]
+    },
+    "CommitPresentedFrameToCA": {
+      "events": 366,
+      "durationMs": 6083.481,
+      "fps": 59.999,
+      "p50Ms": 16.674,
+      "p95Ms": 17.571,
+      "maxMs": 23.342,
+      "pids": [
+        40782
+      ]
+    },
+    "Display::FrameDisplayed": {
+      "events": 365,
+      "durationMs": 6066.678,
+      "fps": 60.0,
+      "p50Ms": 16.667,
+      "p95Ms": 16.667,
+      "maxMs": 33.333,
+      "pids": [
+        40782
+      ]
+    },
+    "OnVSyncPresentation": {
+      "events": 366,
+      "durationMs": 6083.286,
+      "fps": 60.0,
+      "p50Ms": 16.666,
+      "p95Ms": 17.564,
+      "maxMs": 17.693,
+      "pids": [
+        40782
+      ]
+    }
+  },
+  "rendererFrameReporters": [
+    {
+      "pid": 40792,
+      "state": "STATE_PRESENTED_ALL",
+      "count": 364
+    },
+    {
+      "pid": 40792,
+      "state": "STATE_PRESENTED_PARTIAL",
+      "count": 364
+    },
+    {
+      "pid": 40776,
+      "state": "STATE_PRESENTED_ALL",
+      "count": 17
+    },
+    {
+      "pid": 40776,
+      "state": "STATE_NO_UPDATE_DESIRED",
+      "count": 2
+    }
+  ]
+}
