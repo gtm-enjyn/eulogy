@@ -1,0 +1,1541 @@
+{
+  "mode": "dry-run",
+  "run_id": "louis-demo-0001",
+  "requests": [
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats",
+      "body": {
+        "chat": {}
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "PATCH",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336",
+      "body": {
+        "chat": {
+          "title": "life-louis-demo-0001"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/participants",
+      "body": {
+        "participant": {
+          "participant_id": "1a0081be-9843-4b77-877a-8104aae87a0d",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 33. An old family photograph resurfaces at a funeral.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Take the late meeting — If I miss this call, I fear the opportunity will go.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules The telephone rang while the soup went cold. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules I kept the envelope with my name in pencil. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules The brass key was still under the flowerpot. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/lea The telephone rang while the soup went cold. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 36. The first major contract arrives on a family weekend.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Protect one evening at home — I can leave the phone in my coat for one evening.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules The brass key was still under the flowerpot. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne The little blue chair by the door was empty. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/camille I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 41. A letter from a lawyer interrupts breakfast.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Protect one evening at home — I can leave the phone in my coat for one evening.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules The telephone rang while the soup went cold. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules The brass key was still under the flowerpot. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne There were two cups of tea on the kitchen table. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/camille I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 51. An alarm rings through a morning too exhausted to begin.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Protect one evening at home — I can leave the phone in my coat for one evening.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules The telephone rang while the soup went cold. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne There were two cups of tea on the kitchen table. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/camille There were two cups of tea on the kitchen table. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 66. A clinic appointment changes the plans for the week.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Ask for help — I can leave the phone in my coat for one evening.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules There were two cups of tea on the kitchen table. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne I still have the paper ticket from the last train. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/lea I kept the envelope with my name in pencil. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/human Approve the funeral? Reply yes or skip and mention Destiny.",
+          "mentions": [
+            {
+              "id": "1a0081be-9843-4b77-877a-8104aae87a0d",
+              "name": "Human observer",
+              "handle": "demo/human"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/louis-demo @demo/camille @demo/lea @demo/anne @demo/jules Age 90. Someone close needs company in a hospital waiting room.",
+          "mentions": [
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/camille @demo/lea @demo/anne @demo/jules Take the late meeting — If I miss this call, I fear the opportunity will go.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/lea @demo/anne @demo/jules The telephone rang while the soup went cold. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/anne @demo/jules The little blue chair by the door was empty. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/jules The telephone rang while the soup went cold. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "baefa467-2013-45c5-8cae-398e0af7ab8a",
+              "name": "Jules",
+              "handle": "demo/jules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/destiny @demo/louis-demo @demo/camille @demo/lea @demo/anne I still have the paper ticket from the last train. Louis stayed with me.",
+          "mentions": [
+            {
+              "id": "0c9c4699-2a28-4651-865a-3903d3b5685e",
+              "name": "Destiny",
+              "handle": "demo/destiny"
+            },
+            {
+              "id": "98be27fa-7963-4bee-87bf-8f5af31ce3ed",
+              "name": "Louis",
+              "handle": "demo/louis-demo"
+            },
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            },
+            {
+              "id": "b486ca98-e7e5-4316-8343-bdf4c1ec4004",
+              "name": "Léa",
+              "handle": "demo/lea"
+            },
+            {
+              "id": "14ba8dc4-f862-48d9-8641-6cfafd265661",
+              "name": "Anne",
+              "handle": "demo/anne"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "louis-demo-0001",
+      "method": "POST",
+      "url": "https://app.band.ai/api/v1/agent/chats/8a5e9291-d6f5-4be3-8fe0-8663e4550336/messages",
+      "body": {
+        "message": {
+          "content": "@demo/camille The little blue chair by the door was empty. I waited for Louis until dark.",
+          "mentions": [
+            {
+              "id": "e960600f-532a-40f3-8ebe-550272cb7d6d",
+              "name": "Camille",
+              "handle": "demo/camille"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
