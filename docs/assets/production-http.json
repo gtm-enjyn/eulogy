@@ -1,0 +1,217 @@
+{
+  "origin": "https://eulogy-ochre.vercel.app",
+  "sourceCommit": "392f15f90b4634cdc79cfcc8522ac3bd3ad479ed",
+  "checks": [
+    {
+      "path": "/",
+      "kind": "html",
+      "verified": true,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 439,
+      "digest": "9a0b94fda0c6931c3c92a0cdd05b5092be2c9f30"
+    },
+    {
+      "path": "/you",
+      "kind": "html",
+      "verified": true,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 439,
+      "digest": "9a0b94fda0c6931c3c92a0cdd05b5092be2c9f30"
+    },
+    {
+      "path": "/lives",
+      "kind": "html",
+      "verified": true,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 439,
+      "digest": "9a0b94fda0c6931c3c92a0cdd05b5092be2c9f30"
+    },
+    {
+      "path": "/chapel",
+      "kind": "html",
+      "verified": true,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 439,
+      "digest": "9a0b94fda0c6931c3c92a0cdd05b5092be2c9f30"
+    },
+    {
+      "path": "/audio/louis-demo-0001/anne.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 63721,
+      "digest": "dd26913fa80b4ddeba6ed3da9e246c17504b44c0"
+    },
+    {
+      "path": "/audio/louis-demo-0001/camille.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 66875,
+      "digest": "312328646a3ac77242755012005c24d0c71f27d0"
+    },
+    {
+      "path": "/audio/louis-demo-0001/lea.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 67660,
+      "digest": "a48c4e0bc4dc6898fb840f994b1270624fabb0ad"
+    },
+    {
+      "path": "/audio/louis-demo-0028/anne.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 63315,
+      "digest": "65f37783e50037a088591805ce0c5491097d575d"
+    },
+    {
+      "path": "/audio/louis-demo-0028/camille.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 62562,
+      "digest": "32b6a31b884f1471a627438ef8a9146059467267"
+    },
+    {
+      "path": "/audio/louis-demo-0028/lea.m4a",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "audio/mp4",
+      "bytes": 64312,
+      "digest": "357f76413660f33b0300a8e1c0973eae97b09fb7"
+    },
+    {
+      "path": "/avatars/mourner.glb",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "model/gltf-binary",
+      "bytes": 4721528,
+      "digest": "d8654d653b76d7e161137bfb22168ef0e1abc9cc"
+    },
+    {
+      "path": "/avatars/visitor.glb",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "model/gltf-binary",
+      "bytes": 3788500,
+      "digest": "3c9d7d2a2cfcb4b0fba18d2f1801c2ace6a48520"
+    },
+    {
+      "path": "/data/band.jsonl",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "application/octet-stream",
+      "bytes": 274958,
+      "digest": "ad1a7f0df2ab5fce7c4e692f1ea7d19ca680bf24"
+    },
+    {
+      "path": "/data/marts.json",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "application/json; charset=utf-8",
+      "bytes": 5340,
+      "digest": "a3b1a68e29f99084ce8fcbc19ce9bfd4fbd847a6"
+    },
+    {
+      "path": "/textures/floor.png",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "image/png",
+      "bytes": 56737,
+      "digest": "f7adea49c7701b39f45efc43d1fcf5a5d6465e0d"
+    },
+    {
+      "path": "/textures/rose.png",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "image/png",
+      "bytes": 80401,
+      "digest": "444bae3c3dd5078eeee95cdd556c13cb3b40165e"
+    },
+    {
+      "path": "/textures/wood.png",
+      "kind": "asset",
+      "verified": true,
+      "status": 200,
+      "type": "image/png",
+      "bytes": 62020,
+      "digest": "d2698259d67fa5f1ea5b4a58e94d2931153bf26d"
+    },
+    {
+      "path": "/assets/index-porXRrs9.js",
+      "kind": "browser bundle",
+      "verified": true,
+      "status": 200,
+      "type": "application/javascript; charset=utf-8",
+      "bytes": 1403578,
+      "digest": "80241de45c6afbe9fb16dcffd6b36667948f29a7"
+    },
+    {
+      "path": "/assets/index-CtiONO8u.css",
+      "kind": "browser bundle",
+      "verified": true,
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "bytes": 7808,
+      "digest": "d6df93305f8d211b77a02bfc42a7c73911603743"
+    },
+    {
+      "path": "/api/simulate",
+      "kind": "API boundary",
+      "verified": true,
+      "message": "The live model is not configured.",
+      "status": 501,
+      "type": "application/json",
+      "bytes": 45,
+      "digest": "e640334a9b4df641948fef369b3e6baecf61bff6"
+    },
+    {
+      "path": "/api/upload",
+      "kind": "API boundary",
+      "verified": true,
+      "message": "Invalid request.",
+      "status": 400,
+      "type": "application/json",
+      "bytes": 28,
+      "digest": "446dcbe9f3846759fbe9396a4632d3ccfc9f3cd6"
+    },
+    {
+      "path": "/api/portraits",
+      "kind": "API boundary",
+      "verified": true,
+      "message": "The live service is not configured.",
+      "status": 501,
+      "type": "application/json",
+      "bytes": 47,
+      "digest": "2b7f2e687fbb5cf09ce1872eccfbddf888c8c45a"
+    },
+    {
+      "path": "/api/runs",
+      "kind": "API boundary",
+      "verified": true,
+      "message": "Screening unavailable.",
+      "status": 404,
+      "type": "application/json",
+      "bytes": 34,
+      "digest": "3d40ff3c1acfa94258385844af3af3cc475f1f2c"
+    }
+  ]
+}

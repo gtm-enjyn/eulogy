@@ -1,6 +1,10 @@
-# Bloc E — Pipeline Bruin (Louis). C'est le prix à 1 000 $.
+# Bloc E — Pipeline Bruin (Jules). C'est le prix à 1 000 $.
 
 Install : `curl -LsSf https://getbruin.com/install/cli | sh`. Dossier `bruin/eulogy/`.
+
+## Implémentation livrée
+
+Les douze assets livrés sont en DuckDB SQL. Les fonctions JSON de DuckDB lisent les fichiers et éclatent les tableaux sans adaptateur Python. La structure ci-dessous conserve le découpage de la proposition initiale. Les chemins exécutables, les commandes et les résultats figurent dans le [guide du pipeline](../bruin/eulogy/README.md) et les [preuves](EVIDENCE.md).
 
 ## Structure
 ```
