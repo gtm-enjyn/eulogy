@@ -1,1 +1,1 @@
-export { default } from '../apps/web/api/portraits.js';
+export { default } from '../apps/web/api/dist/portraits.bundle.mjs';
