@@ -33,7 +33,8 @@ export const UnderTheHood: React.FC<{ len: number }> = ({ len }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const o = useFade(len, 16, 18);
-  const t = f / fps;
+  const k = len / fps / 16.5; // stretch the reveal timing with the scene length
+  const t = f / fps / k;
   const bandN = Math.floor(interpolate(t, [0.3, 9], [0, BAND_LINES.length], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }));
   const bruinN = Math.floor(interpolate(t, [2, 11], [0, BRUIN_ASSETS.length], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }));
   const telemN = Math.floor(interpolate(t, [4, 12], [0, TELEM.length], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }));
@@ -41,7 +42,6 @@ export const UnderTheHood: React.FC<{ len: number }> = ({ len }) => {
   return (
     <AbsoluteFill style={{ background: '#000', opacity: o }}>
       <Img src={staticFile('img/dorm.jpg')} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${bg})`, filter: 'brightness(0.35) saturate(0.7)' }} />
-      <div style={{ position: 'absolute', left: 90, top: 150, fontFamily: MONO, fontSize: 19, letterSpacing: 3, color: 'rgba(235,228,210,0.65)' }}>UNDER THE HOOD · LIFE #001 · RUN louis-demo-0001</div>
       <Panel title="BAND ROOM · life-0001 · 6 agents" x={90} w={640} accent="#7fb2e6">
         {BAND_LINES.slice(0, bandN).map(([from, to, text, priv], i) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: 10, marginBottom: 14, opacity: priv ? 0.95 : 0.8 }}>
@@ -106,7 +106,7 @@ export const Rooftop: React.FC<{ len: number }> = ({ len }) => {
   const { fps } = useVideoConfig();
   const o = useFade(len, 20, 16);
   const s = interpolate(f, [0, len], [1.08, 1.0], { easing: Easing.out(Easing.quad) });
-  const sub = interpolate(f, [3.0 * fps, 3.3 * fps, len - 10, len], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const sub = interpolate(f, [1.7 * fps, 2.0 * fps, len - 10, len], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ background: '#000', opacity: o }}>
       <Img src={staticFile('img/rooftop.jpg')} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${s})` }} />

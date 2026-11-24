@@ -21,16 +21,15 @@ export const Birth: React.FC<{ len: number }> = ({ len }) => {
 
 /* ---------- S2 Five lines (the form) ---------- */
 const FIELDS: [string, string][] = [
-  ['Age · City', '20 · Paris → Chicago'],
-  ['What you actually do', 'CS & data. Startup weekends. Varsity tennis.'],
-  ['The thing people close to you complain about', 'Short-tempered. Big ego. Says sorry last.'],
-  ['Who will be at your funeral', 'Maman, Inès 16, Theo. "He never calls first."'],
-  ['Your biggest fear', 'Ending up like my father. Respected. Alone.'],
+  ['What you actually do', 'Computer science. Startup weekends. Varsity tennis.'],
+  ['The thing people close to you complain about', 'Loses his temper. Apologizes last.'],
+  ['The people who matter', 'Maman, 52 · Inès, 16 · Theo, 21 · Papa, 55'],
+  ['Last call with Papa', 'Four months ago.'],
 ];
 export const FiveLines: React.FC<{ len: number }> = ({ len }) => {
   const { fps } = useVideoConfig();
   const o = useFade(len, 14, 18);
-  const starts = [0.6, 2.6, 4.9, 6.9, 9.0];
+  const starts = [0.3, 2.4, 4.6, 6.6];
   return (
     <AbsoluteFill style={{ background: '#050505', opacity: o, justifyContent: 'center' }}>
       <div style={{ marginLeft: 260, display: 'grid', gap: 34 }}>
@@ -142,7 +141,7 @@ export const ThousandLives: React.FC<{ len: number }> = ({ len }) => {
         <div style={{ fontFamily: SERIF, fontSize: 92, color: '#ece7da', fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>{count.toLocaleString('en-US')}</div>
         <div style={{ fontFamily: MONO, fontSize: 22, color: 'rgba(235,228,210,0.55)', letterSpacing: 2, marginTop: 10 }}>LIVES SIMULATED</div>
       </div>
-      <div style={{ position: 'absolute', left: 90, right: 90, bottom: 235, fontFamily: MONO, fontSize: 20, color: 'rgba(235,228,210,0.5)', overflow: 'hidden', height: 30, whiteSpace: 'nowrap' }}>
+      <div style={{ position: 'absolute', left: 90, right: 90, bottom: 290, fontFamily: MONO, fontSize: 20, color: 'rgba(235,228,210,0.5)', overflow: 'hidden', height: 30, whiteSpace: 'nowrap' }}>
         <span style={{ color: 'rgba(127,178,230,0.8)' }}>private channel</span>&nbsp;&nbsp;{FEED[feedIdx % FEED.length]}
       </div>
     </AbsoluteFill>
@@ -151,33 +150,31 @@ export const ThousandLives: React.FC<{ len: number }> = ({ len }) => {
 
 /* ---------- S6/S7 Chapel with ledger + feed ---------- */
 const LEDGER_1 = [
-  ['23', 'Drops out for the startup. Takes the late meeting. Misses Inès\'s recital.'],
-  ['27', 'Series A closes the week Léa is born. Jules takes the call from the corridor.'],
-  ['31', 'Shouts at Theo in front of the team. Theo leaves. No apology.'],
-  ['38', 'Léa moves to Paris with her mother. Calls on birthdays.'],
-  ['52', 'Sells the company. His father dies that spring. They never spoke.'],
+  ['23', 'Takes the late meeting instead of Inès\'s recital.'],
+  ['31', 'Shouts at Theo in front of the team. Theo leaves.'],
+  ['52', 'His father dies. They never spoke.'],
+  ['70', 'Thanksgiving. One plate.'],
 ];
 const LEDGER_2 = [
-  ['23', 'Same startup. Asks for help: calls his father first. Says sorry out loud.'],
-  ['27', 'At Léa\'s birth. Phone off. Theo closes the round without him.'],
+  ['23', 'Asks for help. Calls his father first. Says sorry out loud.'],
   ['31', 'Apologizes to Theo before the board does. They build the second one together.'],
-  ['38', 'Sundays in Paris. Léa calls on Tuesdays, not birthdays.'],
-  ['52', 'Sells the company. Léa is the first to know. His father is the second.'],
+  ['52', 'His father at the table. Every year.'],
+  ['70', 'Thanksgiving. Nine plates.'],
 ];
-export const Ledger: React.FC<{ variant: 1 | 2; len: number }> = ({ variant, len }) => {
+export const Ledger: React.FC<{ variant: 1 | 2; len: number; interval?: number }> = ({ variant, len, interval = 3.1 }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const rows = variant === 1 ? LEDGER_1 : LEDGER_2;
   const o = useFade(len, 16, 16);
   return (
-    <div style={{ position: 'absolute', right: 70, top: 180, width: 560, opacity: o * 0.95 }}>
-      <div style={{ fontFamily: MONO, fontSize: 18, color: 'rgba(232,163,90,0.9)', letterSpacing: 2, marginBottom: 14 }}>DECISION LEDGER · LIFE #{variant === 1 ? '001' : '212'}</div>
+    <div style={{ position: 'absolute', right: 80, top: 190, width: 600, opacity: o * 0.97, background: 'rgba(0,0,0,0.35)', padding: '16px 20px', borderRadius: 4 }}>
+      <div style={{ fontFamily: MONO, fontSize: 18, color: 'rgba(232,163,90,0.9)', letterSpacing: 2, marginBottom: 14 }}>DECISION LEDGER · LIFE #{variant === 1 ? '001 · MOST LIKELY' : '212 · TABLE FULL'}</div>
       {rows.map(([age, text], i) => {
-        const show = interpolate(f, [i * 1.6 * fps, i * 1.6 * fps + 12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+        const show = interpolate(f, [i * interval * fps, i * interval * fps + 12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
         return (
           <div key={age} style={{ display: 'grid', gridTemplateColumns: '54px 1fr', gap: 12, marginBottom: 12, opacity: show }}>
-            <div style={{ fontFamily: MONO, fontSize: 24, color: '#e8a35a' }}>{age}</div>
-            <div style={{ fontFamily: SANS, fontSize: 20, color: 'rgba(236,231,218,0.85)', lineHeight: 1.35 }}>{text}</div>
+            <div style={{ fontFamily: MONO, fontSize: 28, color: '#e8a35a' }}>{age}</div>
+            <div style={{ fontFamily: SANS, fontSize: 24, color: 'rgba(236,231,218,0.9)', lineHeight: 1.35, textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>{text}</div>
           </div>
         );
       })}
@@ -215,10 +212,9 @@ export const Reveal: React.FC<{ len: number }> = ({ len }) => {
     <AbsoluteFill style={{ background: '#000', justifyContent: 'center', alignItems: 'center', opacity: out }}>
       <div style={{ textAlign: 'center', maxWidth: 1400 }}>
         <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3 }}>
-          In <span style={{ fontVariantNumeric: 'tabular-nums', color: '#e8a35a' }}>{Math.round(pct)} %</span> of your lives,
+          In <span style={{ fontVariantNumeric: 'tabular-nums', color: '#e8a35a' }}>{Math.round(pct)} %</span> of his lives,
         </div>
-        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>Léa, the daughter you don't have yet,</div>
-        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>does not speak at your funeral.</div>
+        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>his sister's chair is empty.</div>
       </div>
     </AbsoluteFill>
   );
