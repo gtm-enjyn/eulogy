@@ -1,0 +1,226 @@
+{
+  "decision_impact": [
+    {
+      "action": "Ask for help",
+      "lift": 20,
+      "n": 10,
+      "n_without": 20,
+      "pct_speaks_with": 70,
+      "pct_speaks_without": 50,
+      "profile_id": "louis-demo"
+    },
+    {
+      "action": "Protect one evening at home",
+      "lift": 8,
+      "n": 8,
+      "n_without": 22,
+      "pct_speaks_with": 62.5,
+      "pct_speaks_without": 54.5,
+      "profile_id": "louis-demo"
+    },
+    {
+      "action": "Take the late meeting",
+      "lift": -25,
+      "n": 12,
+      "n_without": 18,
+      "pct_speaks_with": 41.7,
+      "pct_speaks_without": 66.7,
+      "profile_id": "louis-demo"
+    }
+  ],
+  "outcome_distribution": [
+    {
+      "clusters": {
+        "estranged": 13,
+        "mixed": 3,
+        "reconciled": 14
+      },
+      "n_runs": 30,
+      "pct_child_speaks": 56.7,
+      "pct_partner_speaks": 56.7,
+      "profile_id": "louis-demo"
+    }
+  ],
+  "turning_points": [
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0001"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0002"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0003"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0004"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0005"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0006"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0007"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0008"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0009"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0010"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0011"
+    },
+    {
+      "first_age_below_50": 36,
+      "first_year_below_50": 1,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0012"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0013"
+    },
+    {
+      "first_age_below_50": 41,
+      "first_year_below_50": 2,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0014"
+    },
+    {
+      "first_age_below_50": 36,
+      "first_year_below_50": 1,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0015"
+    },
+    {
+      "first_age_below_50": 41,
+      "first_year_below_50": 2,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0016"
+    },
+    {
+      "first_age_below_50": 36,
+      "first_year_below_50": 1,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0017"
+    },
+    {
+      "first_age_below_50": 41,
+      "first_year_below_50": 2,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0018"
+    },
+    {
+      "first_age_below_50": 66,
+      "first_year_below_50": 4,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0019"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0020"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0021"
+    },
+    {
+      "first_age_below_50": 36,
+      "first_year_below_50": 1,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0022"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0023"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0024"
+    },
+    {
+      "first_age_below_50": 87,
+      "first_year_below_50": 5,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0025"
+    },
+    {
+      "first_age_below_50": 41,
+      "first_year_below_50": 2,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0026"
+    },
+    {
+      "first_age_below_50": 33,
+      "first_year_below_50": 0,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0027"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0028"
+    },
+    {
+      "first_age_below_50": 36,
+      "first_year_below_50": 1,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0029"
+    },
+    {
+      "first_age_below_50": null,
+      "first_year_below_50": null,
+      "profile_id": "louis-demo",
+      "run_id": "louis-demo-0030"
+    }
+  ]
+}

@@ -10,3 +10,14 @@ data/runs/*.jsonl
 bruin/**/*.duckdb
 .DS_Store
 *.tsbuildinfo
+
+logs/
+.bruin/
+*.duckdb.wal
+
+.bruin.yml
+logs/runs
+logs/*.log
+__pycache__/
+*.py[cod]
+logs/queries
