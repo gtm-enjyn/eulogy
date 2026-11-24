@@ -30,11 +30,20 @@ export default function Chapel() {
     0,
     runs.findIndex((r) => r.run_id === summary.most_probable_run_id),
   );
-  const [index, setIndex] = useState(initial),
+  const best = runs.findIndex((r) => r.run_id === summary.best_run_id);
+  const anchor = best >= 0 ? best : initial;
+  const playlist = [
+    initial,
+    ...Array.from({ length: runs.length }, (_, i) => (anchor + i) % runs.length).filter(
+      (i) => i !== initial,
+    ),
+  ];
+  const [position, setPosition] = useState(0),
     [part, setPart] = useState(0),
     [beat, setBeat] = useState<Beat>('approach'),
     [manual, setManual] = useState<Shot | null>(null),
     [sound, setSound] = useState(true);
+  const index = playlist[position % playlist.length]!;
   const run = runs[index]!,
     speech = run.eulogies[part],
     speaker = profile.relatives.find((r) => r.id === speech?.relative_id);
@@ -52,8 +61,7 @@ export default function Chapel() {
     if (top < 0 || top + active.offsetHeight > ledger.clientHeight) ledger.scrollTop += top - 10;
   }, [chapter, run]);
   const next = () => {
-    const best = runs.findIndex((r) => r.run_id === summary.best_run_id);
-    setIndex((i) => (i === initial && best >= 0 && best !== i ? best : (i + 1) % runs.length));
+    setPosition((i) => (i + 1) % playlist.length);
     setPart(0);
     setBeat('approach');
     setManual(null);
