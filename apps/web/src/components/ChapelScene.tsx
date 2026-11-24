@@ -1,8 +1,8 @@
 import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, useTexture, Center, Resize } from '@react-three/drei';
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { CanvasTexture, DoubleSide, Group, SRGBColorSpace, Vector3 } from 'three';
+import { DoubleSide, Group, Texture, Vector3 } from 'three';
 import type { Profile, Relative } from '@eulogy/shared';
 
 export type Shot = 'wide' | 'pulpit' | 'front_row';
@@ -36,49 +36,32 @@ function Camera({ shot }: { shot: Shot }) {
   });
   return null;
 }
-function roseWindow() {
-  const canvas = document.createElement('canvas');
-  canvas.width = canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
-  ctx.translate(256, 256);
-  const colors = ['#cf865a', '#4c7499', '#8d455f', '#d9b079', '#557e8e', '#a85d6b'];
-  for (let ring = 0; ring < 5; ring++) {
-    const count = ring === 0 ? 8 : 16 + ring * 4;
-    const inner = ring * 23 + 7,
-      outer = inner + 22;
-    for (let i = 0; i < count; i++) {
-      const a = (i * Math.PI * 2) / count,
-        b = ((i + 1) * Math.PI * 2) / count;
-      ctx.beginPath();
-      ctx.arc(0, 0, outer * 2, a, b);
-      ctx.arc(0, 0, inner * 2, b, a, true);
-      ctx.closePath();
-      ctx.fillStyle = colors[(i + ring * 2) % colors.length]!;
-      ctx.fill();
-      ctx.strokeStyle = '#2c2328';
-      ctx.lineWidth = 3;
-      ctx.stroke();
-    }
-  }
-  for (let i = 0; i < 12; i++) {
-    ctx.save();
-    ctx.rotate((i * Math.PI) / 6);
-    ctx.beginPath();
-    ctx.ellipse(0, 114, 26, 100, 0, 0, Math.PI * 2);
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = '#f0c58a';
-    ctx.stroke();
-    ctx.restore();
-  }
-  const texture = new CanvasTexture(canvas);
-  texture.colorSpace = SRGBColorSpace;
-  return texture;
+function Monument({ url }: { url: string }) {
+  const { scene } = useGLTF(url);
+  return (
+    <group position={[-2.4, 1.0, -3.3]}>
+      <Resize scale={0.85}>
+        <Center>
+          <primitive object={scene} />
+        </Center>
+      </Resize>
+    </group>
+  );
 }
-function Box({ at, size, color }: { at: Vec; size: Vec; color: string }) {
+function Portrait({ url }: { url: string }) {
+  const image = useTexture(url);
+  return (
+    <mesh position={[-2.4, 1.4, -3.22]}>
+      <planeGeometry args={[0.65, 0.82]} />
+      <meshBasicMaterial map={image} />
+    </mesh>
+  );
+}
+function Box({ at, size, color, map }: { at: Vec; size: Vec; color: string; map?: Texture }) {
   return (
     <mesh position={at}>
       <boxGeometry args={size} />
-      <meshStandardMaterial color={color} roughness={0.76} />
+      <meshStandardMaterial color={color} map={map} roughness={0.76} />
     </mesh>
   );
 }
@@ -145,7 +128,11 @@ export default function ChapelScene({
   shot: Shot;
   beat: Beat;
 }) {
-  const rose = useMemo(roseWindow, []);
+  const [rose, floor, wood] = useTexture([
+    '/textures/rose.png',
+    '/textures/floor.png',
+    '/textures/wood.png',
+  ]);
   return (
     <>
       <color attach="background" args={['#15151c']} />
@@ -154,7 +141,7 @@ export default function ChapelScene({
       <spotLight position={[0, 6, 0]} angle={0.75} penumbra={1} intensity={200} color="#ffcf92" />
       <pointLight position={[0, 4, -5]} intensity={80} color="#ae88ca" distance={14} />
       <pointLight position={[1, 2, -1]} intensity={22} color="#ffc58d" />
-      <Box at={[0, -0.14, 0]} size={[12, 0.25, 25]} color="#514c49" />
+      <Box at={[0, -0.14, 0]} size={[12, 0.25, 25]} color="#857d74" map={floor} />
       <Box at={[0, 0.008, 2]} size={[1.45, 0.015, 14]} color="#613b3f" />
       <Box at={[0, 3.7, -7.4]} size={[13, 8, 0.4]} color="#5a514e" />
       <mesh position={[0, 4.1, -7.12]}>
@@ -185,7 +172,7 @@ export default function ChapelScene({
       {[0, 1, 2].flatMap((row) =>
         [-1, 1].map((s) => (
           <group key={row + '-' + s} position={[s * 2.25, 0, 1.45 + row * 1.85]}>
-            <Box at={[0, 0.38, 0]} size={[3.05, 0.18, 0.7]} color="#70452f" />
+            <Box at={[0, 0.38, 0]} size={[3.05, 0.18, 0.7]} color="#855d45" map={wood} />
             <Box at={[0, 0.75, 0.3]} size={[3.05, 0.62, 0.12]} color="#583b2d" />
             {[-1.15, 1.15].map((x) => (
               <Box key={x} at={[x, 0.21, 0]} size={[0.15, 0.42, 0.56]} color="#53382b" />
@@ -210,6 +197,16 @@ export default function ChapelScene({
       {profile.relatives.map((r, i) => (
         <Guest key={r.id} relative={r} index={i} active={speaker === r.id} beat={beat} />
       ))}
+      {profile.bustUrl || profile.portraits?.[2] ? (
+        <>
+          <Box at={[-2.4, 0.5, -3.3]} size={[0.68, 1, 0.6]} color="#70675c" />
+          {profile.bustUrl ? (
+            <Monument url={profile.bustUrl} />
+          ) : (
+            <Portrait url={profile.portraits![2]!} />
+          )}
+        </>
+      ) : null}
       <Camera shot={shot} />
     </>
   );

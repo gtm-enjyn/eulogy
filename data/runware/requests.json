@@ -1,0 +1,152 @@
+{
+  "mode": "dry-run",
+  "endpoint": "https://api.runware.ai/v1",
+  "method": "POST",
+  "bodies": [
+    [
+      {
+        "taskType": "imageInference",
+        "taskUUID": "9effa0ad-166f-4a57-89eb-434850845659",
+        "model": "bfl:3@1",
+        "positivePrompt": "Photographic portrait of the same person, preserving eyes and identity, age 31. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1,
+        "inputs": {
+          "referenceImages": [
+            "https://example.org/demo/portrait.jpg"
+          ]
+        }
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "5c07f816-ee33-4e5b-9fc4-d805c9438991",
+        "model": "bfl:3@1",
+        "positivePrompt": "Photographic portrait of the same person, preserving eyes and identity, age 56. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1,
+        "inputs": {
+          "referenceImages": [
+            "https://example.org/demo/portrait.jpg"
+          ]
+        }
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "c178bb1f-e19d-44fa-9564-0ec3e59c85c4",
+        "model": "bfl:3@1",
+        "positivePrompt": "Photographic portrait of the same person, preserving eyes and identity, age 76. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1,
+        "inputs": {
+          "referenceImages": [
+            "https://example.org/demo/portrait.jpg"
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "taskType": "imageInference",
+        "taskUUID": "8664b631-d0cd-44b6-acca-89a1ca83bd0d",
+        "model": "runware:101@1",
+        "positivePrompt": "Photographic portrait of Louis, ambitious, competitive, disciplined in San Francisco, age 31. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "3524e3d2-d648-4be1-8a0b-8d1977902754",
+        "model": "runware:101@1",
+        "positivePrompt": "Photographic portrait of Louis, ambitious, competitive, disciplined in San Francisco, age 56. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "97ac0eb8-91ea-4c71-85bc-bbdd44f5615c",
+        "model": "runware:101@1",
+        "positivePrompt": "Photographic portrait of Louis, ambitious, competitive, disciplined in San Francisco, age 76. Natural soft window light, neutral background, similar pose.",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "JPG",
+        "numberResults": 1
+      }
+    ],
+    [
+      {
+        "taskType": "imageInference",
+        "taskUUID": "2dd19983-272a-4e21-b161-a5538b764db1",
+        "model": "runware:101@1",
+        "positivePrompt": "Gothic stained glass rose window, crimson and deep blue, backlit, centered, circular, black background",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "PNG",
+        "numberResults": 1
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "fca29b08-9fe3-4b51-8f74-6be19a15c022",
+        "model": "runware:101@1",
+        "positivePrompt": "Seamless worn limestone floor tiles, top down, repeatable",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "PNG",
+        "numberResults": 1
+      },
+      {
+        "taskType": "imageInference",
+        "taskUUID": "69093ec7-10dd-49ca-9aaf-3ce969387c69",
+        "model": "runware:101@1",
+        "positivePrompt": "Seamless carved walnut wood, warm straight grain, repeatable",
+        "width": 1024,
+        "height": 1024,
+        "outputType": "URL",
+        "outputFormat": "PNG",
+        "numberResults": 1
+      }
+    ],
+    [
+      {
+        "taskType": "3dInference",
+        "taskUUID": "80bc059b-e861-4845-9c07-ae6a46ddf716",
+        "model": "microsoft:trellis-2@4b",
+        "inputs": {
+          "image": "https://example.org/demo/aged-portrait.jpg"
+        },
+        "settings": {
+          "resolution": 1024,
+          "textureSize": 2048,
+          "textureFormat": "PNG",
+          "decimationTarget": 100000
+        },
+        "outputType": "URL",
+        "outputFormat": "GLB",
+        "deliveryMethod": "async"
+      }
+    ],
+    [
+      {
+        "taskType": "getResponse",
+        "taskUUID": "80bc059b-e861-4845-9c07-ae6a46ddf716"
+      }
+    ]
+  ]
+}
