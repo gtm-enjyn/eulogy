@@ -1,0 +1,79 @@
+.profile-form,
+.atlas {
+  background: #131315;
+  color: #efe6d6;
+  min-height: 100vh;
+}
+.profile-form form {
+  max-width: 860px;
+  margin: auto;
+  padding: 52px 24px 85px;
+}
+.profile-form h1 {
+  font-size: clamp(42px, 6vw, 78px);
+}
+.profile-form fieldset {
+  border: 0;
+  border-top: 1px solid #51473f;
+  margin: 28px 0;
+  padding: 12px 0 0;
+}
+.profile-form legend {
+  font:
+    26px Georgia,
+    serif;
+  padding: 0 14px 0 0;
+  color: #dfc29e;
+}
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
+}
+.profile-form label {
+  color: #e5d8c6;
+  font-size: 14px;
+  margin: 6px 0;
+}
+.profile-form label input,
+.profile-form label select {
+  margin: 5px 0;
+  background: #211f21;
+  border-color: #51473f;
+}
+.profile-form small {
+  display: block;
+  color: #b4a89c;
+}
+.profile-form small[role='alert'] {
+  color: #ffba96;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+.chips button {
+  border-radius: 22px;
+  padding: 5px 12px;
+}
+.chips [aria-pressed='true'] {
+  background: #dcc39d;
+  color: #2a221e;
+}
+.person {
+  padding: 14px 0;
+  border-bottom: 1px solid #353236;
+}
+.profile-form video,
+.profile-form img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.profile-form input[type='range'] {
+  accent-color: #ddbd92;
+}

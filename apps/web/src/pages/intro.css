@@ -1,0 +1,80 @@
+.opening {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 45%, #211a1a 0, #0e0d10 40%, #07070a 75%);
+  overflow: hidden;
+  position: relative;
+  color: #e9dfd0;
+}
+.opening header {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  font:
+    italic 30px Georgia,
+    serif;
+}
+.light {
+  position: absolute;
+  top: 34%;
+  width: 7px;
+  height: 7px;
+  background: #ffe4b2;
+  border-radius: 50%;
+  box-shadow:
+    0 0 12px 6px #ecbb80,
+    0 0 62px 20px #a55e37,
+    0 0 180px 32px #5c3620;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+.opening-copy {
+  text-align: center;
+  margin-top: 12vh;
+  padding: 16px;
+}
+.opening h1,
+.profile-form h1,
+.atlas h1 {
+  font:
+    normal clamp(44px, 8vw, 100px)/1 Georgia,
+    serif;
+  letter-spacing: -0.055em;
+  margin: 0 0 28px;
+}
+.opening h1 {
+  animation: arrive 0.8s ease-out;
+}
+.opening button,
+.profile-form button[type='submit'],
+.atlas a.enter {
+  background: #e8d3ae;
+  color: #251e1c;
+  border: 0;
+  border-radius: 24px;
+  padding: 13px 24px;
+}
+.opening button span {
+  margin-left: 18px;
+}
+@keyframes pulse {
+  50% {
+    transform: scale(0.65);
+    opacity: 0.48;
+  }
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .opening * {
+    animation: none !important;
+  }
+}
