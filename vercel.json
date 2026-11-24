@@ -4,15 +4,7 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/you",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/lives",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/chapel",
+      "source": "/((?!api/|assets/|data/|screens/|avatars/|audio/|textures/|models/).*)",
       "destination": "/index.html"
     }
   ],
