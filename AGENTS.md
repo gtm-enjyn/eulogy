@@ -6,13 +6,10 @@ Deadline : **17h15 soumission** (repo public + vidéo). Il n'y a pas de "plus ta
 ## Lis dans cet ordre, à chaque session
 1. `PLAN.md` : le graphe de blocs, qui fait quoi, les interfaces entre blocs, les critères de "fini".
 2. La spec du bloc qu'on t'a donné dans `docs/`.
-3. `packages/shared/src/index.ts` : les schémas zod. **C'est le contrat.** Tu ne les changes jamais sans l'accord de Louis (ouvre une PR séparée, titre `shared: ...`).
+3. `packages/shared/src/index.ts` : les schémas zod. **C'est le contrat.** Jules est responsable des modifications et de leur compatibilité.
 
 ## Rôles
-- **Louis** (Claude Code) : simulation, données, sponsors backend. Blocs A, B, C, D, E, F.
-- **Jules** (Codex) : tout ce qui se voit. Blocs G, H, I, J, K.
-- Les deux : L (intégration), M (vidéo + soumission).
-Tu ne touches jamais aux fichiers d'un bloc qui n'est pas le tien. Si tu as besoin d'une chose de l'autre côté, tu la mockes depuis les fixtures de `packages/shared` et tu notes le besoin dans la PR.
+Jules est le seul développeur et possède les blocs A–J, L et M, du schéma partagé à la soumission. Louis possède le bloc K, capture et montage de la vidéo AdaL, et transmet son lien à Jules.
 
 ## Workflow git, sans exception
 - Jamais de commit sur `main`. `scripts/new-branch.sh <bloc>-<courte-description>`.
@@ -32,7 +29,7 @@ Un bloc est fini quand (1) ses critères d'acceptation dans PLAN.md sont cochés
 - Fallbacks obligatoires, dans cet ordre de préférence : la vraie feature → la version dégradée décrite dans la spec → la fixture. Une démo qui tourne moche bat une démo qui ne tourne pas.
 
 ## Français / anglais
-Code, commits, noms de fichiers en anglais. Textes à l'écran en anglais (les juges sont anglophones). Docs en français.
+Code, commits, noms de fichiers en anglais. Textes à l'écran en anglais (les juges sont anglophones). README, architecture, preuves et décisions en anglais.
 
 ## Quand tu es bloqué
 Tu ne demandes pas à l'humain. Tu prends la version dégradée de la spec, tu la livres, tu écris "DEGRADED: <quoi>" dans le titre de la PR. L'humain décidera s'il faut remonter.
