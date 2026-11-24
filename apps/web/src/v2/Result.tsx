@@ -83,7 +83,7 @@ export default function Result() {
       )}
       {toast && <div className="toast">{toast}</div>}
       <div style={{ position: 'absolute', left: '4.5vw', bottom: '9vh', display: 'flex', gap: 10, zIndex: 7 }}>
-        <button className="btn ghost" onClick={() => nav('/chapel')}>Enter the chapel (3D) →</button>
+        <button className="btn ghost" onClick={() => nav('/chapel?screening=jules')}>Watch Jules’s service (3D) →</button>
         <button className="btn ghost" onClick={() => nav('/')}>Start over</button>
       </div>
       <Look />

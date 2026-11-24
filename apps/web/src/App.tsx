@@ -4,7 +4,10 @@ import Face from './v2/Face';
 import Voice from './v2/Voice';
 import Simulate from './v2/Simulate';
 import Result from './v2/Result';
-import Chapel from './pages/Chapel';
+import { lazy, Suspense } from 'react';
+import LivesGrid from './pages/LivesGrid';
+import Onboarding from './pages/Onboarding';
+const Chapel = lazy(() => import('./pages/Chapel'));
 
 export default function App() {
   return (
@@ -14,7 +17,22 @@ export default function App() {
       <Route path="/voice" element={<Voice />} />
       <Route path="/simulate" element={<Simulate />} />
       <Route path="/result" element={<Result />} />
-      <Route path="/chapel" element={<Chapel />} />
+      <Route path="/lives" element={<LivesGrid />} />
+      <Route path="/you" element={<Onboarding />} />
+      <Route
+        path="/chapel"
+        element={
+          <Suspense
+            fallback={
+              <main className="page" role="status">
+                Opening the chapel…
+              </main>
+            }
+          >
+            <Chapel />
+          </Suspense>
+        }
+      />
       <Route path="*" element={<Landing />} />
     </Routes>
   );

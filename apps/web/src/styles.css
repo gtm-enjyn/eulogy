@@ -5,8 +5,8 @@
   --fg: #ededed;
   --muted: #8a8a93;
   --accent: #e8b86d;
-  --font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-    sans-serif;
+  --font:
+    Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -188,4 +188,31 @@ label {
   .form-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.film-bar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 28px;
+  border-bottom: 1px solid #453c32;
+  background: #171715;
+  color: #c4b69f;
+}
+.film-bar a:first-child {
+  font:
+    italic 28px Georgia,
+    serif;
+  color: #f0e3ce;
+  text-decoration: none;
+}
+.film-bar a:last-child {
+  margin-left: auto;
+  color: #e3cbaa;
+  text-decoration: none;
+}
+
+body:has(.theatre, .atlas, .profile-form) {
+  overflow: auto;
 }
