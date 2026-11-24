@@ -202,5 +202,12 @@
     "In Chrome use a 1440 by 900 CSS pixel viewport at DPR 1. Open /, continue through /you and submit the supplied profile. Capture /lives after the reveal is fully visible.",
     "Enter the chapel. In life 1, switch to wide while Anne is speaking. Capture the stage, decision ledger and private feed. On the next two advances the titles are life 28 and life 29."
   ],
-  "frameMethod": "Playwright recorded consecutive requestAnimationFrame timestamps after WebGL warm-up and counted intervals with WebGL drawElements calls. Matching blank pages used the same 1440 × 900 viewport. The desktop cadence measured about 30 Hz in both Chrome modes."
+  "frameMethod": "Playwright recorded consecutive requestAnimationFrame timestamps after WebGL warm-up and counted intervals with WebGL drawElements calls. Matching blank pages used the same 1440 × 900 viewport. The desktop cadence measured about 30 Hz in both Chrome modes.",
+  "webglUnavailable": {
+    "chromeFlag": "--disable-webgl",
+    "status": "3D projection unavailable; captions, decision ledger, audio controls and Next life remain available.",
+    "nextLife": "Life 28 of 30 · reconciled",
+    "nextCaption": "Camille · at the lectern",
+    "uncaughtPageErrors": 0
+  }
 }

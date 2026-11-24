@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Component, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Link } from 'react-router-dom';
 import ChapelScene, { type Beat, type Shot } from '../components/ChapelScene';
@@ -8,6 +8,22 @@ import { getScreening } from '../data/screening';
 import './chapel.css';
 import audioFiles from '../data/audio.json';
 const recordings: Record<string, string> = audioFiles;
+class ProjectionBoundary extends Component<{ children: ReactNode }, { unavailable: boolean }> {
+  state = { unavailable: false };
+  static getDerivedStateFromError() {
+    return { unavailable: true };
+  }
+  render() {
+    if (this.state.unavailable)
+      return (
+        <div className="projection-unavailable" role="status">
+          <img src="/textures/rose.png" alt="" />
+          <p>The 3D projection is unavailable. The service continues with audio and captions.</p>
+        </div>
+      );
+    return this.props.children;
+  }
+}
 export default function Chapel() {
   const { profile, runs, summary } = getScreening();
   const initial = Math.max(
@@ -105,20 +121,22 @@ export default function Chapel() {
       </header>
       <div className="chapel">
         <div className="chapel-canvas">
-          <Canvas
-            dpr={[1, 1.5]}
-            camera={{ position: [0, 3.1, 9.8], fov: 46 }}
-            gl={{ antialias: true }}
-          >
-            <Suspense fallback={null}>
-              <ChapelScene
-                profile={profile}
-                speaker={speech?.speaks ? speech.relative_id : ''}
-                beat={beat}
-                shot={shot}
-              />
-            </Suspense>
-          </Canvas>
+          <ProjectionBoundary>
+            <Canvas
+              dpr={[1, 1.5]}
+              camera={{ position: [0, 3.1, 9.8], fov: 46 }}
+              gl={{ antialias: true }}
+            >
+              <Suspense fallback={null}>
+                <ChapelScene
+                  profile={profile}
+                  speaker={speech?.speaks ? speech.relative_id : ''}
+                  beat={beat}
+                  shot={shot}
+                />
+              </Suspense>
+            </Canvas>
+          </ProjectionBoundary>
           <div className="shot-controls">
             {(['wide', 'pulpit', 'front_row'] as const).map((s) => (
               <button
