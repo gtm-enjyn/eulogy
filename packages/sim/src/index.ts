@@ -4,6 +4,7 @@ import { parseArgs } from 'node:util';
 import { ProfileSchema, sampleProfile } from '@eulogy/shared';
 import { simulateProfile, writeOutputs } from './generate';
 import { defaultPriors, PriorsSchema } from './shocks';
+import { researchPriors } from './priors';
 
 const root = process.env.INIT_CWD ?? process.cwd();
 async function main() {
@@ -20,9 +21,12 @@ async function main() {
     ? ProfileSchema.parse(JSON.parse(readFileSync(resolve(root, values.profile), 'utf8')))
     : sampleProfile;
   const priorPath = resolve(root, 'data/priors', profile.id + '.json');
-  const priors = existsSync(priorPath)
-    ? PriorsSchema.parse(JSON.parse(readFileSync(priorPath, 'utf8')))
-    : defaultPriors;
+  const priors =
+    !values.mock && process.env.TELEM_API_KEY
+      ? await researchPriors(profile.id, process.env.TELEM_API_KEY)
+      : existsSync(priorPath)
+        ? PriorsSchema.parse(JSON.parse(readFileSync(priorPath, 'utf8')))
+        : defaultPriors;
   const mock = values.mock || !process.env.ANTHROPIC_API_KEY;
   if (mock) console.log('DEGRADED · deterministic offline simulation');
   const runs = await simulateProfile(profile, { runs: Number(values.runs), mock, priors });

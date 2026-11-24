@@ -1,0 +1,67 @@
+{
+  "mode": "dry-run",
+  "method": "POST",
+  "endpoint": "https://router.telem.ai/v1/search",
+  "bodies": [
+    {
+      "user_input": {
+        "query": "Study estimating divorce prevalence among US entrepreneurs"
+      },
+      "search": {
+        "num_results": 3
+      },
+      "postprocessor_names": [],
+      "metadata": {
+        "context": "Destiny needs evidence about breakup to calibrate the fictional shock weights for profile louis-demo."
+      }
+    },
+    {
+      "user_input": {
+        "query": "US cohort prevalence alcohol related illness among adults"
+      },
+      "search": {
+        "num_results": 3
+      },
+      "postprocessor_names": [],
+      "metadata": {
+        "context": "Destiny needs evidence about illness_self to calibrate the fictional shock weights for profile louis-demo."
+      }
+    },
+    {
+      "user_input": {
+        "query": "Survey percentage of startup founders reporting burnout"
+      },
+      "search": {
+        "num_results": 3
+      },
+      "postprocessor_names": [],
+      "metadata": {
+        "context": "Destiny needs evidence about burnout to calibrate the fictional shock weights for profile louis-demo."
+      }
+    },
+    {
+      "user_input": {
+        "query": "US share of new businesses failing within five years BLS"
+      },
+      "search": {
+        "num_results": 3
+      },
+      "postprocessor_names": [],
+      "metadata": {
+        "context": "Destiny needs evidence about startup_failure to calibrate the fictional shock weights for profile louis-demo."
+      }
+    },
+    {
+      "user_input": {
+        "query": "Share of adult children living abroad apart from their parents survey"
+      },
+      "search": {
+        "num_results": 3
+      },
+      "postprocessor_names": [],
+      "metadata": {
+        "context": "Destiny needs evidence about move_abroad to calibrate the fictional shock weights for profile louis-demo."
+      }
+    }
+  ]
+}

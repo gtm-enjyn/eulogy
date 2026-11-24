@@ -12,6 +12,12 @@ export default function Ledger({ run, active }: { run: Run; active?: number }) {
           <div>
             <span className="age">{y.protagonist_age}</span>{' '}
             <span className="shock">{y.shock}</span>
+            {y.source_url && (
+              <a href={y.source_url} target="_blank" rel="noreferrer">
+                {' '}
+                Telem source ↗
+              </a>
+            )}
           </div>
           <ul>
             {y.decisions.map((d, i) => (
