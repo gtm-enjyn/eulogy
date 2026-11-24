@@ -90,16 +90,61 @@ export const EulogySchema = z.object({
   sentiment: z.number().min(-1).max(1),
 });
 
-export const RunSchema = z.object({
-  run_id: z.string().min(1),
-  profile_id: z.string().min(1),
-  seed: z.number().int(),
-  death_age: z.number().int().min(0),
-  cause_of_death: z.string(),
-  years: z.array(YearEventSchema),
-  eulogies: z.array(EulogySchema),
-  ending_cluster: z.string().optional(),
-});
+export const RunSchema = z
+  .object({
+    run_id: z.string().min(1),
+    profile_id: z.string().min(1),
+    seed: z.number().int(),
+    death_age: z.number().int().min(0),
+    cause_of_death: z.string(),
+    years: z.array(YearEventSchema),
+    eulogies: z.array(EulogySchema),
+    ending_cluster: z.string().optional(),
+  })
+  .superRefine((run, ctx) => {
+    // Untagged screenings predate chapter provenance and can still be opened from storage.
+    if (!run.years.some((year) => year.generation !== undefined)) return;
+    const issue = (path: (string | number)[], message: string) =>
+      ctx.addIssue({ code: 'custom', path, message });
+    if (run.years.length !== 6) issue(['years'], 'A generated life has six chapters.');
+    run.years.forEach((year, index) => {
+      if (year.generation === undefined || year.run_id !== run.run_id || year.year_index !== index)
+        issue(
+          ['years', index],
+          'The chapter must have provenance, its own run ID and its sequence index.',
+        );
+      if (index > 0 && year.protagonist_age <= run.years[index - 1]!.protagonist_age)
+        issue(['years', index, 'protagonist_age'], 'Chapter ages must increase.');
+    });
+    const last = run.years.at(-1);
+    if (!last) return;
+    if (last.protagonist_age !== run.death_age)
+      issue(['death_age'], 'The final chapter sets the death age.');
+    const scores = new Map(
+      last.relative_states.map((state) => [state.relative_id, state.relationship_score]),
+    );
+    const funeralIds = new Set(run.eulogies.map((e) => e.relative_id));
+    if (
+      !scores.size ||
+      scores.size !== last.relative_states.length ||
+      funeralIds.size !== run.eulogies.length ||
+      funeralIds.size !== scores.size
+    )
+      issue(['eulogies'], 'Each relative needs one final state and one farewell.');
+    run.eulogies.forEach((e, index) => {
+      const score = scores.get(e.relative_id);
+      if (
+        e.run_id !== run.run_id ||
+        score === undefined ||
+        e.speaks !== score >= 55 ||
+        !e.text.trim()
+      )
+        issue(
+          ['eulogies', index],
+          'Each farewell needs text, a matching final score, and speech eligibility at 55.',
+        );
+    });
+  });
 
 export const RunSummarySchema = z.object({
   n_runs: z.number().int().min(0),

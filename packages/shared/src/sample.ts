@@ -55,7 +55,7 @@ export const sampleRun: Run = {
   seed: 1,
   death_age: 78,
   cause_of_death: 'heart attack',
-  ending_cluster: 'admired-alone',
+  ending_cluster: 'admired_not_loved',
   years: [
     {
       run_id: RUN_ID,
@@ -63,6 +63,7 @@ export const sampleRun: Run = {
       protagonist_age: 33,
       shock: 'Series A closes; the company triples headcount in six months',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'louis',
@@ -115,6 +116,7 @@ export const sampleRun: Run = {
       protagonist_age: 36,
       shock: 'Camille is offered a professorship in Lyon',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'louis',
@@ -167,6 +169,7 @@ export const sampleRun: Run = {
       protagonist_age: 41,
       shock: 'Acquisition offer at 400M; Jules wants to sell, Louis refuses',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'louis',
@@ -219,6 +222,7 @@ export const sampleRun: Run = {
       protagonist_age: 51,
       shock: 'Camille leaves after Léa goes to university',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'camille',
@@ -271,6 +275,7 @@ export const sampleRun: Run = {
       protagonist_age: 66,
       shock: 'The company IPOs; Louis steps down as CEO',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'louis',
@@ -323,6 +328,7 @@ export const sampleRun: Run = {
       protagonist_age: 78,
       shock: 'Heart attack during a morning run in the Presidio',
       shock_source: 'destiny',
+      generation: 'mock',
       decisions: [
         {
           actor: 'louis',
@@ -383,7 +389,7 @@ export const sampleRun: Run = {
     {
       run_id: RUN_ID,
       relative_id: 'camille',
-      speaks: true,
+      speaks: false,
       sentiment: 0.1,
       text: 'I loved Louis for twenty years and I left him for twenty-seven. Both were the right decision. He gave me Léa, and a house I never wanted, and a lesson about what I would not accept. I am grateful for two of those.',
     },
@@ -392,7 +398,7 @@ export const sampleRun: Run = {
       relative_id: 'lea',
       speaks: false,
       sentiment: -0.7,
-      text: '',
+      text: 'They found the letter in his desk. It was addressed to me. I wish he had sent it while we still had that Christmas.',
     },
   ],
 };
