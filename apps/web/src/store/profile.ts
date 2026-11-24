@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { sampleProfile, type Profile } from '@eulogy/shared';
+import { type Profile } from '@eulogy/shared';
+import { demo } from '../data/screening';
+const sampleProfile = demo.profile;
 
 interface ProfileState {
   profile: Profile;
