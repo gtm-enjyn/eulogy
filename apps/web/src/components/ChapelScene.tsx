@@ -1,69 +1,216 @@
-import { Html, OrbitControls } from '@react-three/drei';
-import type { Relative } from '@eulogy/shared';
+import { useMemo, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
+import { CanvasTexture, DoubleSide, Group, SRGBColorSpace, Vector3 } from 'three';
+import type { Profile, Relative } from '@eulogy/shared';
 
-const PEW_ROWS = 3;
-const RELATIVE_SLOTS: [number, number, number][] = [
-  [-1.5, 0.6, 1],
-  [-0.5, 0.6, 1],
-  [0.5, 0.6, 1],
-  [1.5, 0.6, 1],
-];
-
-export default function ChapelScene({ relatives }: { relatives: Relative[] }) {
+export type Shot = 'wide' | 'pulpit' | 'front_row';
+export type Beat = 'approach' | 'speak' | 'return' | 'silence';
+type Vec = [number, number, number];
+const cameraPositions: Record<Shot, [Vec, Vec]> = {
+  wide: [
+    [0, 3.1, 9.8],
+    [0, 2, -2.2],
+  ],
+  pulpit: [
+    [2.9, 2.15, 1.7],
+    [1.35, 1.4, -2.5],
+  ],
+  front_row: [
+    [-0.1, 1.8, -3.65],
+    [0, 1.1, 1.5],
+  ],
+};
+function Camera({ shot }: { shot: Shot }) {
+  const look = useRef(new Vector3(0, 2, -2.2));
+  const [eye, target] = useMemo(
+    () => cameraPositions[shot].map((v) => new Vector3(...v)) as [Vector3, Vector3],
+    [shot],
+  );
+  useFrame(({ camera }, dt) => {
+    const f = 1 - Math.exp(-3 * dt);
+    camera.position.lerp(eye, f);
+    look.current.lerp(target, f);
+    camera.lookAt(look.current);
+  });
+  return null;
+}
+function roseWindow() {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 512;
+  const ctx = canvas.getContext('2d')!;
+  ctx.translate(256, 256);
+  const colors = ['#cf865a', '#4c7499', '#8d455f', '#d9b079', '#557e8e', '#a85d6b'];
+  for (let ring = 0; ring < 5; ring++) {
+    const count = ring === 0 ? 8 : 16 + ring * 4;
+    const inner = ring * 23 + 7,
+      outer = inner + 22;
+    for (let i = 0; i < count; i++) {
+      const a = (i * Math.PI * 2) / count,
+        b = ((i + 1) * Math.PI * 2) / count;
+      ctx.beginPath();
+      ctx.arc(0, 0, outer * 2, a, b);
+      ctx.arc(0, 0, inner * 2, b, a, true);
+      ctx.closePath();
+      ctx.fillStyle = colors[(i + ring * 2) % colors.length]!;
+      ctx.fill();
+      ctx.strokeStyle = '#2c2328';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    }
+  }
+  for (let i = 0; i < 12; i++) {
+    ctx.save();
+    ctx.rotate((i * Math.PI) / 6);
+    ctx.beginPath();
+    ctx.ellipse(0, 114, 26, 100, 0, 0, Math.PI * 2);
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#f0c58a';
+    ctx.stroke();
+    ctx.restore();
+  }
+  const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
+  return texture;
+}
+function Box({ at, size, color }: { at: Vec; size: Vec; color: string }) {
+  return (
+    <mesh position={at}>
+      <boxGeometry args={size} />
+      <meshStandardMaterial color={color} roughness={0.76} />
+    </mesh>
+  );
+}
+const seats = [-2.65, -1.45, 1.45, 2.65];
+function Guest({
+  relative,
+  index,
+  active,
+  beat,
+}: {
+  relative: Relative;
+  index: number;
+  active: boolean;
+  beat: Beat;
+}) {
+  const file =
+    relative.relation === 'cofounder' || relative.relation === 'friend' ? 'visitor' : 'mourner';
+  const { scene } = useGLTF('/avatars/' + file + '.glb');
+  const body = useMemo(() => clone(scene), [scene]);
+  const joints = useMemo(
+    () =>
+      Object.fromEntries(
+        ['LeftUpLeg', 'RightUpLeg', 'LeftLeg', 'RightLeg', 'LeftArm', 'RightArm', 'Head'].map(
+          (n) => [n, body.getObjectByName(n)],
+        ),
+      ),
+    [body],
+  );
+  const root = useRef<Group>(null);
+  const seat = seats[index] ?? 0;
+  const target = useMemo(() => new Vector3(), []);
+  useFrame(({ clock }, dt) => {
+    if (!root.current) return;
+    const standing = active && (beat === 'approach' || beat === 'speak');
+    const f = 1 - Math.exp(-4 * dt);
+    const t = clock.elapsedTime;
+    target.set(standing ? 1.25 : seat, standing ? 0.08 : -0.3, standing ? -2.72 : 1.25);
+    root.current.position.lerp(target, f);
+    root.current.rotation.y += ((standing ? 0 : Math.PI) - root.current.rotation.y) * f;
+    for (const side of ['Left', 'Right']) {
+      const thigh = joints[side + 'UpLeg'],
+        leg = joints[side + 'Leg'],
+        arm = joints[side + 'Arm'];
+      if (thigh) thigh.rotation.x += ((standing ? 0 : -1.3) - thigh.rotation.x) * f;
+      if (leg) leg.rotation.x += ((standing ? 0 : 1.4) - leg.rotation.x) * f;
+      if (arm) arm.rotation.z = (side === 'Left' ? -1 : 1) * 0.65;
+    }
+    if (joints.Head) joints.Head.rotation.x = standing ? 0.035 * Math.sin(t * 3.6) : 0.2;
+  });
+  return (
+    <group ref={root} position={[seat, -0.3, 1.25]} rotation={[0, Math.PI, 0]}>
+      <primitive object={body} dispose={null} />
+    </group>
+  );
+}
+export default function ChapelScene({
+  profile,
+  speaker,
+  shot,
+  beat,
+}: {
+  profile: Profile;
+  speaker: string;
+  shot: Shot;
+  beat: Beat;
+}) {
+  const rose = useMemo(roseWindow, []);
   return (
     <>
-      <color attach="background" args={['#050505']} />
-      <fog attach="fog" args={['#050505', 6, 22]} />
-      <ambientLight intensity={0.35} />
-      {/* warm key light over the coffin/pulpit, cool fill from the rose window behind */}
-      <spotLight position={[0, 6, -3]} angle={0.5} penumbra={1} intensity={260} color="#ffb870" castShadow />
-      <pointLight position={[0, 2.5, 2]} intensity={40} color="#ffd9a8" distance={12} decay={2} />
-      <pointLight position={[0, 4, -7]} intensity={60} color="#4a6cff" distance={16} decay={2} />
-
-      {/* floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
-        <planeGeometry args={[14, 20]} />
-        <meshStandardMaterial color="#1a1613" roughness={0.9} />
+      <color attach="background" args={['#15151c']} />
+      <fog attach="fog" args={['#15151c', 10, 33]} />
+      <hemisphereLight args={['#eacfae', '#705b54', 1.25]} />
+      <spotLight position={[0, 6, 0]} angle={0.75} penumbra={1} intensity={200} color="#ffcf92" />
+      <pointLight position={[0, 4, -5]} intensity={80} color="#ae88ca" distance={14} />
+      <pointLight position={[1, 2, -1]} intensity={22} color="#ffc58d" />
+      <Box at={[0, -0.14, 0]} size={[12, 0.25, 25]} color="#514c49" />
+      <Box at={[0, 0.008, 2]} size={[1.45, 0.015, 14]} color="#613b3f" />
+      <Box at={[0, 3.7, -7.4]} size={[13, 8, 0.4]} color="#5a514e" />
+      <mesh position={[0, 4.1, -7.12]}>
+        <circleGeometry args={[2.48, 64]} />
+        <meshBasicMaterial color="#302a2c" />
       </mesh>
-
-      {/* pews: 3 rows x 2 sides */}
-      {Array.from({ length: PEW_ROWS }).flatMap((_, row) =>
-        [-2.2, 2.2].map((x) => (
-          <mesh key={`pew-${row}-${x}`} position={[x, 0.3, 1 + row * 1.6]}>
-            <boxGeometry args={[2.6, 0.6, 0.5]} />
-            <meshStandardMaterial color="#3a2a1e" roughness={0.8} />
+      <mesh position={[0, 4.1, -7.08]}>
+        <planeGeometry args={[4.9, 4.9]} />
+        <meshBasicMaterial map={rose} transparent side={DoubleSide} toneMapped={false} />
+      </mesh>
+      {[0, 1, 2, 3, 4].map((i) => (
+        <group key={i} position={[0, 0, -6.4 + i * 3.15]}>
+          {[-1, 1].map((s) => (
+            <group key={s} position={[s * 4.55, 0, 0]}>
+              <mesh position={[0, 2.2, 0]}>
+                <cylinderGeometry args={[0.28, 0.42, 4.4, 12]} />
+                <meshStandardMaterial color="#66605d" />
+              </mesh>
+              <Box at={[0, 4.3, 0]} size={[0.85, 0.24, 0.85]} color="#837569" />
+            </group>
+          ))}
+          <mesh position={[0, 4.38, 0]}>
+            <torusGeometry args={[4.55, 0.2, 6, 32, Math.PI]} />
+            <meshStandardMaterial color="#716762" />
           </mesh>
+        </group>
+      ))}
+      {[0, 1, 2].flatMap((row) =>
+        [-1, 1].map((s) => (
+          <group key={row + '-' + s} position={[s * 2.25, 0, 1.45 + row * 1.85]}>
+            <Box at={[0, 0.38, 0]} size={[3.05, 0.18, 0.7]} color="#70452f" />
+            <Box at={[0, 0.75, 0.3]} size={[3.05, 0.62, 0.12]} color="#583b2d" />
+            {[-1.15, 1.15].map((x) => (
+              <Box key={x} at={[x, 0.21, 0]} size={[0.15, 0.42, 0.56]} color="#53382b" />
+            ))}
+          </group>
         )),
       )}
-
-      {/* pulpit */}
-      <mesh position={[0, 0.7, -4]}>
-        <boxGeometry args={[1, 1.4, 0.8]} />
-        <meshStandardMaterial color="#4a3727" roughness={0.7} />
-      </mesh>
-
-      {/* relatives */}
-      {relatives.slice(0, 4).map((r, i) => {
-        const pos = RELATIVE_SLOTS[i] ?? [0, 0.6, 1];
-        return (
-          <group key={r.id} position={pos}>
-            <mesh>
-              <capsuleGeometry args={[0.22, 0.7, 4, 12]} />
-              <meshStandardMaterial color="#8a8a93" roughness={0.6} />
-            </mesh>
-            <Html position={[0, 0.9, 0]} center>
-              <div className="label3d">{r.name}</div>
-            </Html>
-          </group>
-        );
-      })}
-
-      <OrbitControls
-        target={[0, 0.8, -1]}
-        maxPolarAngle={Math.PI / 2.05}
-        minDistance={2}
-        maxDistance={14}
-      />
+      <Box at={[0, 0.14, -4.25]} size={[5.1, 0.28, 2.45]} color="#73665d" />
+      <Box at={[-0.8, 0.57, -4.05]} size={[2.35, 0.6, 0.94]} color="#633e30" />
+      <Box at={[-0.8, 0.9, -4.05]} size={[2.43, 0.13, 1.01]} color="#9e7556" />
+      <Box at={[1.3, 0.56, -2.25]} size={[0.61, 1.1, 0.47]} color="#82593e" />
+      <Box at={[1.3, 1.14, -2.25]} size={[0.8, 0.1, 0.6]} color="#a07956" />
+      {[-3.1, -2.7, -2.3, 2.3, 2.7, 3.1].map((x, i) => (
+        <group key={x} position={[x, 0, -4.95]}>
+          <Box at={[0, 0.69, 0]} size={[0.09, 1.38, 0.09]} color="#bb9c68" />
+          <mesh position={[0, 1.43 + (i % 2) * 0.02, 0]}>
+            <sphereGeometry args={[0.065, 8, 6]} />
+            <meshBasicMaterial color="#ffda8d" toneMapped={false} />
+          </mesh>
+        </group>
+      ))}
+      {profile.relatives.map((r, i) => (
+        <Guest key={r.id} relative={r} index={i} active={speaker === r.id} beat={beat} />
+      ))}
+      <Camera shot={shot} />
     </>
   );
 }

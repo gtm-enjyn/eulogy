@@ -1,20 +1,26 @@
 import type { Run } from '@eulogy/shared';
-
-export default function PrivateFeed({ run }: { run: Run }) {
-  const messages = run.years.flatMap((y) =>
-    y.private_messages.map((m) => ({ ...m, age: y.protagonist_age })),
-  );
+export default function PrivateFeed({ run, chapter = 5 }: { run: Run; chapter?: number }) {
+  const year = run.years[chapter];
   return (
-    <section>
+    <section className="private-feed">
       <h2>Private feed</h2>
-      {messages.map((m, i) => (
-        <div className="feed-msg" key={i}>
-          <div className="who">
-            {m.from} → {m.to} · {m.age}
-          </div>
-          <div>{m.text}</div>
-        </div>
+      {year?.private_messages.map((m, i) => (
+        <p key={i}>
+          <small>
+            {m.from} → {m.to}
+          </small>
+          {m.text}
+        </p>
       ))}
+      {chapter === run.years.length - 1 &&
+        run.eulogies
+          .filter((e) => !e.speaks)
+          .map((e) => (
+            <p key={e.relative_id}>
+              <small>{e.relative_id} · unspoken</small>
+              {e.text}
+            </p>
+          ))}
     </section>
   );
 }
