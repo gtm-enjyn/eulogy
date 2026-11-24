@@ -21,11 +21,11 @@ export const Birth: React.FC<{ len: number }> = ({ len }) => {
 
 /* ---------- S2 Five lines (the form) ---------- */
 const FIELDS: [string, string][] = [
-  ['Age · City', '31 · San Francisco'],
-  ['What you actually do', 'Founder, pre-revenue. 14 hours a day.'],
-  ['The thing people close to you complain about', 'Short-tempered.'],
-  ['Who will be at your funeral', 'Léa, 2. "I\'m never there."'],
-  ['Your biggest fear', 'Admired by strangers. Unknown to my kid.'],
+  ['Age · City', '20 · Paris → Chicago'],
+  ['What you actually do', 'CS & data. Startup weekends. Varsity tennis.'],
+  ['The thing people close to you complain about', 'Short-tempered. Big ego. Says sorry last.'],
+  ['Who will be at your funeral', 'Maman, Inès 16, Theo. "He never calls first."'],
+  ['Your biggest fear', 'Ending up like my father. Respected. Alone.'],
 ];
 export const FiveLines: React.FC<{ len: number }> = ({ len }) => {
   const { fps } = useVideoConfig();
@@ -63,8 +63,8 @@ const FieldRow: React.FC<{ label: string; value: string }> = ({ label, value }) 
 export const Face: React.FC<{ len: number }> = ({ len }) => {
   const { fps } = useVideoConfig();
   const third = Math.floor(len / 3);
-  const ages = ['31', '56', '76'];
-  const srcs = ['img/face31.jpg', 'img/face56.jpg', 'img/face76.jpg'];
+  const ages = ['20', '45', '74'];
+  const srcs = ['img/jules20.jpg', 'img/jules45.jpg', 'img/jules74.jpg'];
   return (
     <AbsoluteFill style={{ background: '#000' }}>
       {srcs.map((s, i) => (
@@ -106,14 +106,14 @@ const lifePaths = Array.from({ length: LIVES }, (_, i) => {
   return { pts, color, death };
 });
 const FEED = [
-  'Camille → Anne: he wasn\'t at the birthday. Again.',
-  'Jules → Camille: he said things in that meeting he can\'t take back.',
-  'Anne → Léa: your father works like his father did.',
-  'Léa → Camille: does he even know what grade I\'m in?',
-  'Camille → Jules: I\'m not asking him anymore.',
+  'Maman → Inès: he only calls when he needs something.',
+  'Theo → Maman: he said things in that meeting he can\'t take back.',
+  'Inès → Maman: does he even know what year I\'m in?',
+  'Léa → Maman: he was on a call when I was born.',
+  'Theo → Inès: I\'m not asking him anymore.',
   'Destiny: burnout, base rate 34 % (source: telem) — applied, year 9.',
-  'Jules → Anne: he closed the round the week she was born.',
-  'Léa → Anne: I don\'t know what to say about him.',
+  'Destiny: BLOCKED incoherent year, re-rolling.',
+  'Léa → Maman: I don\'t know what to say about him.',
 ];
 export const ThousandLives: React.FC<{ len: number }> = ({ len }) => {
   const f = useCurrentFrame();
@@ -152,18 +152,18 @@ export const ThousandLives: React.FC<{ len: number }> = ({ len }) => {
 
 /* ---------- S6/S7 Chapel with ledger + feed ---------- */
 const LEDGER_1 = [
-  ['33', 'Series A closes the week Léa is born. Louis takes the call from the hospital corridor.'],
-  ['36', 'Camille asks him to turn down the Lyon offer. He does. She stops mentioning it.'],
-  ['41', 'Refuses the exit. Shouts at Jules in front of the team. Jules leaves.'],
-  ['51', 'Léa moves abroad. Calls on birthdays.'],
-  ['66', 'Sells the company. Nobody to tell first.'],
+  ['23', 'Drops out for the startup. Takes the late meeting. Misses Inès\'s recital.'],
+  ['27', 'Series A closes the week Léa is born. Jules takes the call from the corridor.'],
+  ['31', 'Shouts at Theo in front of the team. Theo leaves. No apology.'],
+  ['38', 'Léa moves to Paris with her mother. Calls on birthdays.'],
+  ['52', 'Sells the company. His father dies that spring. They never spoke.'],
 ];
 const LEDGER_2 = [
-  ['33', 'Closes the company the month Léa turns two. Tells Camille before the board.'],
-  ['36', 'Takes the Lyon offer with Camille. Smaller job. Sundays become real.'],
-  ['41', 'Apologizes to Jules. Out loud. They build the second one together.'],
-  ['51', 'Léa calls on Tuesdays. Not birthdays.'],
-  ['66', 'Retires early. Léa is the first to know.'],
+  ['23', 'Same startup. Asks for help: calls his father first. Says sorry out loud.'],
+  ['27', 'At Léa\'s birth. Phone off. Theo closes the round without him.'],
+  ['31', 'Apologizes to Theo before the board does. They build the second one together.'],
+  ['38', 'Sundays in Paris. Léa calls on Tuesdays, not birthdays.'],
+  ['52', 'Sells the company. Léa is the first to know. His father is the second.'],
 ];
 export const Ledger: React.FC<{ variant: 1 | 2; len: number }> = ({ variant, len }) => {
   const f = useCurrentFrame();
@@ -209,7 +209,7 @@ export const Clip: React.FC<{ src: string; len: number; dim?: number; from?: num
 export const Reveal: React.FC<{ len: number }> = ({ len }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const pct = interpolate(f, [0.4 * fps, 2.4 * fps], [0, 68], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
+  const pct = interpolate(f, [0.4 * fps, 2.4 * fps], [0, 43], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
   const o2 = interpolate(f, [2.2 * fps, 3.0 * fps], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const out = interpolate(f, [len - 14, len], [1, 0], { extrapolateLeft: 'clamp' });
   return (
@@ -218,7 +218,8 @@ export const Reveal: React.FC<{ len: number }> = ({ len }) => {
         <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3 }}>
           In <span style={{ fontVariantNumeric: 'tabular-nums', color: '#e8a35a' }}>{Math.round(pct)} %</span> of your lives,
         </div>
-        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>Léa does not speak at your funeral.</div>
+        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>Léa, the daughter you don't have yet,</div>
+        <div style={{ fontFamily: SERIF, fontSize: 60, color: '#ece7da', lineHeight: 1.3, opacity: o2 }}>does not speak at your funeral.</div>
       </div>
     </AbsoluteFill>
   );
@@ -229,10 +230,10 @@ export const MartOverlay: React.FC<{ len: number }> = ({ len }) => {
     <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'flex-start', opacity: o }}>
       <div style={{ margin: '0 0 200px 90px', maxWidth: 1000, background: 'rgba(0,0,0,0.55)', padding: '26px 30px', borderLeft: '3px solid #e8a35a' }}>
         <div style={{ fontFamily: SERIF, fontSize: 38, color: '#ece7da', lineHeight: 1.3 }}>
-          In 100 % of the lives where Léa speaks, you made one decision before 33.
+          In the lives where Léa speaks, one year-one decision shows up 70 % of the time.
         </div>
-        <div style={{ fontFamily: SERIF, fontSize: 38, color: '#e8a35a', lineHeight: 1.3, marginTop: 6 }}>In 94 %, the same one.</div>
-        <div style={{ fontFamily: MONO, fontSize: 18, color: 'rgba(235,228,210,0.6)', marginTop: 16 }}>mart_decision_impact · lift per year-1 decision · DuckDB · lineage raw.runs → stg_eulogies → mart_decision_impact</div>
+        <div style={{ fontFamily: SERIF, fontSize: 38, color: '#e8a35a', lineHeight: 1.3, marginTop: 6 }}>"Ask for help." Lift +20 points. "Take the late meeting": −25.</div>
+        <div style={{ fontFamily: MONO, fontSize: 18, color: 'rgba(235,228,210,0.6)', marginTop: 16 }}>mart_decision_impact · n=30 runs · DuckDB · lineage raw.runs → stg_eulogies → mart_decision_impact</div>
       </div>
     </AbsoluteFill>
   );
@@ -249,7 +250,8 @@ export const Credits: React.FC<{ len: number }> = ({ len }) => {
       <div style={{ textAlign: 'center' }}>
         <div style={{ fontFamily: SERIF, fontSize: 96, color: '#ece7da', letterSpacing: 6 }}>EULOGY</div>
         <div style={{ fontFamily: MONO, fontSize: 22, color: 'rgba(235,228,210,0.6)', letterSpacing: 3, marginTop: 10 }}>TRACK 1 · AGENT ANIMATED FILM</div>
-        <div style={{ fontFamily: SANS, fontSize: 26, color: 'rgba(235,228,210,0.85)', marginTop: 46, letterSpacing: 1 }}>Bruin &nbsp;·&nbsp; BAND &nbsp;·&nbsp; Telem &nbsp;·&nbsp; Runware &nbsp;·&nbsp; Claude</div>
+        <div style={{ fontFamily: SERIF, fontSize: 30, color: 'rgba(235,228,210,0.9)', marginTop: 40, letterSpacing: 1 }}>A thousand lives. One decision. Yours.</div>
+        <div style={{ fontFamily: SANS, fontSize: 24, color: 'rgba(235,228,210,0.7)', marginTop: 26, letterSpacing: 1 }}>Bruin &nbsp;·&nbsp; BAND &nbsp;·&nbsp; Telem &nbsp;·&nbsp; Runware &nbsp;·&nbsp; Claude</div>
         <div style={{ fontFamily: MONO, fontSize: 20, color: 'rgba(235,228,210,0.5)', marginTop: 22 }}>github.com/gtm-enjyn/eulogy</div>
       </div>
     </AbsoluteFill>
