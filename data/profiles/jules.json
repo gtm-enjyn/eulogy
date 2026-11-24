@@ -1,0 +1,54 @@
+{
+  "id": "jules-film",
+  "name": "Jules",
+  "age": 20,
+  "city": "Chicago",
+  "currentActivity": "Computer science, startup weekends and varsity tennis.",
+  "ambition10y": "Build a company with Theo and stay close to his family in Paris.",
+  "traits": [
+    "ambitious",
+    "competitive",
+    "loyal"
+  ],
+  "flaw": "Loses his temper and apologizes last.",
+  "fear": "Finding every chair at his table empty.",
+  "habits": {
+    "sport": 8,
+    "alcohol": 2,
+    "sleep": 5
+  },
+  "relatives": [
+    {
+      "id": "maman",
+      "name": "Maman",
+      "relation": "parent",
+      "age": 52,
+      "relationshipState": "She still calls from the kitchen in Paris.",
+      "grievance": "I want to see you, even when you don’t need anything."
+    },
+    {
+      "id": "ines",
+      "name": "Inès",
+      "relation": "sibling",
+      "age": 16,
+      "relationshipState": "She saves him a seat when she plays music.",
+      "grievance": "You promise to come and then let me look for you."
+    },
+    {
+      "id": "theo",
+      "name": "Theo",
+      "relation": "friend",
+      "age": 21,
+      "relationshipState": "They play varsity tennis and build things together.",
+      "grievance": "You can lose the match and still take it out on me."
+    },
+    {
+      "id": "papa",
+      "name": "Papa",
+      "relation": "parent",
+      "age": 55,
+      "relationshipState": "Their last phone call was four months ago.",
+      "grievance": "Somebody has to make the first call."
+    }
+  ]
+}

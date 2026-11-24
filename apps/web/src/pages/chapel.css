@@ -4,140 +4,444 @@
   align-items: center;
   gap: 24px;
   padding: 0 28px;
-  border-bottom: 1px solid #4b4035;
-  background: #141418;
-  color: #c5b7a2;
+  border-bottom: 1px solid #453c32;
+  background: #171715;
+  color: #c4b69f;
 }
 .film-bar a:first-child {
   font:
     italic 28px Georgia,
     serif;
-  color: #ecddc5;
+  color: #f0e3ce;
   text-decoration: none;
 }
 .film-bar a:last-child {
   margin-left: auto;
-  color: #e3c598;
+  color: #e3cbaa;
   text-decoration: none;
+}
+.theatre {
+  --paper: #f1e8d7;
+  --ink: #171613;
+  --amber: #d8b780;
+  --edge: #3c3831;
+  --label: #c9bcaa;
+  min-height: 100dvh;
+  background: var(--ink);
+  color: var(--paper);
 }
 .theatre .chapel {
   height: calc(100dvh - 56px);
-  grid-template-columns: minmax(0, 1fr) clamp(290px, 27vw, 400px);
+  min-height: 475px;
+  grid-template-columns: minmax(0, 1fr) clamp(292px, 25vw, 380px);
+}
+.chapel-bar {
+  background: #151513;
+  border-color: var(--edge);
+}
+.chapel-bar > span {
+  border-left: 1px solid #51493e;
+  padding-left: 22px;
 }
 .chapel-canvas {
   min-height: 0;
-  background: #18171b;
+  isolation: isolate;
+  overflow: hidden;
+  background: #232523;
 }
-.theatre .chapel-side {
-  display: grid;
-  grid-template-rows: auto minmax(130px, 1fr) minmax(100px, 0.4fr);
-  background: #19191d;
-  padding: 24px;
-  color: #e9dfd0;
-}
-.theatre .chapel-side > section {
-  overflow-y: auto;
-  min-height: 0;
-}
-.chapel-side h1 {
-  font:
-    38px/1.1 Georgia,
-    serif;
-  margin: 6px 0;
-}
-.chapel-side small,
-.subtitles small,
-.private-feed small {
-  color: #e2bf87;
-}
-.shot-controls {
+.chapel-lenses {
   position: absolute;
-  top: 18px;
-  left: 18px;
+  top: 20px;
+  left: clamp(16px, 3vw, 46px);
   display: flex;
-  gap: 6px;
   flex-wrap: wrap;
+  gap: 1px;
+  padding: 3px;
+  background: #181815d9;
+  border: 1px solid #817869a3;
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
 }
-.shot-controls button {
-  background: #17171bd9;
-  padding: 5px 10px;
+.chapel-lenses button,
+.chapel-transport button,
+.record-tabs button,
+.next-life,
+.agent-list button {
+  transition:
+    background 0.14s,
+    color 0.14s,
+    border-color 0.14s;
+}
+.chapel-lenses button {
   font-size: 12px;
-  color: #e5daca;
-  border: 1px solid #68594f;
+  border: 0;
+  background: transparent;
+  border-radius: 18px;
+  padding: 5px 11px;
+  color: #f0e7d8;
 }
-.shot-controls button[aria-pressed='true'] {
-  border-color: #d5b07e;
+.chapel-lenses button[aria-pressed='true'] {
+  background: #e8d5ae;
+  color: #26221b;
 }
-.subtitles {
+.chapel-lenses button:hover:not([aria-pressed='true']) {
+  background: #544b3d;
+}
+.chapel-lower {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, #0b0b0eda);
-  padding: 55px 6% 28px;
-  color: #fff2dc;
+  padding: clamp(50px, 9vh, 100px) clamp(20px, 3.7vw, 66px) clamp(20px, 4.5vh, 54px);
+  background: linear-gradient(0deg, #080907f7 0%, #080907c2 53%, transparent 100%);
   pointer-events: none;
 }
-.subtitles p {
-  font:
-    clamp(17px, 1.8vw, 28px)/1.3 Georgia,
-    serif;
-  max-width: 40em;
-  margin: 8px 0;
+.chapel-caption {
+  color: #fcf2df;
+  text-shadow: 0 2px 15px #090a08;
+  max-width: 47rem;
 }
+.chapel-caption small,
+.record-meta,
+.agent-code,
+.agent-id {
+  font:
+    10px/1.5 ui-monospace,
+    'SFMono-Regular',
+    Consolas,
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.chapel-caption small {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  color: #f0c991;
+  font-size: 11px;
+}
+.chapel-caption i {
+  width: 3px;
+  height: 3px;
+  background: #c7a675;
+  border-radius: 50%;
+}
+.chapel-caption p {
+  margin: 8px 0 18px;
+  text-wrap: pretty;
+}
+.chapel-caption .service-name {
+  font:
+    normal clamp(42px, 5.4vw, 82px)/0.97 Georgia,
+    serif;
+  letter-spacing: -0.052em;
+}
+.spoken-line {
+  font:
+    normal clamp(23px, 2.45vw, 41px)/1.15 Georgia,
+    serif;
+  letter-spacing: -0.024em;
+}
+.stage-direction {
+  font:
+    italic clamp(22px, 2.3vw, 34px)/1.18 Georgia,
+    serif;
+}
+.chapel-transport {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  pointer-events: auto;
+}
+.chapel-transport button,
+.next-life {
+  border: 1px solid #817663;
+  color: #eee4d2;
+  padding: 7px 13px;
+  border-radius: 24px;
+  font-size: 13px;
+  background: #171713b3;
+}
+.chapel-transport .service-primary {
+  background: #ebd6b4;
+  color: #24201a;
+  border-color: #ebd6b4;
+  font-weight: 600;
+}
+.chapel-transport .service-primary:hover,
+.next-life:hover {
+  background: #f5e4c9;
+  color: #211e18;
+}
+.service-primary span {
+  font-size: 0.85em;
+}
+.chapel-transport small {
+  font-size: 11px;
+  color: #d5caaf;
+}
+.theatre .chapel-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  min-height: 0;
+  background: #1c1b18;
+  border-left: 1px solid #494235;
+  overflow: auto;
+}
+.service-record {
+  padding: clamp(21px, 2.1vw, 34px) clamp(17px, 1.9vw, 29px) 21px;
+}
+.record-meta {
+  color: #d3b484;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.record-meta span:last-child {
+  white-space: nowrap;
+}
+.service-record h1 {
+  font:
+    normal clamp(32px, 3.1vw, 49px)/1 Georgia,
+    serif;
+  margin: 13px 0 17px;
+  letter-spacing: -0.05em;
+}
+.record-facts {
+  margin: 0;
+  color: #ede5d8;
+}
+.record-facts > div {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 8px;
+  padding: 7px 0;
+  border-top: 1px solid var(--edge);
+  align-items: baseline;
+  line-height: 1.38;
+}
+.record-facts dt {
+  color: var(--label);
+  font-size: 12px;
+}
+.record-facts dd {
+  margin: 0;
+  font-size: 14px;
+}
+.record-facts dd::first-letter {
+  text-transform: uppercase;
+}
+.agent-id {
+  color: var(--amber);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  margin-right: 3px;
+}
+.next-life {
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 13px;
+  margin-top: 10px;
+  background: transparent;
+}
+.record-tabs {
+  padding-inline: clamp(17px, 1.9vw, 29px);
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+  border-block: 1px solid var(--edge);
+}
+.record-tabs button {
+  border: 0;
+  border-radius: 0;
+  padding: 11px 0 9px;
+  white-space: nowrap;
+  background: transparent;
+  color: #c4b8a8;
+  font-size: 12px;
+  border-bottom: 2px solid transparent;
+}
+.record-tabs button[aria-pressed='true'] {
+  color: #f7e8cf;
+  border-bottom-color: var(--amber);
+}
+.record-details {
+  padding: 0 clamp(17px, 1.9vw, 29px) 12px;
+}
+.agent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.agent-list li + li {
+  border-top: 1px solid var(--edge);
+}
+.agent-list button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 6px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  border-radius: 0;
+  padding: 11px 0;
+  color: var(--paper);
+}
+.agent-list button:hover,
+.agent-list button[aria-current='step'] {
+  background: #322d23;
+}
+.agent-code {
+  color: var(--amber);
+  font-size: 9px;
+  letter-spacing: 0.065em;
+}
+.agent-person {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.agent-person strong {
+  font:
+    17px/1.18 Georgia,
+    serif;
+}
+.agent-person small,
+.agent-state {
+  color: var(--label);
+  font-size: 11px;
+}
+.agent-state {
+  text-align: right;
+}
+.agent-list [aria-current='step'] .agent-state {
+  color: #f8cc88;
+}
+.record-samples {
+  margin-top: auto;
+  padding: 14px clamp(17px, 1.9vw, 29px);
+  border-top: 1px solid var(--edge);
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+.record-samples a {
+  color: #d9c5a5;
+  text-decoration: none;
+  font-size: 12px;
+}
+.record-samples a:hover,
+.film-bar a:hover {
+  text-decoration: underline;
+}
+.chapter-select {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--label);
+  padding-top: 13px;
+}
+.chapter-select select {
+  width: auto;
+  border-color: #5e5545;
+  padding: 4px 8px;
+}
+.record-details h2 {
+  margin-top: 16px;
+  color: #d8c4a4;
+}
+.record-details .ledger-year {
+  border: 0;
+}
+.ledger-origin,
 .private-feed small {
   display: block;
+  color: #d3b484;
+  font-size: 11px;
 }
-.ledger-year.active {
-  border-left: 2px solid #d9ae72;
-  padding-left: 8px;
+.ledger-year ul {
+  padding-inline-start: 20px;
 }
-.run-title button {
-  border-color: #8c7253;
+.ledger-year .shock,
+.ledger-year li .reason {
+  color: #c1b8aa;
 }
-.run-title p {
-  color: #bdb4ac;
-}
-.theatre {
-  min-height: 100vh;
-}
-@media (max-width: 800px) {
-  .theatre .chapel {
-    height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: 58dvh auto;
-  }
-  .theatre .chapel-side {
-    display: flex;
-    overflow: visible;
-  }
-  .film-bar {
-    padding: 0 14px;
-  }
-  .subtitles {
-    padding-bottom: 14px;
-  }
-}
-
 .projection-unavailable {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 14px;
+  gap: 10px;
   height: 100%;
-  padding: 60px 28px 120px;
+  padding: 32px 20px 135px;
   text-align: center;
-  background: radial-gradient(ellipse at center, #30252b, #17151a 64%);
-  color: #cbbfae;
+  color: #d3c2a5;
+  background: radial-gradient(ellipse at center, #393228, #191915 65%);
 }
 .projection-unavailable img {
-  width: min(22vh, 130px);
+  width: min(16vh, 105px);
   height: auto;
 }
 .projection-unavailable p {
-  max-width: 30em;
-  margin: 0;
+  max-width: 29em;
+  font-size: 13px;
 }
-.chapel-canvas:has(.projection-unavailable) .shot-controls [aria-pressed] {
+.chapel-canvas:has(.projection-unavailable) .chapel-lenses {
   display: none;
+}
+.theatre :focus-visible {
+  outline: 2px solid #fae4ad;
+  outline-offset: 2px;
+}
+@media (max-width: 800px) {
+  .theatre .chapel {
+    height: auto;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: clamp(350px, 62dvh, 660px) auto;
+  }
+  .theatre .chapel-side {
+    border-left: 0;
+    overflow: visible;
+  }
+  .film-bar {
+    padding-inline: 16px;
+    gap: 14px;
+  }
+  .chapel-bar > span {
+    padding-left: 14px;
+  }
+  .chapel-lenses {
+    top: 13px;
+  }
+  .chapel-lower {
+    padding-bottom: 18px;
+  }
+  .record-details,
+  .service-record,
+  .record-tabs,
+  .record-samples {
+    padding-inline: 20px;
+  }
+  .profile-form .film-bar {
+    height: auto;
+    min-height: 56px;
+    flex-wrap: wrap;
+    gap: 5px 14px;
+    padding-block: 6px;
+  }
+  .profile-form .film-bar a:not(:first-child) {
+    margin-left: 0;
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theatre button {
+    transition: none;
+  }
 }

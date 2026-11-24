@@ -168,9 +168,8 @@ export default function Onboarding() {
       <header className="film-bar">
         <Link to="/">Eulogy</Link>
         <span>Your profile</span>
-        <Link to="/lives" onClick={() => saveScreening(demo)}>
-          Watch Louis’s lives ↗
-        </Link>
+        <Link to="/chapel?screening=jules">Watch Jules’s service</Link>
+        <Link to="/lives?screening=louis">Watch Louis’s lives ↗</Link>
       </header>
       <form noValidate onSubmit={submit}>
         <h1>Where you are now.</h1>

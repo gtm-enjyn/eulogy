@@ -28,8 +28,11 @@ wealth (-1..1), health (0..1), and, only in chapter six, cause_of_death and fare
 Valence is -1..1, arousal is 0..1, and relationship_score is 0..100. Never jump more than 50 score points.
 Use cast IDs for actors and message addresses. For the first chapter use the given firstChoices for the protagonist's action.
 For cause_of_death select one of the supplied causes. Farewells are one {relative_id,text,sentiment} per relative.
-Each is first person, at most 60 words, and recalls a specific prior episode. A final score of 55 or higher means the relative speaks.
-For everyone else write the words they keep to themselves. Sentiment ranges from -1 to 1.
+Give each witness one or two short first-person sentences in their own voice, ideally 8 to 26 words and never over 60.
+Choose one gesture, object or decision from that witness's own recorded history. Keep a telling phrase in their words.
+Let what the protagonist did, or failed to do, carry the feeling. Borrow no other witness's memory or family role.
+A final score of 55 or higher means the relative speaks. Give everyone else the words they keep to themselves.
+Use only the recorded cause at the funeral, without adding circumstances. Sentiment ranges from -1 to 1.
 ```
 
 ## Monte Carlo loop
@@ -77,4 +80,6 @@ Seven raw tables normalize the run file and profile cast. `stg.eulogies` attache
 
 `mart_decision_impact` deduplicates the protagonist's first-chapter action per run and compares exposed and unexposed cohorts within one profile. Each side needs at least three runs. The difference between their speech rates is descriptive. The coverage and constraints of the simulation govern what that comparison can support. [Decision mart](../bruin/eulogy/assets/mart_decision_impact.sql)
 
-The atlas reads the matching profile’s mart or its batch summary. The chapel looks up the chosen run's cast, captions, camera shot, voice clip, ledger and addressed messages. A private-message transcript retains both addresses while BAND routes mentions to agents. Human members of the room can read room activity. The two featured lives use six prerecorded clips with local system voices by role. [Browser renderer](../apps/web/src/pages/Chapel.tsx) · [Recordings](../apps/web/src/data/audio.json) · [Provider contracts](SPONSOR-CONTRACTS.md)
+The atlas reads the matching profile’s mart or its batch summary. The chapel looks up the chosen run's cast, captions, camera shot, ledger and addressed messages. A private-message transcript retains both addresses while BAND routes mentions to agents. Human members of the room can read room activity. [Browser renderer](../apps/web/src/pages/Chapel.tsx) · [Provider contracts](SPONSOR-CONTRACTS.md)
+
+The local chapel uses eight stock Kokoro voices across Louis’s 30 lives and Jules’s two authored lives. The generator records Destiny’s opening and each speaking witness from the same script as the captions. The 94 spoken passages share 90 MP3s. Playback selects a recording by its performer and exact text. A new line can use the browser’s device voice. Captions carry the line when sound is muted or speech is unavailable. A silent witness stays seated without a voice cue. [Recording lookup](../apps/web/src/data/funeralAudio.ts) · [Playback](../apps/web/src/pages/useFuneralPlayback.ts) · [Audio catalogue](../apps/web/src/data/audio.json)

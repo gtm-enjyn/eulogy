@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
-import { getScreening } from '../data/screening';
+import { getScreening, screeningQuery } from '../data/screening';
 import './atlas.css';
 const colors: Record<string, string> = {
   reconciled: '#d5b681',
@@ -26,7 +26,9 @@ const Marts = z.object({
   decision_impact: z.array(impact),
 });
 export default function LivesGrid() {
-  const { profile, runs, summary } = getScreening(),
+  const [params] = useSearchParams();
+  const sample = params.get('screening');
+  const { profile, runs, summary } = getScreening(sample),
     canvas = useRef<HTMLCanvasElement>(null);
   const [marts, setMarts] = useState<z.infer<typeof Marts> | null>(null),
     [revealed, setRevealed] = useState(false);
@@ -127,9 +129,11 @@ export default function LivesGrid() {
       </header>
       <article>
         <p className="origin">
-          {Object.keys(summary.generation ?? {}).join(' / ') === 'mock'
-            ? 'Recorded deterministic screening'
-            : 'Simulation screening'}{' '}
+          {summary.generation?.scripted
+            ? 'Dramatized screening'
+            : Object.keys(summary.generation ?? {}).join(' / ') === 'mock'
+              ? 'Recorded deterministic screening'
+              : 'Simulation screening'}{' '}
           · {profile.name}
         </p>
         <h1>One life, lived {runs.length} ways.</h1>
@@ -169,7 +173,7 @@ export default function LivesGrid() {
               </p>
             )}
           </div>
-          <Link className="enter" to="/chapel">
+          <Link className="enter" to={'/chapel' + screeningQuery(sample)}>
             Enter the chapel →
           </Link>
         </div>

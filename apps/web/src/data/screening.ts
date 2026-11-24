@@ -1,6 +1,8 @@
 import { ProfileSchema, RunSchema, RunSummarySchema } from '@eulogy/shared';
 import { z } from 'zod';
 import profileJson from '../../../../data/profiles/louis.json';
+import julesProfile from '../../../../data/profiles/jules.json';
+import julesData from '../../../../data/screenings/jules.json';
 import raw from '../../../../data/runs/louis-demo.jsonl?raw';
 import summaryJson from '../../../../data/runs/louis-demo.summary.json';
 
@@ -17,6 +19,9 @@ export const demo = ScreeningSchema.parse({
     .map((line) => JSON.parse(line)),
   summary: summaryJson,
 });
+export const julesScreening = ScreeningSchema.parse({ profile: julesProfile, ...julesData });
+export const screeningQuery = (sample: string | null) =>
+  sample === 'jules' || sample === 'louis' ? '?screening=' + sample : '';
 export type Screening = z.infer<typeof ScreeningSchema>;
 let current: Screening | undefined;
 export function saveScreening(value: Screening) {
@@ -27,7 +32,9 @@ export function saveScreening(value: Screening) {
     /* The current session can continue in memory. */
   }
 }
-export function getScreening(): Screening {
+export function getScreening(sample: string | null = null): Screening {
+  if (sample === 'jules') return julesScreening;
+  if (sample === 'louis') return demo;
   if (current) return current;
   try {
     const value = sessionStorage.getItem('eulogy.screening');
