@@ -8,7 +8,7 @@ import {
   type YearEvent,
 } from '@eulogy/shared';
 import {
-  claudeReader,
+  configuredReader,
   firstChoices,
   validateChapter,
   type Chapter,
@@ -162,10 +162,7 @@ export async function simulateRun(
   const id = profile.id + '-' + String(seed).padStart(4, '0');
   const life = startLife(profile, seed),
     priors = options.priors ?? defaultPriors;
-  const reader = options.mock
-    ? undefined
-    : (options.read ??
-      (process.env.ANTHROPIC_API_KEY ? claudeReader(process.env.ANTHROPIC_API_KEY) : undefined));
+  const reader = options.mock ? undefined : (options.read ?? configuredReader());
   const years: YearEvent[] = [];
   let eulogies: Eulogy[] = [];
   for (let index = 0; index < 6; index++) {

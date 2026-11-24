@@ -46,24 +46,39 @@ export const ChapterSchema = z.object({
 });
 export type Chapter = z.infer<typeof ChapterSchema>;
 export type ChapterReader = (input: object, correction?: string) => Promise<unknown>;
-export function claudeReader(key: string): ChapterReader {
+export function modelCredential() {
+  return (
+    process.env.ANTHROPIC_API_KEY || process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN
+  );
+}
+export function configuredReader(): ChapterReader | undefined {
+  const key = modelCredential();
+  return key ? claudeReader(key, !process.env.ANTHROPIC_API_KEY) : undefined;
+}
+export function claudeReader(key: string, gateway = false): ChapterReader {
   return async (input, correction) => {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      signal: AbortSignal.timeout(40_000),
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': key,
-        'anthropic-version': '2023-06-01',
+    const response = await fetch(
+      gateway
+        ? 'https://ai-gateway.vercel.sh/v1/messages'
+        : 'https://api.anthropic.com/v1/messages',
+      {
+        method: 'POST',
+        signal: AbortSignal.timeout(40_000),
+        headers: {
+          'content-type': 'application/json',
+          ...(gateway ? { authorization: 'Bearer ' + key } : { 'x-api-key': key }),
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model: gateway ? 'anthropic/claude-sonnet-5.5' : MODEL,
+          thinking: { type: 'between_tools' },
+          output_config: { effort: 'low' },
+          max_tokens: 3200,
+          system: SYSTEM_PROMPT,
+          messages: [{ role: 'user', content: JSON.stringify({ ...input, correction }) }],
+        }),
       },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.9,
-        max_tokens: 3200,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: JSON.stringify({ ...input, correction }) }],
-      }),
-    });
+    );
     if (!response.ok) throw new Error('Claude HTTP ' + response.status);
     const message = z
       .object({ content: z.array(z.object({ type: z.string(), text: z.string().optional() })) })
