@@ -1,4 +1,3 @@
-/* eslint-env node, browser */
 /* global process, console, setTimeout, innerWidth, innerHeight, document, getComputedStyle */
 // Layout fit check: every key element must sit fully inside the viewport and the page must not scroll.
 // Usage: node scripts/fitcheck.mjs [baseUrl]   (default http://localhost:4173)
