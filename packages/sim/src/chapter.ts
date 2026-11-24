@@ -25,8 +25,11 @@ wealth (-1..1), health (0..1), and, only in chapter six, cause_of_death and fare
 Valence is -1..1, arousal is 0..1, and relationship_score is 0..100. Never jump more than 50 score points.
 Use cast IDs for actors and message addresses. For the first chapter use the given firstChoices for the protagonist's action.
 For cause_of_death select one of the supplied causes. Farewells are one {relative_id,text,sentiment} per relative.
-Each is first person, at most 60 words, and recalls a specific prior episode. A final score of 55 or higher means the relative speaks.
-For everyone else write the words they keep to themselves. Sentiment ranges from -1 to 1.`;
+Give each witness one or two short first-person sentences in their own voice, ideally 8 to 26 words and never over 60.
+Choose one gesture, object or decision from that witness's own recorded history. Keep a telling phrase in their words.
+Let what the protagonist did, or failed to do, carry the feeling. Borrow no other witness's memory or family role.
+A final score of 55 or higher means the relative speaks. Give everyone else the words they keep to themselves.
+Use only the recorded cause at the funeral, without adding circumstances. Sentiment ranges from -1 to 1.`;
 const farewell = EulogySchema.pick({ relative_id: true, text: true, sentiment: true }).extend({
   text: z
     .string()

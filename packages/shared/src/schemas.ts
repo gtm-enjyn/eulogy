@@ -76,7 +76,7 @@ export const YearEventSchema = z.object({
   shock_source: ShockSourceSchema.optional(),
   shock_key: z.string().optional(),
   source_url: z.string().url().optional(),
-  generation: z.enum(['claude', 'fallback', 'mock']).optional(),
+  generation: z.enum(['claude', 'fallback', 'mock', 'scripted']).optional(),
   decisions: z.array(DecisionSchema),
   relative_states: z.array(RelativeStateSchema),
   private_messages: z.array(PrivateMessageSchema),

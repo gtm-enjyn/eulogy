@@ -1,0 +1,819 @@
+{
+  "runs": [
+    {
+      "run_id": "jules-film-0001",
+      "profile_id": "jules-film",
+      "seed": 1,
+      "death_age": 46,
+      "cause_of_death": "smoke inhalation",
+      "years": [
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 0,
+          "protagonist_age": 23,
+          "shock": "His investor calls as Inès takes the stage.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Take the late meeting",
+              "reason": "The investor already has my number. My sister already has my promise."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.0,
+                "arousal": 0.5
+              },
+              "relationship_score": 50,
+              "memory_update": "I set his place out of habit."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": -0.22,
+                "arousal": 0.5
+              },
+              "relationship_score": 39,
+              "memory_update": "I kept his seat until the stage lights went down."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.14,
+                "arousal": 0.5
+              },
+              "relationship_score": 57,
+              "memory_update": "He muted the recital on his phone."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.14,
+                "arousal": 0.5
+              },
+              "relationship_score": 43,
+              "memory_update": "Four months without a call. I left the number on the fridge."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "ines",
+              "to": "maman",
+              "text": "I kept his seat until the stage lights went down."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 1,
+          "protagonist_age": 26,
+          "shock": "Theo leaves the tennis court after an argument.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Apologize without an excuse",
+              "reason": "I shouted where everybody could hear. They should hear me apologize, too."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.18,
+                "arousal": 0.5
+              },
+              "relationship_score": 59,
+              "memory_update": "He rang me on his walk home."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": -0.02,
+                "arousal": 0.5
+              },
+              "relationship_score": 49,
+              "memory_update": "He asked when I would play again."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.46,
+                "arousal": 0.5
+              },
+              "relationship_score": 73,
+              "memory_update": "He said I was wrong in front of the whole team. He let the silence stand."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": 0.04,
+                "arousal": 0.5
+              },
+              "relationship_score": 52,
+              "memory_update": "I heard him say he was sorry."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "theo",
+              "to": "ines",
+              "text": "He said I was wrong in front of the whole team. He let the silence stand."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 2,
+          "protagonist_age": 31,
+          "shock": "Inès leaves another ticket in his name.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Take the front-row seat",
+              "reason": "Last time she watched the door instead of the music."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.34,
+                "arousal": 0.5
+              },
+              "relationship_score": 67,
+              "memory_update": "I sat one row behind them."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.64,
+                "arousal": 0.5
+              },
+              "relationship_score": 82,
+              "memory_update": "At my next recital, Jules was there before me."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.56,
+                "arousal": 0.5
+              },
+              "relationship_score": 78,
+              "memory_update": "He sent me a photograph of the empty stage before anyone came in."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": 0.1,
+                "arousal": 0.5
+              },
+              "relationship_score": 55,
+              "memory_update": "He left a voicemail on the way home."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "ines",
+              "to": "theo",
+              "text": "At my next recital, Jules was there before me."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 3,
+          "protagonist_age": 37,
+          "shock": "Maman is recovering at home.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Bring bread to the kitchen",
+              "reason": "Asking if she has eaten is easier than taking the train."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.68,
+                "arousal": 0.5
+              },
+              "relationship_score": 84,
+              "memory_update": "He came over with bread. We ate it standing up."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.68,
+                "arousal": 0.5
+              },
+              "relationship_score": 84,
+              "memory_update": "Maman kept his paper bread bag."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.6,
+                "arousal": 0.5
+              },
+              "relationship_score": 80,
+              "memory_update": "He was late to tennis with flour on his coat."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": 0.18,
+                "arousal": 0.5
+              },
+              "relationship_score": 59,
+              "memory_update": "He brought enough bread for two days."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "maman",
+              "to": "ines",
+              "text": "He came over with bread. We ate it standing up."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 4,
+          "protagonist_age": 43,
+          "shock": "A call from Chicago lights up his father’s kitchen.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Call Papa first",
+              "reason": "I have spent too long waiting for him to go first."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.76,
+                "arousal": 0.5
+              },
+              "relationship_score": 88,
+              "memory_update": "I heard his father play the message again."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.72,
+                "arousal": 0.5
+              },
+              "relationship_score": 86,
+              "memory_update": "Papa kept the voicemail."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.68,
+                "arousal": 0.5
+              },
+              "relationship_score": 84,
+              "memory_update": "He called his father before calling me back."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": 0.66,
+                "arousal": 0.5
+              },
+              "relationship_score": 83,
+              "memory_update": "I saved the message that starts with Papa, it’s me."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "papa",
+              "to": "maman",
+              "text": "I saved the message that starts with Papa, it’s me."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0001",
+          "year_index": 5,
+          "protagonist_age": 46,
+          "shock": "The neighbor Jules carried out of the fire survived.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Carry the neighbor outside",
+              "reason": "Someone was still inside the apartment building."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.86,
+                "arousal": 0.5
+              },
+              "relationship_score": 93,
+              "memory_update": "Everyone talks about the fire. I still think about the bread."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.82,
+                "arousal": 0.5
+              },
+              "relationship_score": 91,
+              "memory_update": "At my first recital I watched the door. At the next one he was there before me."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.76,
+                "arousal": 0.5
+              },
+              "relationship_score": 88,
+              "memory_update": "I remember the morning he said I was wrong and stopped there."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": 0.74,
+                "arousal": 0.5
+              },
+              "relationship_score": 87,
+              "memory_update": "I can still play the voicemail that starts with Papa, it’s me."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "maman",
+              "to": "theo",
+              "text": "Everyone talks about the fire. I still think about the bread."
+            }
+          ]
+        }
+      ],
+      "eulogies": [
+        {
+          "run_id": "jules-film-0001",
+          "relative_id": "ines",
+          "speaks": true,
+          "text": "I kept his seat until the lights went down. At the next recital, he was there before me.",
+          "sentiment": 0.82
+        },
+        {
+          "run_id": "jules-film-0001",
+          "relative_id": "papa",
+          "speaks": true,
+          "text": "Four months without a call. I still have the voicemail that starts, “Papa, it’s me.”",
+          "sentiment": 0.74
+        },
+        {
+          "run_id": "jules-film-0001",
+          "relative_id": "maman",
+          "speaks": true,
+          "text": "Everyone asks me about the fire. I miss the days he came over with bread.",
+          "sentiment": 0.86
+        },
+        {
+          "run_id": "jules-film-0001",
+          "relative_id": "theo",
+          "speaks": true,
+          "text": "He said, “I was wrong,” in front of the whole team. Then he let me speak.",
+          "sentiment": 0.76
+        }
+      ],
+      "ending_cluster": "reconciled"
+    },
+    {
+      "run_id": "jules-film-0002",
+      "profile_id": "jules-film",
+      "seed": 2,
+      "death_age": 58,
+      "cause_of_death": "heart failure",
+      "years": [
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 0,
+          "protagonist_age": 23,
+          "shock": "An investor calls ten minutes before Inès’s recital.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Take the late meeting",
+              "reason": "I can send flowers after the recital."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": 0.02,
+                "arousal": 0.5
+              },
+              "relationship_score": 51,
+              "memory_update": "The flowers came after the audience left."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": -0.14,
+                "arousal": 0.5
+              },
+              "relationship_score": 43,
+              "memory_update": "Someone else sat in his seat."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": 0.14,
+                "arousal": 0.5
+              },
+              "relationship_score": 57,
+              "memory_update": "He asked me to order the flowers."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.12,
+                "arousal": 0.5
+              },
+              "relationship_score": 44,
+              "memory_update": "His calls were getting shorter."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "ines",
+              "to": "maman",
+              "text": "Someone else sat in his seat."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 1,
+          "protagonist_age": 31,
+          "shock": "An argument stops the team meeting.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Make Theo take the blame",
+              "reason": "If I admit the mistake, the board will lose confidence."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": -0.04,
+                "arousal": 0.5
+              },
+              "relationship_score": 48,
+              "memory_update": "He called me from the empty office."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": -0.06,
+                "arousal": 0.5
+              },
+              "relationship_score": 47,
+              "memory_update": "Theo walked out."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": -0.42,
+                "arousal": 0.5
+              },
+              "relationship_score": 29,
+              "memory_update": "He said it was my fault in front of everybody."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.12,
+                "arousal": 0.5
+              },
+              "relationship_score": 44,
+              "memory_update": "I recognized the silence after he lost his temper."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "theo",
+              "to": "ines",
+              "text": "He said it was my fault in front of everybody."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 2,
+          "protagonist_age": 38,
+          "shock": "Maman saves a place at Thanksgiving.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Pay for dinner from Chicago",
+              "reason": "I can at least pick up the bill."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": -0.2,
+                "arousal": 0.5
+              },
+              "relationship_score": 40,
+              "memory_update": "The restaurant had his credit card. I had his empty chair."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": -0.02,
+                "arousal": 0.5
+              },
+              "relationship_score": 49,
+              "memory_update": "I wrapped his uneaten turkey for the train."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": -0.4,
+                "arousal": 0.5
+              },
+              "relationship_score": 30,
+              "memory_update": "I did not get an invitation this year."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.22,
+                "arousal": 0.5
+              },
+              "relationship_score": 39,
+              "memory_update": "I took the spare plate back to the cupboard."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "maman",
+              "to": "ines",
+              "text": "The restaurant had his credit card. I had his empty chair."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 3,
+          "protagonist_age": 46,
+          "shock": "Inès takes two trains to visit Jules in hospital.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Let Inès sit with him",
+              "reason": "I have run out of ways to say I am busy."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": -0.16,
+                "arousal": 0.5
+              },
+              "relationship_score": 42,
+              "memory_update": "She stayed until the nurse changed shifts."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.36,
+                "arousal": 0.5
+              },
+              "relationship_score": 68,
+              "memory_update": "He pulled a second chair up to his hospital bed for me."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": -0.34,
+                "arousal": 0.5
+              },
+              "relationship_score": 33,
+              "memory_update": "I left a message with his sister."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.26,
+                "arousal": 0.5
+              },
+              "relationship_score": 37,
+              "memory_update": "I asked Inès whether he wanted me there."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "ines",
+              "to": "papa",
+              "text": "He pulled a second chair up to his hospital bed for me."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 4,
+          "protagonist_age": 53,
+          "shock": "Theo sends back a key to their first office.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Write Theo an apology",
+              "reason": "He ought to have this in my handwriting."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": -0.14,
+                "arousal": 0.5
+              },
+              "relationship_score": 43,
+              "memory_update": "He bought an envelope."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.42,
+                "arousal": 0.5
+              },
+              "relationship_score": 71,
+              "memory_update": "I found an unsent letter under the phone."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": -0.04,
+                "arousal": 0.5
+              },
+              "relationship_score": 48,
+              "memory_update": "The envelope never came."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.32,
+                "arousal": 0.5
+              },
+              "relationship_score": 34,
+              "memory_update": "I still called on Sundays."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "theo",
+              "to": "ines",
+              "text": "The envelope never came."
+            }
+          ]
+        },
+        {
+          "run_id": "jules-film-0002",
+          "year_index": 5,
+          "protagonist_age": 58,
+          "shock": "Inès brings their old concert ticket to the hospital.",
+          "shock_source": "destiny",
+          "generation": "scripted",
+          "decisions": [
+            {
+              "actor": "jules-film",
+              "action": "Hold his sister’s hand",
+              "reason": "She spent the better part of her life waiting for me to show up."
+            }
+          ],
+          "relative_states": [
+            {
+              "relative_id": "maman",
+              "emotion": {
+                "valence": -0.12,
+                "arousal": 0.5
+              },
+              "relationship_score": 44,
+              "memory_update": "I can still see his empty chair."
+            },
+            {
+              "relative_id": "ines",
+              "emotion": {
+                "valence": 0.56,
+                "arousal": 0.5
+              },
+              "relationship_score": 78,
+              "memory_update": "At the hospital he held my hand until the nurse let go of his."
+            },
+            {
+              "relative_id": "theo",
+              "emotion": {
+                "valence": -0.04,
+                "arousal": 0.5
+              },
+              "relationship_score": 48,
+              "memory_update": "I would have read the letter if he had sent it."
+            },
+            {
+              "relative_id": "papa",
+              "emotion": {
+                "valence": -0.32,
+                "arousal": 0.5
+              },
+              "relationship_score": 34,
+              "memory_update": "I had one more thing I wanted to tell him."
+            }
+          ],
+          "private_messages": [
+            {
+              "from": "ines",
+              "to": "maman",
+              "text": "At the hospital he held my hand until the nurse let go of his."
+            }
+          ]
+        }
+      ],
+      "eulogies": [
+        {
+          "run_id": "jules-film-0002",
+          "relative_id": "ines",
+          "speaks": true,
+          "text": "He missed my recital. At the hospital he pulled up a chair for me. I stayed.",
+          "sentiment": 0.56
+        },
+        {
+          "run_id": "jules-film-0002",
+          "relative_id": "theo",
+          "speaks": false,
+          "text": "I would have read the letter if he had sent it.",
+          "sentiment": -0.04
+        },
+        {
+          "run_id": "jules-film-0002",
+          "relative_id": "maman",
+          "speaks": false,
+          "text": "The restaurant had his credit card. I had his empty chair.",
+          "sentiment": -0.12
+        },
+        {
+          "run_id": "jules-film-0002",
+          "relative_id": "papa",
+          "speaks": false,
+          "text": "I had one more thing I wanted to tell him.",
+          "sentiment": -0.32
+        }
+      ],
+      "ending_cluster": "estranged"
+    }
+  ],
+  "summary": {
+    "n_runs": 2,
+    "pct_daughter_speaks": 0,
+    "pct_child_speaks": null,
+    "pct_partner_speaks": null,
+    "most_probable_run_id": "jules-film-0001",
+    "best_run_id": "jules-film-0001",
+    "generation": {
+      "scripted": 12
+    },
+    "clusters": {
+      "reconciled": 1,
+      "estranged": 1
+    }
+  }
+}

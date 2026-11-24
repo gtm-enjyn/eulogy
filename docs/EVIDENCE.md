@@ -1,6 +1,6 @@
 # Screening evidence
 
-The published profile is Louis, age 31, with Camille, Léa, Anne and Jules in the cast. The main archive contains **30 seeded lives, 180 chapters and 120 farewells**. All 180 chapter records are marked `mock`. The SQL, browser playback, audio and measurements below were executed against those files. [Profile](../data/profiles/louis.json) · [Run archive](../data/runs/louis-demo.jsonl) · [Summary](../data/runs/louis-demo.summary.json)
+The published profile is Louis, age 31, with Camille, Léa, Anne and Jules in the cast. The main archive contains **30 seeded lives, 180 chapters and 120 farewells**. All 180 chapter records are marked `mock`. The original SQL and browser measurements used these files. The current local audio catalogue also includes two authored lives of Jules. [Louis’s profile](../data/profiles/louis.json) · [Run archive](../data/runs/louis-demo.jsonl) · [Summary](../data/runs/louis-demo.summary.json) · [Jules’s screening](../data/screenings/jules.json)
 
 ## Bruin execution
 
@@ -62,7 +62,7 @@ Léa speaks in 17 lives and stays silent in 13. Camille also speaks in 17. Their
 
 ## Three voices from the recorded lives
 
-The following are verbatim text from three different run records. Each row preserves the stored final score and the rule that determines whether the chapel plays the voice. Their phrasing comes from the seeded narrator. [Run archive](../data/runs/louis-demo.jsonl)
+The table quotes three farewell records as written by the seeded narrator. Each final score determines whether that witness speaks. The local recording script draws on the speaking witness’s own memories and decisions for the words heard in the chapel. [Run archive](../data/runs/louis-demo.jsonl) · [Staged lines](../packages/shared/src/funeralScript.ts)
 
 | Run and relative | Final score | Delivery | Farewell |
 |---|---:|---|---|
@@ -88,7 +88,9 @@ A second test kept VSync active on the 60 Hz Retina panel. With Chrome Energy Sa
 | Pulpit | 60.007 | 2.013 ms |
 | Front row | 59.989 | 2.179 ms |
 
-In life 1, Jules stayed seated. Anne, Léa and Camille each played a complete audio clip. The decision ledger advanced through all six chapter ages. The next two screenings were lives 28 and 29. Disabling WebGL preserved captions, navigation and audio controls. Six featured clips were generated with macOS voices. [Audio inventory](../apps/web/src/data/audio.json) · [Browser results](assets/browser-check.json)
+In the original browser test, Jules stayed seated in life 1. Anne, Léa and Camille each played a complete audio clip. The decision ledger advanced through all six chapter ages. The next two screenings were lives 28 and 29. Disabling WebGL preserved captions, navigation and audio controls. The two featured lives in that test used six macOS voice recordings. [Original browser results](assets/browser-check.json)
+
+The current local archive has 32 Destiny openings and 62 spoken witness passages. Eight stock Kokoro voices perform them in 90 MP3s. All 90 files decoded as 24 kHz mono audio, and Chrome 158 played a sample from each performer. The coverage test checks every spoken cue, leaves 66 silent witnesses without audio and rejects a previous line when a new run reuses the same IDs. [Audio catalogue](../apps/web/src/data/audio.json) · [Corpus tests](../apps/web/src/data/funeralAudio.test.ts) · [Cast and generator](../scripts/voices.md)
 
 ## Thousand-life replay
 
@@ -110,7 +112,7 @@ The independent replay produced 1,000 distinct run IDs and 6,000 deterministic c
 
 ## Public deployment
 
-The public deployment serves source commit `392f15f90b4634cdc79cfcc8522ac3bd3ad479ed`. All 23 unauthenticated HTTP checks passed, including the four HTML routes, bundles, models, six voice clips, textures and BAND transcript. Chrome played the intro, submitted the profile, showed the 43.3% atlas result and advanced from life 1 to life 28 in the chapel. The browser reported zero JavaScript or asset errors. [Live demo](https://eulogy-ochre.vercel.app/) · [HTTP results](assets/production-http.json) · [Browser trace](assets/production-browser.json)
+The public deployment check used source commit `392f15f90b4634cdc79cfcc8522ac3bd3ad479ed`. All 23 unauthenticated HTTP checks passed, including the four HTML routes, bundles, models, the original six voice clips, textures and BAND transcript. Chrome played the intro, submitted the profile, showed the 43.3% atlas result and advanced from life 1 to life 28 in the chapel. The browser reported zero JavaScript or asset errors. [Live demo](https://eulogy-ochre.vercel.app/) · [HTTP results](assets/production-http.json) · [Browser trace](assets/production-browser.json)
 
 Private Vercel Blob storage accepted a 68-byte test PNG. Its time-limited signed read returned the identical SHA-256, and the unsigned read returned HTTP 403. On the public form, a missing name produced an inline error, a saved name survived reload and the synthetic webcam produced a JPEG preview. The unconfigured model and portrait endpoints returned HTTP 501 and the form opened the published screening. [Storage check](assets/production-blob.json) · [Form check](assets/production-form.json)
 

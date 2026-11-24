@@ -1,31 +1,213 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync,mkdirSync,mkdtempSync,readFileSync,rmSync,writeFileSync } from 'node:fs';
+import { createHash, randomUUID } from 'node:crypto';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { RunSchema,RunSummarySchema } from '@eulogy/shared';
-const base='data/runs/louis-demo';
-const summary=RunSummarySchema.parse(JSON.parse(readFileSync(base+'.summary.json','utf8')));
-const runs=readFileSync(base+'.jsonl','utf8').trim().split('\n').map(s=>RunSchema.parse(JSON.parse(s)));
-const temp=mkdtempSync(join(tmpdir(),'eulogy-voice-'));
-const voices:Record<string,string>={lea:'Samantha',anne:'Kathy',camille:'Flo (English (US))',jules:'Daniel'};
-if(existsSync('.env'))process.loadEnvFile('.env');
-const clips:Record<string,string>={};
-try{
-for(const run of runs.filter(r=>[summary.most_probable_run_id,summary.best_run_id].includes(r.run_id))){
-  const dir='apps/web/public/audio/'+run.run_id;mkdirSync(dir,{recursive:true});
-  for(const e of run.eulogies.filter(e=>e.speaks)){
-    const key=run.run_id+'/'+e.relative_id;
-    const voice=process.env['ELEVENLABS_VOICE_'+e.relative_id.toUpperCase()];
-    if(voice && process.env.ELEVENLABS_API_KEY){
-      const result=await fetch('https://api.elevenlabs.io/v1/text-to-speech/'+encodeURIComponent(voice),{method:'POST',headers:{'xi-api-key':process.env.ELEVENLABS_API_KEY,'content-type':'application/json'},body:JSON.stringify({text:e.text,model_id:'eleven_multilingual_v2'})});
-      if(!result.ok)throw Error('ElevenLabs HTTP '+result.status);
-      writeFileSync(dir+'/'+e.relative_id+'.mp3',Buffer.from(await result.arrayBuffer()));clips[key]='/audio/'+key+'.mp3';
-    }else{
-      const interim=join(temp,'speech.aiff');
-      execFileSync('say',['-v',voices[e.relative_id]??'Daniel','-r','155','-o',interim,e.text]);
-      execFileSync('afconvert',['-f','m4af','-d','aac','-b','64000',interim,dir+'/'+e.relative_id+'.m4a']);clips[key]='/audio/'+key+'.m4a';
+import { basename, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  buildFuneralScript,
+  ProfileSchema,
+  RunSchema,
+  type Profile,
+  type Run,
+} from '@eulogy/shared';
+import { funeralPerformer } from '../apps/web/src/data/funeralCast';
+import type { FuneralRecording } from '../apps/web/src/data/funeralAudio';
+import namePronunciations from './funeral-pronunciations.json';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const data = join(root, 'data');
+const web = join(root, 'apps/web');
+const publicDir = join(web, 'public');
+const manifestPath = join(web, 'src/data/audio.json');
+const json = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
+
+// Only these two authored, public archives belong in the browser's bundle.
+function archives(): { profile: Profile; runs: Run[] }[] {
+  const sources: [string, unknown[]][] = [
+    ['jules', json(join(data, 'screenings/jules.json')).runs],
+    [
+      'louis',
+      readFileSync(join(data, 'runs/louis-demo.jsonl'), 'utf8')
+        .trim()
+        .split('\n')
+        .map((line) => JSON.parse(line)),
+    ],
+  ];
+  return sources.map(([name, rows]) => {
+    const profile = ProfileSchema.parse(json(join(data, 'profiles', name + '.json')));
+    const runs = rows.map((row) => RunSchema.parse(row));
+    if (runs.some((run) => run.profile_id !== profile.id))
+      throw Error('Archive and profile disagree for ' + name);
+    return { profile, runs };
+  });
+}
+
+interface RenderJob extends Omit<FuneralRecording, 'durationMs'> {
+  speed: number;
+  pronunciations: Record<string, string>;
+}
+type PublishedRecording = FuneralRecording & { sha256?: string };
+const fileDigest = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
+const args = process.argv.slice(2);
+if (args.some((arg) => arg !== '--elevenlabs'))
+  throw Error('Usage: npm run voices -- [--elevenlabs]');
+const remote = args.includes('--elevenlabs');
+if (remote && existsSync(join(root, '.env'))) process.loadEnvFile(join(root, '.env'));
+if (remote && !process.env.ELEVENLABS_API_KEY)
+  throw Error('Set ELEVENLABS_API_KEY to use the ElevenLabs library.');
+const engine = remote ? 'eleven_v3' : 'kokoro-82m-v1.0';
+const delivery: Record<string, number> = {
+  bm_george: 0.91,
+  bf_emma: 0.92,
+  am_fenrir: 0.9,
+  af_kore: 0.95,
+  am_puck: 0.97,
+  af_heart: 0.94,
+  af_bella: 0.96,
+  am_michael: 0.95,
+};
+const jobs = new Map<string, RenderJob>();
+const castReadings = new Map<string, RenderJob>();
+let runCount = 0;
+let speakingCues = 0;
+for (const { profile, runs } of archives()) {
+  runCount += runs.length;
+  for (const run of runs) {
+    for (const cue of buildFuneralScript(profile, run)) {
+      if (!cue.speaks) continue;
+      speakingCues++;
+      const cast = funeralPerformer(profile, cue);
+      if (!cast || !cue.text.trim())
+        throw Error('Missing performer or line for ' + run.run_id + '/' + cue.id);
+      const voice = remote ? process.env['ELEVENLABS_VOICE_' + cast.toUpperCase()] : cast;
+      if (!voice) throw Error('Set a library voice in ELEVENLABS_VOICE_' + cast.toUpperCase());
+      const speed = remote ? 1 : (delivery[cast] ?? 0.95);
+      const words = new Set(cue.text.match(/[\p{L}\p{M}]+/gu) ?? []);
+      const names = remote
+        ? []
+        : Object.entries(namePronunciations).filter(([name]) => words.has(name));
+      const digest = createHash('sha256')
+        .update(JSON.stringify([engine, 'chapel-reading-v1', voice, speed, cue.text, ...names]))
+        .digest('hex');
+      const src = '/audio/chapel/' + digest + '.mp3';
+      const job = {
+        cast,
+        voice,
+        speed,
+        text: cue.text,
+        src,
+        pronunciations: Object.fromEntries(names),
+      };
+      jobs.set(src, job);
+      castReadings.set(JSON.stringify([cast, cue.text]), job);
     }
   }
 }
-writeFileSync('apps/web/src/data/audio.json',JSON.stringify(clips,null,2)+'\n');
-}finally{rmSync(temp,{recursive:true,force:true});}
+if (!jobs.size) throw Error('Archives contain no speaking cues.');
+const prior = existsSync(manifestPath) ? json(manifestPath) : {};
+const cached = new Map<string, PublishedRecording>(
+  (Array.isArray(prior.clips) ? prior.clips : []).map((clip: PublishedRecording) => [
+    clip.src,
+    clip,
+  ]),
+);
+const durations = new Map<string, number>();
+const repair = new Set<string>();
+const pending = [...jobs.values()].filter((job) => {
+  const old = cached.get(job.src);
+  const path = join(publicDir, job.src);
+  if (
+    old &&
+    old.voice === job.voice &&
+    old.text === job.text &&
+    old.durationMs > 0 &&
+    existsSync(path) &&
+    statSync(path).size > 500
+  ) {
+    if (old.sha256 && old.sha256 !== fileDigest(path)) {
+      repair.add(job.src);
+      return true;
+    }
+    durations.set(job.src, old.durationMs);
+    return false;
+  }
+  return true;
+});
+const outputDir = join(publicDir, 'audio/chapel');
+mkdirSync(outputDir, { recursive: true });
+if (pending.length) {
+  const scratch = mkdtempSync(join(tmpdir(), 'eulogy-voices-'));
+  try {
+    const plan = join(scratch, 'plan.json');
+    const receipt = join(scratch, 'durations.json');
+    writeFileSync(
+      plan,
+      JSON.stringify(
+        pending.map((job) => ({
+          ...job,
+          filename: basename(job.src),
+          repair: repair.has(job.src),
+        })),
+      ),
+    );
+    const localPython = join(
+      root,
+      '.local/voices/.venv',
+      process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
+    );
+    const envPython =
+      process.env.EULOGY_VOICE_PYTHON ?? (existsSync(localPython) ? localPython : undefined);
+    const command = envPython ?? 'uv';
+    const helper = join(root, 'scripts/render-funeral-voices.py');
+    const commandArgs = envPython ? [helper] : ['run', '--script', helper];
+    console.log('Recording ' + pending.length + ' passages with ' + engine + '.');
+    execFileSync(command, [...commandArgs, engine, plan, receipt, outputDir], {
+      cwd: root,
+      stdio: 'inherit',
+    });
+    const measured: Record<string, number> = json(receipt);
+    for (const job of pending) {
+      const ms = measured[basename(job.src)];
+      if (!ms || !Number.isFinite(ms) || ms < 200) throw Error('Missing duration for ' + job.src);
+      durations.set(job.src, ms);
+    }
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
+}
+// Two library roles may deliberately share one ElevenLabs performer. Address
+// the file by its actual voice + text, and preserve a lookup for each cast.
+const clips = [...castReadings.values()].map(({ src, cast, voice, text }) => ({
+  cast,
+  voice,
+  text,
+  src,
+  durationMs: durations.get(src)!,
+  sha256: fileDigest(join(publicDir, src)),
+}));
+const out = JSON.stringify({ engine, clips }, null, 2) + '\n';
+if (!existsSync(manifestPath) || readFileSync(manifestPath, 'utf8') !== out) {
+  const stage = manifestPath + '.' + randomUUID() + '.tmp';
+  writeFileSync(stage, out);
+  renameSync(stage, manifestPath);
+}
+console.log(
+  runCount +
+    ' lives, ' +
+    speakingCues +
+    ' speaking cues, ' +
+    jobs.size +
+    ' recordings (' +
+    pending.length +
+    ' rendered).',
+);
