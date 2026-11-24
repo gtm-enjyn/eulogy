@@ -27,3 +27,7 @@ logs/queries
 # video renders
 video/out/
 video/node_modules/
+
+# film page deploy artefacts
+film-page/eulogy.mp4
+film-page/.vercel/

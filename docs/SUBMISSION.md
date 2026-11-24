@@ -6,14 +6,14 @@
 
 **One-liner:** Who will be at your table when you're seventy? Eulogy turns the people in your life into AI agents, plays your life a thousand times, and shows you the one decision that fills the table.
 
-**Demo video (2:26):** https://eulogy-hackathon-film.vercel.app/ · direct file: https://github.com/louisktj/eulogy/releases/download/v1.0/eulogy-final-web.mp4
-(full quality: https://github.com/louisktj/eulogy/releases/download/v1.0/eulogy-final.mp4)
+**Demo video (1:31):** https://eulogy-film.vercel.app/ · direct file: https://github.com/louisktj/eulogy/releases/download/v1.1/eulogy-90-web.mp4
+(full quality: https://github.com/louisktj/eulogy/releases/download/v1.1/eulogy-90.mp4)
 
 **Public repo:** https://github.com/louisktj/eulogy
 
 **Live app:** https://eulogy-ochre.vercel.app/
 
-**Film page (streams in the browser):** https://eulogy-hackathon-film.vercel.app/
+**Film page (streams in the browser):** https://eulogy-film.vercel.app/
 
 **Description:**
 You describe yourself in five lines (or just talk). Eulogy builds your family as AI agents — each with a memory, a mood and a grudge — plus a fifth agent, Destiny, that rolls real-world shocks. Six chapters from now to seventy, every decision logged, every private message routed, replayed hundreds of times. The output is not a prediction: it's the most likely life, the life where the table is full, and the single year-one decision that separates them, with evidence.

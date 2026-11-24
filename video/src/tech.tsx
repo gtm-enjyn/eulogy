@@ -79,16 +79,18 @@ const SPONSORS: [string, string][] = [
   ['Runware', 'FLUX.1 Kontext ages your face. TRELLIS.2 turns it into a 3D bust by the coffin in 32 seconds.'],
   ['Claude', 'Six agents, six chapters, continuous emotional state and episodic memory. Zod on every output, deterministic fallback, never a crash.'],
 ];
-export const BuiltWith: React.FC<{ len: number }> = ({ len }) => {
+export const BuiltWith: React.FC<{ len: number; interval?: number; title?: boolean }> = ({ len, interval = 1.5, title = false }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const o = useFade(len, 14, 14);
   return (
     <AbsoluteFill style={{ background: '#000', opacity: o, justifyContent: 'center' }}>
       <div style={{ marginLeft: 200, width: 1520 }}>
+        {title && <div style={{ fontFamily: SERIF, fontSize: 84, color: '#ece7da', letterSpacing: 6, marginBottom: 6 }}>EULOGY</div>}
+        {title && <div style={{ fontFamily: SERIF, fontSize: 28, color: 'rgba(235,228,210,0.85)', marginBottom: 28 }}>A thousand lives. One decision. Yours. · github.com/louisktj/eulogy</div>}
         <div style={{ fontFamily: MONO, fontSize: 19, letterSpacing: 3, color: 'rgba(235,228,210,0.55)', marginBottom: 26 }}>BUILT IN ONE DAY WITH</div>
         {SPONSORS.map(([name, text], i) => {
-          const a = interpolate(f, [i * 1.5 * fps, i * 1.5 * fps + 14], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+          const a = interpolate(f, [i * interval * fps, i * interval * fps + 14], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
           return (
             <div key={name} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 24, marginBottom: 22, opacity: a, transform: `translateY(${(1 - a) * 8}px)` }}>
               <div style={{ fontFamily: SERIF, fontSize: 40, color: '#e8a35a' }}>{name}</div>
@@ -106,7 +108,7 @@ export const Rooftop: React.FC<{ len: number }> = ({ len }) => {
   const { fps } = useVideoConfig();
   const o = useFade(len, 20, 16);
   const s = interpolate(f, [0, len], [1.08, 1.0], { easing: Easing.out(Easing.quad) });
-  const sub = interpolate(f, [1.7 * fps, 2.0 * fps, len - 10, len], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const sub = interpolate(f, [1.2 * fps, 1.5 * fps, len - 10, len], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ background: '#000', opacity: o }}>
       <Img src={staticFile('img/rooftop.jpg')} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${s})` }} />
