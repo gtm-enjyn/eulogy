@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Corner, LifeLines, Look } from './ui';
+import { LifeLines, Screen } from './ui';
 import { useDemo, JULES, isComplete, type DemoProfile } from './store';
 import { BRUIN, CAPTIONS, CHECKS, MART, TELEM, bandScript } from './script';
 
@@ -66,64 +66,70 @@ export default function Simulate() {
   const bruinOn = prog > 0.6; const bruinN = Math.min(BRUIN.length, Math.floor(Math.max(0, t - 30500) / 850));
   const martOn = t > TOTAL - 6000; const martRows = Math.min(MART.length, Math.floor((t - (TOTAL - 4800)) / 700));
   const cap = CAPTIONS[Math.floor(t / 7000) % CAPTIONS.length];
-  const lines = useMemo(() => { let n = 0; for (let i = log.length - 1; i >= 0; i--) { if (log[i]!.at <= t) { n = i + 1; break; } } return log.slice(Math.max(0, n - 60), n).slice(-13); }, [log, t]);
+  const lines = useMemo(() => { let n = 0; for (let i = log.length - 1; i >= 0; i--) { if (log[i]!.at <= t) { n = i + 1; break; } } return log.slice(Math.max(0, n - 8), n); }, [log, t]);
   const phase = t < 1800 ? 0 : prog < 0.6 ? 1 : prog < 1 && !martOn ? 2 : !martOn ? 3 : 4;
   const PH = ['ingest', 'agents', 'rooms', 'pipeline', 'marts'];
+  const ticks = BRUIN.slice(0, bruinN).slice(-5);
+
+  const headerRight = (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <div className="phases">{PH.map((p, i) => <span key={p} className={i < phase ? 'done' : i === phase ? 'on' : ''}>{p}</span>)}</div>
+      <div className="runmeta" style={{ color: stalled ? 'var(--amber)' : undefined }}>{stalled ? 'rate limit · backoff…' : `run ${run} / ${RUNS} · ${rate.toFixed(0)} runs/min · ETA ${Math.floor(eta / 60)}:${String(eta % 60).padStart(2, '0')}`}</div>
+    </div>
+  );
 
   return (
-    <div className={`scene bars ${leaving ? 'fadeout' : ''}`}>
-      <Corner n="04" title={`SIMULATING · ${profile.name.toUpperCase()} · ${profile.relatives.length + 1} AGENTS · RUN ${run}/${RUNS}`} />
-      <div style={{ position: 'absolute', inset: '7vh 0', opacity: 0.85 }}><LifeLines n={80} progress={prog} markers /></div>
-      <div style={{ position: 'absolute', left: '50%', top: '13.5vh', transform: 'translateX(-50%)', textAlign: 'center', zIndex: 4, pointerEvents: 'none' }}>
-        <div className="counter">{run.toLocaleString('en-US')}</div>
-        <div className="label" style={{ marginTop: 8 }}>LIVES SIMULATED</div>
-      </div>
-
-      <div className="panel blue" style={{ left: '4.5vw', top: '16vh', width: '27vw', height: '34vh' }}>
-        <h4>BAND · room life-{String(Math.max(1, run)).padStart(4, '0')} · {profile.relatives.length + 2} agents</h4>
-        <div style={{ display: 'grid' }}>
-          {shown.slice(-6).map((m) => (
-            <div key={m.at} className={`row ${m.kind === 'priv' ? 'priv' : ''} ${m.kind === 'sys' ? 'sys' : ''}`} style={{ fontSize: '0.86rem', marginBottom: 7 }}>
-              <div className="who">{m.who}</div>
-              <div className="txt" style={m.kind === 'gate' ? { color: 'var(--amber)' } : undefined}>{m.kind === 'priv' ? '🔒 ' : ''}{m.txt}</div>
+    <Screen className={leaving ? 'fadeout' : ''} n="04" title={`SIMULATING · ${profile.name.toUpperCase()} · ${profile.relatives.length + 1} AGENTS`} headerRight={headerRight}
+      caption={cap} action={t > 15000 ? <button className="btn ghost" onClick={leave}>Skip →</button> : <span style={{ display: 'inline-block', minHeight: 48 }} />}>
+      <div style={{ height: '100%', display: 'grid', gridTemplateRows: 'minmax(0, 1fr) 22vh', gap: 12, minHeight: 0 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1.4fr 1fr', gap: 12, minHeight: 0 }}>
+          <div className="panel blue" data-fit>
+            <h4>BAND · room life-{String(Math.max(1, run)).padStart(4, '0')} · {profile.relatives.length + 2} agents</h4>
+            <div className="stream">
+              {shown.slice(-6).map((m) => (
+                <div key={m.at} className={`row ${m.kind === 'priv' ? 'priv' : ''} ${m.kind === 'sys' ? 'sys' : ''}`}>
+                  <div className="who">{m.who}</div>
+                  <div className="txt" style={m.kind === 'gate' ? { color: 'var(--amber)' } : undefined}>{m.kind === 'priv' ? '🔒 ' : ''}{m.txt}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="panel" style={{ left: '4.5vw', top: '52vh', width: '27vw', bottom: '12vh', borderTopColor: 'var(--fg)' }}>
-        <h4 style={{ color: 'var(--fg)', display: 'flex', justifyContent: 'space-between' }}><span>ENGINE · live</span><span style={{ color: stalled ? 'var(--amber)' : 'var(--muted)', textTransform: 'none', letterSpacing: 0 }}>{stalled ? 'backoff…' : `${rate.toFixed(1)} runs/min · ETA ${Math.floor(eta / 60)}:${String(eta % 60).padStart(2, '0')}`}</span></h4>
-        <div className="phases">{PH.map((p, i) => <span key={p} className={i < phase ? 'done' : i === phase ? 'on' : ''}>{p}</span>)}</div>
-        <div className="runbar"><i style={{ width: `${prog * 100}%` }} /></div>
-        <div className="engine" style={{ height: 'calc(100% - 70px)' }}>
-          {lines.map((l) => <div key={l.at + l.html.length} className={`ln ${l.cls}`} dangerouslySetInnerHTML={{ __html: l.html }} />)}
-        </div>
-      </div>
-
-      <div className="panel grey" style={{ right: '4.5vw', top: '16vh', width: '27vw', height: '30vh' }}>
-        <h4>Telem · Observe · agent reasoning traces</h4>
-        {TELEM.slice(0, telemN).map(([q, c]) => (
-          <div key={q} className="row" style={{ gridTemplateColumns: '1fr', marginBottom: 8 }}><div className="mono" style={{ color: 'var(--fg)', fontSize: '0.76rem', letterSpacing: 0 }}>POST /v1/search · “{q}”</div><div className="muted" style={{ fontSize: '0.8rem' }}>context: {c}</div></div>
-        ))}
-      </div>
-      <div className="panel" style={{ right: '4.5vw', top: '48.5vh', width: '27vw', bottom: '12vh' }}>
-        <h4>$ bruin run bruin/eulogy</h4>
-        {!bruinOn && <div className="mono muted" style={{ fontSize: '0.8rem' }}>waiting for 600 runs · materializing raw tables as runs land…</div>}
-        {bruinOn && !martOn && BRUIN.slice(0, bruinN).map((a) => (<div key={a} className="tick"><span className="ok">✓</span> {a}<span className="chk">{CHECKS[a] ?? 'materialized'}</span></div>))}
-        {bruinOn && !martOn && bruinN >= BRUIN.length && <div className="tick ok" style={{ marginTop: 8 }}>12 assets · 11 checks passed · lineage raw → stg → mart</div>}
-        {martOn && (
-          <div>
-            <div className="tick" style={{ whiteSpace: 'normal', color: 'var(--muted)' }}>$ bruin query -q "select action, lift from mart_decision_impact order by lift desc"</div>
-            <table className="mart" style={{ marginTop: 10 }}><thead><tr><th>year-1 action</th><th>with</th><th>without</th><th>lift</th></tr></thead><tbody>
-              {MART.slice(0, Math.max(0, martRows)).map((r, k) => (<tr key={r.action} className={k === 0 ? 'hl' : ''}><td>{r.action}</td><td>{r.with} %</td><td>{r.without} %</td><td className={r.lift > 0 ? 'ok' : 'bad'}>{r.lift > 0 ? '+' : ''}{r.lift}</td></tr>))}
-            </tbody></table>
           </div>
-        )}
+          <div className="canvasbox" data-fit>
+            <LifeLines n={80} progress={prog} markers />
+            <div className="counterbox"><div className="counter">{run.toLocaleString('en-US')}</div><div className="label" style={{ marginTop: 6 }}>LIVES SIMULATED</div></div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 12, minHeight: 0 }}>
+            <div className="panel grey" data-fit>
+              <h4>Telem · Observe · agent reasoning</h4>
+              <div className="stream">
+                {TELEM.slice(0, telemN).slice(-3).map(([q, c]) => (
+                  <div key={q} style={{ marginBottom: 8 }}><div className="mono" style={{ color: 'var(--fg)', letterSpacing: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>POST /v1/search · “{q}”</div><div className="muted" style={{ fontSize: 13.5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>context: {c}</div></div>
+                ))}
+              </div>
+            </div>
+            <div className="panel" data-fit>
+              <h4>$ bruin run bruin/eulogy</h4>
+              <div className="stream">
+                {!bruinOn && <div className="mono muted" style={{ letterSpacing: 0 }}>waiting for 600 runs · raw tables materialize as runs land</div>}
+                {bruinOn && !martOn && ticks.map((a) => (<div key={a} className="tick"><span className="ok">✓</span> {a}<span className="chk">{CHECKS[a] ?? 'materialized'}</span></div>))}
+                {bruinOn && !martOn && bruinN >= BRUIN.length && <div className="tick ok">12 assets · 11 checks · raw → stg → mart</div>}
+                {martOn && (
+                  <table className="mart"><tbody>
+                    {MART.slice(0, Math.max(0, martRows)).map((r, k) => (<tr key={r.action} className={k === 0 ? 'hl' : ''}><td>{r.action}</td><td className={r.lift > 0 ? 'ok' : 'bad'}>{r.lift > 0 ? '+' : ''}{r.lift}</td></tr>))}
+                  </tbody></table>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="panel" data-fit style={{ borderTopColor: 'var(--fg)' }}>
+          <h4 style={{ color: 'var(--fg)', display: 'flex', justifyContent: 'space-between', gap: 16 }}><span>ENGINE · live</span><span style={{ textTransform: 'none', letterSpacing: 0, color: 'var(--muted)' }}>seed {seed} · concurrency {stalled ? 8 : 10} · claude-sonnet-5-5</span></h4>
+          <div className="runbar"><i style={{ width: `${prog * 100}%` }} /></div>
+          <div className="engine">
+            {lines.map((l) => <div key={l.at + l.html.length} className={`ln ${l.cls}`} dangerouslySetInnerHTML={{ __html: l.html }} />)}
+          </div>
+        </div>
       </div>
-
-      <div className="caption" style={{ left: '50%', transform: 'translateX(-50%)', maxWidth: '38vw', textAlign: 'center', borderLeft: 0, paddingLeft: 0, bottom: '8.5vh' }}>{cap}</div>
-      {t > 15000 && <button className="btn ghost" style={{ position: 'absolute', right: '4.5vw', bottom: '8vh', zIndex: 7, opacity: 0.7 }} onClick={leave}>Skip →</button>}
-      <Look />
-    </div>
+    </Screen>
   );
 }

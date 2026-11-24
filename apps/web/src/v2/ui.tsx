@@ -8,14 +8,37 @@ export const Grain: React.FC = () => (
 );
 export const Look: React.FC = () => (<><div className="vignette" /><Grain /></>);
 
-export const Caption: React.FC<{ children: React.ReactNode; right?: boolean }> = ({ children, right }) => (
-  <div className="caption" style={right ? { left: 'auto', right: '4.5vw', borderLeft: 0, borderRight: '2px solid var(--amber)', paddingLeft: 0, paddingRight: 14, textAlign: 'right' } : undefined}>{children}</div>
-);
-export const Corner: React.FC<{ n: string; title: string; right?: boolean }> = ({ n, title, right }) => (
-  <div className={`corner ${right ? 'corner-r' : ''}`}><span className="mono amber">{n}</span><span className="mono muted">{title}</span></div>
+export const Caption: React.FC<{ children: React.ReactNode }> = ({ children }) => <div className="caption">{children}</div>;
+export const Corner: React.FC<{ n?: string; title?: string }> = ({ n, title }) => (
+  <div className="corner">{n && <span className="mono amber">{n}</span>}{title && <span className="mono muted">{title}</span>}</div>
 );
 export const Step: React.FC<{ i: number }> = ({ i }) => (
   <div className="step">{['FACE', 'CONVERSATIONS', 'VOICE', 'SIMULATION', 'VERDICT'].map((s, k) => (<span key={s}>{k > 0 && ' · '}{k + 1 === i ? <b>{s}</b> : s}</span>))}</div>
+);
+
+/**
+ * Every v2 screen: one viewport, letterboxed, three bands.
+ * header = step label (left) + step indicator or custom (right); content = min-height 0, overflow hidden; footer = one caption (left) + the primary action (right).
+ */
+export const Screen: React.FC<{
+  n?: string; title?: string; step?: number; headerRight?: React.ReactNode;
+  caption?: React.ReactNode; action?: React.ReactNode; footLeft?: React.ReactNode;
+  black?: boolean; className?: string; children: React.ReactNode;
+}> = ({ n, title, step, headerRight, caption, action, footLeft, black, className, children }) => (
+  <div className={`scene bars ${black ? 'black' : ''} ${className ?? ''}`}>
+    <div className="frame">
+      <header className="band top">
+        <Corner n={n} title={title} />
+        <div>{headerRight ?? (step ? <Step i={step} /> : null)}</div>
+      </header>
+      <main className="content">{children}</main>
+      <footer className="band bottom">
+        <div className="foot-l">{footLeft ?? (caption ? <Caption>{caption}</Caption> : null)}</div>
+        <div className="foot-r">{action}</div>
+      </footer>
+    </div>
+    <Look />
+  </div>
 );
 
 /** Life-lines canvas: n polylines drifting left→right; some end amber. `progress` 0..1 draws them in; undefined = ambient loop. */
