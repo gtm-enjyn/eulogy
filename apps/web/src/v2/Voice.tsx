@@ -14,8 +14,9 @@ type Rec = { start(): void; stop(): void; continuous: boolean; interimResults: b
 declare global { interface Window { webkitSpeechRecognition?: new () => Rec; SpeechRecognition?: new () => Rec } }
 
 export default function Voice() {
-  const nav = useNavigate(); const { profile, setProfile, setTranscript, useDemo: loadDemo, transcript } = useDemo();
-  const [i, setI] = useState(0); const [on, setOn] = useState(false); const [finalTxt, setFinal] = useState(transcript); const [interim, setInterim] = useState('');
+  const nav = useNavigate(); const { profile, setProfile, setTranscript, useDemo: loadDemo, transcript, connected } = useDemo();
+  const [i, setI] = useState(connected ? 2 : 0); const [on, setOn] = useState(false); const prefill = connected && !transcript ? profile.relatives.filter((r) => r.grievance).map((r) => `${r.name}: “${r.grievance}”`).join(' ') : '';
+  const [finalTxt, setFinal] = useState(transcript || prefill); const [interim, setInterim] = useState('');
   const [supported] = useState(() => !!(window.SpeechRecognition || window.webkitSpeechRecognition));
   const rec = useRef<Rec | null>(null); const silence = useRef<number | undefined>(undefined); const live = useRef<DemoProfile>(profile);
 
@@ -36,7 +37,7 @@ export default function Voice() {
   const done = isComplete(profile);
   return (
     <div className="scene bars">
-      <Corner n="02" title="TELL US · NO TYPING" /><Step i={2} />
+      <Corner n="03" title="TELL US · NO TYPING" /><Step i={3} />
       <div style={{ position: 'absolute', inset: '14vh 4.5vw 14vh 4.5vw', display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '4vw' }}>
         <div style={{ display: 'grid', alignContent: 'center', gap: 28 }}>
           <div className="mono muted">PROMPT {i + 1} / {PROMPTS.length}</div>
@@ -58,7 +59,10 @@ export default function Voice() {
             </div>
           </div>
           <div className="transcript">{finalTxt}<span className="interim"> {interim}</span>{!finalTxt && !interim && <span className="muted" style={{ fontStyle: 'italic' }}>Your words appear here.</span>}</div>
-          <div><button className={`btn ${done ? 'primary' : ''}`} disabled={!done} style={{ opacity: done ? 1 : 0.4 }} onClick={() => { stop(); nav('/simulate'); }}>Live my life a thousand times</button></div>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+            <button className={`btn ${done ? 'primary' : ''}`} disabled={!done} style={{ opacity: done ? 1 : 0.4 }} onClick={() => { stop(); nav('/simulate'); }}>Live my life a thousand times</button>
+            {connected && <button className="btn ghost" onClick={() => { stop(); nav('/simulate'); }}>Looks right? Skip to the simulation →</button>}
+          </div>
         </div>
         <div className="panel" style={{ position: 'relative', inset: 'auto', overflow: 'auto' }}>
           <h4>Claude · profile extraction · live</h4>
@@ -70,7 +74,7 @@ export default function Voice() {
           {profile.activity && <div className="card" style={{ marginBottom: 12 }}><div className="sub">What you do</div><div style={{ marginTop: 6 }}>{profile.activity}</div></div>}
           <div style={{ display: 'grid', gap: 10 }}>
             {profile.relatives.map((r) => (
-              <div className="card" key={r.name + r.relation}><div className="name">{r.name}{r.age ? <span className="muted" style={{ fontSize: '1rem' }}> · {r.age}</span> : null}</div><div className="sub">{r.relation} · agent</div>{r.state && <div className="q">“{r.state}”</div>}</div>
+              <div className="card" key={r.name + r.relation}><div className="name">{r.name}{r.age ? <span className="muted" style={{ fontSize: '1rem' }}> · {r.age}</span> : null}</div><div className="sub">{r.relation} · agent{r.messages ? ` · ${r.messages.toLocaleString('en-US')} msgs` : ''}</div>{(r.grievance || r.state) && <div className="q" style={r.grievance ? { color: 'var(--blue)' } : undefined}>“{r.grievance ?? r.state}”</div>}</div>
             ))}
           </div>
           {profile.flaws.length > 0 && <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 14 }}>{profile.flaws.map((f) => <span key={f} className="chip">{f}</span>)}</div>}

@@ -15,7 +15,7 @@ export const Corner: React.FC<{ n: string; title: string; right?: boolean }> = (
   <div className={`corner ${right ? 'corner-r' : ''}`}><span className="mono amber">{n}</span><span className="mono muted">{title}</span></div>
 );
 export const Step: React.FC<{ i: number }> = ({ i }) => (
-  <div className="step">{['FACE', 'VOICE', 'SIMULATION', 'VERDICT'].map((s, k) => (<span key={s}>{k > 0 && ' · '}{k + 1 === i ? <b>{s}</b> : s}</span>))}</div>
+  <div className="step">{['FACE', 'CONVERSATIONS', 'VOICE', 'SIMULATION', 'VERDICT'].map((s, k) => (<span key={s}>{k > 0 && ' · '}{k + 1 === i ? <b>{s}</b> : s}</span>))}</div>
 );
 
 /** Life-lines canvas: n polylines drifting left→right; some end amber. `progress` 0..1 draws them in; undefined = ambient loop. */

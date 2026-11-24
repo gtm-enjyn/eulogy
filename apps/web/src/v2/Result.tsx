@@ -15,8 +15,9 @@ export default function Result() {
   useEffect(() => { const id = setTimeout(() => setPhase('table'), 6500); return () => clearTimeout(id); }, []);
   const shown = useCountUp(pct, 2200);
   const seats = useMemo(() => {
-    const names = [p.relatives[0]?.name, f?.name, p.relatives[2]?.name, c?.name, 'Partner', 'Kid 1', 'Kid 2', 'Theo\'s kids'].map((x, i) => x ?? `Guest ${i + 1}`);
-    const missing1 = new Set([f?.name, c?.name, 'Kid 1', 'Kid 2', 'Theo\'s kids']);
+    const partner = p.relatives.find((r) => r.relation === 'partner')?.name ?? 'Partner'; const mate = p.relatives.find((r) => ['cofounder', 'friend'].includes(r.relation))?.name ?? 'Theo';
+    const names = [p.relatives[0]?.name, f?.name, mate, c?.name, partner, 'Kid 1', 'Kid 2', `${mate}'s kids`].map((x, i) => x ?? `Guest ${i + 1}`);
+    const missing1 = new Set([f?.name, c?.name, 'Kid 1', 'Kid 2', `${mate}'s kids`]);
     return names.map((name) => ({ name, on1: !missing1.has(name) }));
   }, [p, f, c]);
   const pos = [[18, 22], [38, 14], [62, 14], [82, 22], [86, 78], [62, 86], [38, 86], [14, 78]];
@@ -24,7 +25,7 @@ export default function Result() {
   const remind = () => { try { localStorage.setItem('eulogy.reminder', JSON.stringify({ who: c?.name, at: 'Sunday 18:00' })); } catch { /* ignore */ } setToast(`Sunday 6 pm · call ${c?.name ?? 'them'}. Saved.`); setTimeout(() => setToast(''), 2600); };
 
   if (phase === 'number') return (
-    <div className="scene black bars"><Step i={4} />
+    <div className="scene black bars"><Step i={5} />
       <div className="center"><div className="stack" style={{ gap: 10 }}>
         <div className="display h2">In <span className="amber" style={{ fontVariantNumeric: 'tabular-nums' }}>{shown} %</span> of your lives,</div>
         <div className="display h2" style={{ opacity: shown >= pct ? 1 : 0, transition: 'opacity .8s' }}>{f?.name ?? 'her'}'s chair is empty.</div>
@@ -36,7 +37,7 @@ export default function Result() {
   );
 
   return (
-    <div className="scene bars"><Corner n="04" title="THE TABLE AT SEVENTY" /><Step i={4} />
+    <div className="scene bars"><Corner n="05" title="THE TABLE AT SEVENTY" /><Step i={5} />
       <div style={{ position: 'absolute', inset: '14vh 4.5vw 12vh', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3vw', overflow: 'hidden' }}>
         <div style={{ display: 'grid', alignContent: 'center', justifyItems: 'center', gap: 22 }}>
           <div className="seg"><button className={life === 1 ? 'on' : ''} onClick={() => setLife(1)}>Life #001 · most likely</button><button className={life === 2 ? 'on' : ''} onClick={() => setLife(2)}>Life #212 · table full</button></div>
@@ -78,6 +79,7 @@ export default function Result() {
           <li><b>Telem</b> — Destiny fetches real base rates before rolling shocks; every query carries the agent's reasoning in <code>context</code>. <code>packages/sim/src/priors.ts</code>, <code>data/telem/requests.json</code></li>
           <li><b>Runware</b> — FLUX.1 Kontext ages your photo twice; TRELLIS.2 turns the +50 portrait into a 3D bust for the chapel. <code>apps/web/src/v2/aging.ts</code></li>
           <li><b>Claude</b> — five agents with continuous emotional state and episodic memory, six chapters, zod on every output, deterministic fallback. <code>packages/sim/src/simulate.ts</code></li>
+          <li><b>Conversations</b> — sample export in this demo; the real importer parses WhatsApp / Instagram / iMessage / Snapchat / Gmail exports locally (embeddings, reply latency, initiative ratio, valence) and never uploads them. <code>apps/web/src/v2/connectData.ts</code></li>
           <li><b>This demo</b> — the 30 committed runs are real pipeline output; the 30-second show replays them with your names. <code>apps/web/README.md</code></li>
         </ul></div>
       )}
