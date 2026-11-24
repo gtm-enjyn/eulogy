@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ProfileSchema, RunSchema } from './schemas';
 import { sampleProfile, sampleRun } from './sample';
-import { mutateRun } from './mutate';
 
 describe('sample data', () => {
   it('sampleProfile matches ProfileSchema', () => {
@@ -15,10 +14,24 @@ describe('sample data', () => {
     expect(parsed.eulogies.find((e) => e.relative_id === 'lea')?.speaks).toBe(false);
   });
 
-  it('mutateRun is deterministic and schema-valid', () => {
-    const a = mutateRun(sampleRun, 42);
-    const b = mutateRun(sampleRun, 42);
-    expect(a).toEqual(b);
-    expect(() => RunSchema.parse(a)).not.toThrow();
+  it('keeps spoken and unspoken fixture text consistent with the final relationship scores', () => {
+    const scores = new Map(
+      sampleRun.years.at(-1)!.relative_states.map((s) => [s.relative_id, s.relationship_score]),
+    );
+    for (const e of sampleRun.eulogies) {
+      expect(e.speaks).toBe(scores.get(e.relative_id)! >= 55);
+      expect(e.text.trim()).not.toBe('');
+    }
+    expect(sampleRun.years.every((y) => y.generation === 'mock')).toBe(true);
+  });
+  it('rejects contradictory generated records at the JSON boundary and still reads untagged historical records', () => {
+    const copied = structuredClone(sampleRun);
+    copied.eulogies[0]!.speaks = false;
+    expect(RunSchema.safeParse(copied).success).toBe(false);
+    const missing = structuredClone(sampleRun);
+    missing.years.pop();
+    expect(RunSchema.safeParse(missing).success).toBe(false);
+    copied.years.forEach((y) => delete y.generation);
+    expect(RunSchema.safeParse(copied).success).toBe(true);
   });
 });

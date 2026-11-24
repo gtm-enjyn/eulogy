@@ -1,0 +1,213 @@
+{
+  "browser": "158.0.8127.37",
+  "build": "Vite production preview",
+  "viewport": [
+    1440,
+    900
+  ],
+  "frameSample": {
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "canvas": [
+      1051,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "animationFrameIntervals": 165,
+    "intervalMilliseconds": 5500,
+    "fps": 30,
+    "framesWithWebGLDraws": 166,
+    "medianFrameMilliseconds": 33.3,
+    "p95FrameMilliseconds": 33.4,
+    "visibleCaptionBottom": 864,
+    "viewportHeight": 900
+  },
+  "playback": {
+    "order": [
+      "Jules · unspoken",
+      "Anne · at the lectern",
+      "Léa · at the lectern",
+      "Camille · at the lectern",
+      "Jules · unspoken"
+    ],
+    "years": [
+      "33",
+      "36",
+      "41",
+      "51",
+      "66",
+      "90",
+      "33"
+    ],
+    "clips": [
+      [
+        "playing",
+        "/audio/louis-demo-0001/anne.m4a"
+      ],
+      [
+        "ended",
+        "/audio/louis-demo-0001/anne.m4a"
+      ],
+      [
+        "playing",
+        "/audio/louis-demo-0001/lea.m4a"
+      ],
+      [
+        "ended",
+        "/audio/louis-demo-0001/lea.m4a"
+      ],
+      [
+        "playing",
+        "/audio/louis-demo-0001/camille.m4a"
+      ],
+      [
+        "ended",
+        "/audio/louis-demo-0001/camille.m4a"
+      ]
+    ]
+  },
+  "screenings": [
+    "Life 1 of 30 · reconciled",
+    "Life 28 of 30 · reconciled",
+    "Life 29 of 30 · estranged"
+  ],
+  "atlas": "Bruin · outcome distribution\nIn 43.3% of these lives, Léa stays silent at the funeral.\n\n“Ask for help” in the first chapter was associated with +20 percentage points in child speech (10 lives with the decision, 20 without).\n\nEnter the chapel →",
+  "mobileRoutes": [
+    {
+      "route": "/",
+      "viewport": 390,
+      "content": 390,
+      "captionBottom": 0
+    },
+    {
+      "route": "/you",
+      "viewport": 390,
+      "content": 390,
+      "captionBottom": 0
+    },
+    {
+      "route": "/lives",
+      "viewport": 390,
+      "content": 390,
+      "captionBottom": 0
+    },
+    {
+      "route": "/chapel",
+      "viewport": 390,
+      "content": 390,
+      "captionBottom": 524
+    }
+  ],
+  "camAndUpload": "Chromium synthetic camera capture and PNG upload both produced local previews.",
+  "errors": [],
+  "environment": {
+    "computer": "Apple M5 MacBook Air (Mac17,3)",
+    "os": "macOS 27.0",
+    "source": "Checked-in deterministic 30-life screening, Vite static production preview",
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "mobileDevicePixelRatio": 2
+  },
+  "frameComparison": [
+    {
+      "headed": false,
+      "route": "about:blank",
+      "viewport": [
+        1440,
+        900
+      ],
+      "devicePixelRatio": 1,
+      "canvas": null,
+      "gpu": null,
+      "intervals": 186,
+      "elapsedMs": 6233,
+      "fps": 29.84,
+      "framesWithDraws": 0,
+      "p95Ms": 33.4
+    },
+    {
+      "headed": false,
+      "route": "/chapel",
+      "viewport": [
+        1440,
+        900
+      ],
+      "devicePixelRatio": 1,
+      "canvas": [
+        1051,
+        844
+      ],
+      "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "intervals": 182,
+      "elapsedMs": 6216,
+      "fps": 29.28,
+      "framesWithDraws": 182,
+      "p95Ms": 33.4
+    },
+    {
+      "headed": true,
+      "route": "about:blank",
+      "viewport": [
+        1440,
+        900
+      ],
+      "devicePixelRatio": 1,
+      "canvas": null,
+      "gpu": null,
+      "intervals": 185,
+      "elapsedMs": 6200,
+      "fps": 29.84,
+      "framesWithDraws": 0,
+      "p95Ms": 34.3
+    },
+    {
+      "headed": true,
+      "route": "/chapel",
+      "viewport": [
+        1440,
+        900
+      ],
+      "devicePixelRatio": 1,
+      "canvas": [
+        1051,
+        844
+      ],
+      "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "intervals": 186,
+      "elapsedMs": 6200,
+      "fps": 30,
+      "framesWithDraws": 186,
+      "p95Ms": 34.3
+    }
+  ],
+  "staticApiResponses": [
+    {
+      "status": 404,
+      "path": "/api/upload"
+    },
+    {
+      "status": 404,
+      "path": "/api/portraits"
+    },
+    {
+      "status": 404,
+      "path": "/api/simulate"
+    }
+  ],
+  "replay": [
+    "npm ci",
+    "npm run build -w apps/web",
+    "npm run preview -w apps/web -- --host 127.0.0.1 --port 5193",
+    "In Chrome use a 1440 by 900 CSS pixel viewport at DPR 1. Open /, continue through /you and submit the supplied profile. Capture /lives after the reveal is fully visible.",
+    "Enter the chapel. In life 1, switch to wide while Anne is speaking. Capture the stage, decision ledger and private feed. On the next two advances the titles are life 28 and life 29."
+  ],
+  "frameMethod": "Playwright recorded consecutive requestAnimationFrame timestamps after WebGL warm-up and counted intervals with WebGL drawElements calls. Matching blank pages used the same 1440 × 900 viewport. The desktop cadence measured about 30 Hz in both Chrome modes.",
+  "webglUnavailable": {
+    "chromeFlag": "--disable-webgl",
+    "status": "3D projection unavailable; captions, decision ledger, audio controls and Next life remain available.",
+    "nextLife": "Life 28 of 30 · reconciled",
+    "nextCaption": "Camille · at the lectern",
+    "uncaughtPageErrors": 0
+  }
+}

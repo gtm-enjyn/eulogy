@@ -127,6 +127,8 @@ export function validateChapter(
       )
     )
       issue('Address each message to another cast member');
+    if (index < 5 && (chapter.cause_of_death !== undefined || chapter.farewells !== undefined))
+      issue('Reserve the cause of death and farewells for chapter six');
     if (index === 5 && (!chapter.cause_of_death || !matches(chapter.farewells ?? [])))
       issue('Return a cause and a farewell for each relative');
   }).parse(raw);

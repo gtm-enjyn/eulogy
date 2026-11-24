@@ -72,12 +72,12 @@ export function bust(imageUrl: string): Task {
     deliveryMethod: 'async',
   };
 }
-async function send(tasks: Task[], key: string) {
+async function send(tasks: Task[], key: string, timeoutMs: number) {
   const result = await fetch(RUNWARE_URL, {
     method: 'POST',
     headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
     body: JSON.stringify(z.array(RequestSchema).parse(tasks)),
-    signal: AbortSignal.timeout(120000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
   if (!result.ok) throw Error('Runware HTTP ' + result.status);
   const response = ResponseSchema.parse(await result.json());
@@ -85,23 +85,29 @@ async function send(tasks: Task[], key: string) {
   return response.data;
 }
 export async function renderTasks(tasks: Task[], key: string): Promise<string[]> {
-  const first = await send(tasks, key);
-  return Promise.all(
-    tasks.map(async (task) => {
-      let result = first.find((r) => r.taskUUID === task.taskUUID);
-      for (let i = 0; i < 40; i++) {
-        const url = result?.imageURL ?? result?.outputs?.files[0]?.url;
-        if (url) return url;
-        if (result?.status === 'error' || result?.status === 'failed')
-          throw Error('Runware task failed');
-        await new Promise((r) => setTimeout(r, 1500));
-        result = (await send([{ taskType: 'getResponse', taskUUID: task.taskUUID }], key)).find(
-          (r) => r.taskUUID === task.taskUUID,
-        );
-      }
-      throw Error('Runware task timed out');
-    }),
-  );
+  // HTTP sync may switch to async after 120 seconds. Leave time to receive its acknowledgement.
+  let rows = await send(tasks, key, 130_000);
+  const outputs = new Map<string, string>();
+  const deadline = Date.now() + 120_000;
+  let interval = 1500;
+  while (true) {
+    for (const row of rows) {
+      if (row.status === 'error' || row.status === 'failed') throw Error('Runware task failed');
+      const url = row.imageURL ?? row.outputs?.files[0]?.url;
+      if (url) outputs.set(row.taskUUID, url);
+    }
+    const pending = tasks.filter((task) => !outputs.has(task.taskUUID));
+    if (!pending.length) return tasks.map((task) => outputs.get(task.taskUUID)!);
+    const remaining = deadline - Date.now();
+    if (remaining <= interval) throw Error('Runware task timed out');
+    await new Promise((resolve) => setTimeout(resolve, interval));
+    const poll = pending.map((task) => ({
+      taskType: 'getResponse' as const,
+      taskUUID: task.taskUUID,
+    }));
+    rows = await send(poll, key, Math.max(1, Math.min(15_000, deadline - Date.now())));
+    interval = Math.min(8000, interval * 2);
+  }
 }
 export async function generatePortraits(profile: Profile, key: string) {
   const images = await renderTasks(portraits(profile), key);

@@ -64,6 +64,35 @@ interface Options {
   env?: NodeJS.ProcessEnv;
   fetcher?: typeof fetch;
 }
+const PeerPage = z.object({
+  data: z.array(Member.extend({ type: z.enum(['Agent', 'User']) })),
+  metadata: z.object({ total_pages: z.number().int().nonnegative().optional() }).optional(),
+});
+async function bandRead(path: string, key: string, fetcher: typeof fetch): Promise<unknown> {
+  const response = await fetcher(base + path, {
+    method: 'GET',
+    headers: { 'X-API-Key': key },
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!response.ok) throw Error('BAND ' + path.split('?')[0] + ' returned HTTP ' + response.status);
+  return response.json();
+}
+async function ownedPeers(owner: string, key: string, fetcher: typeof fetch) {
+  const peers: Member[] = [];
+  let page = 1,
+    total = 1;
+  while (page <= total) {
+    const result = PeerPage.parse(
+      await bandRead('/peers?page=' + page + '&page_size=100', key, fetcher),
+    );
+    peers.push(
+      ...result.data.filter((p) => p.type === 'Agent' && p.handle.startsWith(owner + '/')),
+    );
+    total = result.metadata?.total_pages ?? page;
+    page++;
+  }
+  return peers;
+}
 export class BandRooms {
   readonly messages: BandMessage[] = [];
   readonly requests: Exchange[] = [];
@@ -81,35 +110,31 @@ export class BandRooms {
     if (options.dryRun || !env.BAND_AGENT_KEY || !env.BAND_AGENT_ID)
       return new BandRooms(profile, 'dry-run', dryCast(profile), Boolean(options.noGate), fetcher);
     const configured = z.record(Member).parse(JSON.parse(env.BAND_CAST_JSON || '{}'));
-    const cast: Cast = {
-      ...configured,
-      destiny: {
-        id: z.string().uuid().parse(env.BAND_AGENT_ID),
-        key: env.BAND_AGENT_KEY,
-        name: 'Destiny',
-        handle: 'destiny',
-      },
-    };
-    const required = Object.keys(roleNames(profile)).filter((id) => !cast[id]);
+    const names = roleNames(profile);
+    const director = z
+      .object({ data: Member })
+      .parse(await bandRead('/me', env.BAND_AGENT_KEY, fetcher)).data;
+    if (director.id !== env.BAND_AGENT_ID)
+      throw Error('BAND_AGENT_ID does not match the authenticated agent');
+    const cast: Cast = Object.fromEntries(
+      Object.entries(configured).filter(([id]) => id === 'human' || Object.hasOwn(names, id)),
+    );
+    cast.destiny = { ...director, key: env.BAND_AGENT_KEY };
+    const required = Object.keys(names).filter((id) => !cast[id]);
     if (required.length) {
-      const response = await fetcher(base + '/peers', {
-        headers: { 'X-API-Key': env.BAND_AGENT_KEY },
-        signal: AbortSignal.timeout(10000),
-      });
-      if (!response.ok) throw Error('BAND peer lookup returned HTTP ' + response.status);
-      const peers = z
-        .object({ data: z.array(Member.extend({ type: z.string() })) })
-        .parse(await response.json()).data;
+      const owner = director.handle.split('/')[0]!;
+      const peers = await ownedPeers(owner, env.BAND_AGENT_KEY, fetcher);
       for (const id of required) {
-        const names = roleNames(profile);
         const matches = peers.filter(
-          (p) => p.type === 'Agent' && (p.name === names[id] || p.handle.split('/').at(-1) === id),
+          (p) => p.id !== director.id && (p.name === names[id] || p.handle === owner + '/' + id),
         );
         if (matches.length !== 1)
           throw Error('BAND needs a unique cast mapping for ' + id + ' in BAND_CAST_JSON');
         cast[id] = matches[0]!;
       }
     }
+    if (new Set(Object.values(cast).map((p) => p.id)).size !== Object.keys(cast).length)
+      throw Error('BAND cast roles must identify distinct participants');
     if (!options.noGate && !cast.human)
       throw Error('BAND needs a human observer in BAND_CAST_JSON, or --no-gate');
     return new BandRooms(profile, 'live', cast, Boolean(options.noGate), fetcher);

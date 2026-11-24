@@ -1,1 +1,1 @@
-export { default } from '../apps/web/api/upload.js';
+export { default } from '../apps/web/api/dist/upload.bundle.mjs';

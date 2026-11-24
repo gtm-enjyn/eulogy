@@ -1,6 +1,7 @@
 import {
   clamp,
   makeRng,
+  ProfileSchema,
   RunSchema,
   type Eulogy,
   type Profile,
@@ -23,6 +24,16 @@ import {
   shockScenes,
   type Priors,
 } from './shocks';
+
+const simulationProfile = ProfileSchema.refine(
+  (profile) => profile.age >= 16 && profile.age <= 70,
+  'The starting age must be between 16 and 70.',
+).refine(
+  (profile) =>
+    new Set([profile.id, 'destiny', ...profile.relatives.map((relative) => relative.id)]).size ===
+    profile.relatives.length + 2,
+  'Destiny, the protagonist and each relative need distinct cast IDs.',
+);
 
 export interface SimulationOptions {
   mock?: boolean;
@@ -159,6 +170,7 @@ export async function simulateRun(
   seed: number,
   options: SimulationOptions = {},
 ): Promise<Run> {
+  simulationProfile.parse(profile);
   const id = profile.id + '-' + String(seed).padStart(4, '0');
   const life = startLife(profile, seed),
     priors = options.priors ?? defaultPriors;
