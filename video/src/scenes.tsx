@@ -61,7 +61,6 @@ const FieldRow: React.FC<{ label: string; value: string }> = ({ label, value }) 
 
 /* ---------- S3 Face aging ---------- */
 export const Face: React.FC<{ len: number }> = ({ len }) => {
-  const { fps } = useVideoConfig();
   const third = Math.floor(len / 3);
   const ages = ['20', '45', '74'];
   const srcs = ['img/jules20.jpg', 'img/jules45.jpg', 'img/jules74.jpg'];

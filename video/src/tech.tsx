@@ -51,7 +51,7 @@ export const UnderTheHood: React.FC<{ len: number }> = ({ len }) => {
         ))}
       </Panel>
       <Panel title="$ bruin run bruin/eulogy" x={750} w={560} accent="#e8a35a">
-        {BRUIN_ASSETS.slice(0, bruinN).map((a, i) => (
+        {BRUIN_ASSETS.slice(0, bruinN).map((a) => (
           <div key={a} style={{ fontFamily: MONO, fontSize: 18, color: 'rgba(236,231,218,0.85)', marginBottom: 9, whiteSpace: 'nowrap' }}>
             <span style={{ color: '#6fcf8f' }}>✓</span> {a.padEnd(24, ' ')}<span style={{ color: 'rgba(235,228,210,0.45)' }}>{BRUIN_CHECKS[a] ?? 'materialized'}</span>
           </div>
