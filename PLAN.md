@@ -14,6 +14,20 @@ A shared schemas+fixtures ──→ B sim ──→ E bruin ──→ I lives gr
 H + I + G + B + E ──→ L intégration ──→ K vidéo ──→ M soumission
 ```
 
+## État de livraison au gel
+
+| Blocs | Responsable | Résultat vérifiable |
+|---|---|---|
+| A, B | Jules | Schémas et moteur à six chapitres. Trente vies déterministes publiées, accès Claude hébergé refusé par le fournisseur. |
+| E | Jules | Douze assets Bruin et huit contrôles réussis, export DuckDB publié. |
+| G, H, I | Jules | Démo publique jouée dans Chrome, six pistes audio, mesure à 30 images/s. |
+| J, D, C | Jules | Clients Runware, Telem et BAND et requêtes de démo étiquetées dry-run. |
+| F, L | Jules | Routes Vercel et Blob privé vérifiés, ensemble de mille vies reproductible. |
+| K | Louis | Sources du film dans la PR vidéo. Lien public du montage attendu. |
+| M | Jules | Liens publics et description préparés pour la soumission. |
+
+[Preuves](docs/EVIDENCE.md) · [Dossier de soumission](docs/SUBMISSION.md)
+
 ## A — Schémas partagés + fixtures (Jules) · 15 min · FAIT par le scaffold
 - Promet : `packages/shared/src/index.ts` (zod `Profile`, `Relative`, `Run`, `YearEvent`, `Eulogy`, …), `sampleProfile`, `sampleRun`.
 - Fini quand : `npm test` vert, PR mergée. **Tout le monde démarre là-dessus.**

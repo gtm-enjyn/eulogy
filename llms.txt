@@ -1,0 +1,83 @@
+# Eulogy
+
+> Track 1 animated film. Six chapters per life, one funeral, one question about who speaks. The committed 30-life screening uses deterministic generation.
+
+## Screening and evidence
+
+- [README.md](README.md) — Pitch, controls, runnable demo and criteria mapped to implementation.
+- [docs/EVIDENCE.md](docs/EVIDENCE.md) — Measured outcomes, three archive excerpts, browser observations and service status.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Role state, full system prompt, Monte Carlo loop, stores and contracts.
+- [docs/DECISIONS.md](docs/DECISIONS.md) — Ten implementation decisions and their tradeoffs.
+- [data/profiles/louis.json](data/profiles/louis.json) — The exact initial conditions and four relatives used for the screening.
+- [data/runs/louis-demo.jsonl](data/runs/louis-demo.jsonl) — Thirty complete lives with per-chapter provenance.
+- [data/runs/louis-demo.summary.json](data/runs/louis-demo.summary.json) — Role percentages, ending counts and two featured IDs.
+- [docs/assets/ensemble-1000.json](docs/assets/ensemble-1000.json) — Reproducible 1,000-life counts and full-archive SHA-256.
+
+## Cast and model
+
+- [packages/shared/src/schemas.ts](packages/shared/src/schemas.ts) — Zod profile, event, funeral, run and summary contracts.
+- [packages/shared/src/sample.ts](packages/shared/src/sample.ts) — Handwritten development fixtures.
+- [packages/shared/src/rng.ts](packages/shared/src/rng.ts) — Seeded pseudorandom generator and bounds.
+- [packages/sim/src/chapter.ts](packages/sim/src/chapter.ts) — Claude transport, system text, reply validation and Destiny veto.
+- [packages/sim/src/simulate.ts](packages/sim/src/simulate.ts) — Single-life state transitions, deterministic fallback and ending classifier.
+- [packages/sim/src/shocks.ts](packages/sim/src/shocks.ts) — Shock catalogue, weights and age sampling.
+- [packages/sim/src/generate.ts](packages/sim/src/generate.ts) — Bounded scheduling, summary and JSONL output.
+- [packages/sim/src/index.ts](packages/sim/src/index.ts) — Single-batch CLI and optional room and prior connections.
+- [scripts/ensemble.ts](scripts/ensemble.ts) — Full thousand-life replay and digest.
+- [packages/sim/src/chapter-contract.test.ts](packages/sim/src/chapter-contract.test.ts) — Boundary and retry examples.
+
+## Bruin and decision evidence
+
+- [bruin/eulogy/README.md](bruin/eulogy/README.md) — Commands, table grain, checks and interpretation.
+- [bruin/eulogy/pipeline.yml](bruin/eulogy/pipeline.yml) — DuckDB pipeline and connection selection.
+- [bruin/eulogy/assets/raw_runs.sql](bruin/eulogy/assets/raw_runs.sql) — JSONL run ingestion.
+- [bruin/eulogy/assets/raw_years.sql](bruin/eulogy/assets/raw_years.sql) — One row per chapter.
+- [bruin/eulogy/assets/raw_decisions.sql](bruin/eulogy/assets/raw_decisions.sql) — Actor, action and reason.
+- [bruin/eulogy/assets/raw_relative_states.sql](bruin/eulogy/assets/raw_relative_states.sql) — Emotion and relationship measurements.
+- [bruin/eulogy/assets/raw_private_messages.sql](bruin/eulogy/assets/raw_private_messages.sql) — Addressed dialogue.
+- [bruin/eulogy/assets/raw_relatives.sql](bruin/eulogy/assets/raw_relatives.sql) — Profile-to-role lookup.
+- [bruin/eulogy/assets/raw_eulogies.sql](bruin/eulogy/assets/raw_eulogies.sql) — Funeral text, eligibility and sentiment.
+- [bruin/eulogy/assets/stg_eulogies.sql](bruin/eulogy/assets/stg_eulogies.sql) — Eulogies joined to cast roles.
+- [bruin/eulogy/assets/stg_outcomes.sql](bruin/eulogy/assets/stg_outcomes.sql) — Child and partner speech at run grain.
+- [bruin/eulogy/assets/mart_outcome_distribution.sql](bruin/eulogy/assets/mart_outcome_distribution.sql) — Counts and percentages by profile.
+- [bruin/eulogy/assets/mart_decision_impact.sql](bruin/eulogy/assets/mart_decision_impact.sql) — First-decision cohorts and percentage-point differences.
+- [bruin/eulogy/assets/mart_turning_points.sql](bruin/eulogy/assets/mart_turning_points.sql) — First child relationship score below 50.
+- [bruin/export.sh](bruin/export.sh) — Stable export consumed by the browser.
+- [apps/web/public/data/marts.json](apps/web/public/data/marts.json) — Checked-in query output.
+- [docs/assets/bruin-run.txt](docs/assets/bruin-run.txt) — Local execution transcript.
+- [docs/assets/decision-impact.txt](docs/assets/decision-impact.txt) — Actual decision query result.
+- [docs/assets/lineage.png](docs/assets/lineage.png) — Full upstream lineage displayed by the CLI.
+
+## Browser and network boundaries
+
+- [apps/web/src/pages/Intro.tsx](apps/web/src/pages/Intro.tsx) — Timed opening and first interaction.
+- [apps/web/src/pages/Onboarding.tsx](apps/web/src/pages/Onboarding.tsx) — Profile validation, relatives, camera, upload and offline path.
+- [apps/web/src/data/screening.ts](apps/web/src/data/screening.ts) — Parses recorded and session-specific screenings.
+- [apps/web/src/pages/LivesGrid.tsx](apps/web/src/pages/LivesGrid.tsx) — Animated paths, chart legend and Bruin reveal.
+- [apps/web/src/pages/Chapel.tsx](apps/web/src/pages/Chapel.tsx) — Camera, voice, caption, projection fallback and playback lifecycle.
+- [apps/web/src/components/ChapelScene.tsx](apps/web/src/components/ChapelScene.tsx) — Architecture, Ready Player Me rigs, seated poses and speaker movement.
+- [apps/web/src/components/Ledger.tsx](apps/web/src/components/Ledger.tsx) — Synchronized chapter decisions.
+- [apps/web/src/components/PrivateFeed.tsx](apps/web/src/components/PrivateFeed.tsx) — Addressed transcript and unspoken farewells.
+- [scripts/voices.ts](scripts/voices.ts) — Prepared recording generation and audio manifest.
+- [docs/assets/browser-check.json](docs/assets/browser-check.json) — Browser, hardware, playback and frame samples.
+- [apps/web/api/contracts.ts](apps/web/api/contracts.ts) — HTTP boundary validation and private cache policy.
+- [apps/web/api/simulate.ts](apps/web/api/simulate.ts) — Twelve-life generation and publication of a private batch.
+- [apps/web/api/runs.ts](apps/web/api/runs.ts) — Cookie-bound replay.
+- [apps/web/api/upload.ts](apps/web/api/upload.ts) — Photo validation and time-limited read access.
+- [apps/web/api/portraits.ts](apps/web/api/portraits.ts) — Validated Runware orchestration.
+- [vercel.json](vercel.json) — SPA rewrites and function time budgets.
+- [.github/workflows/ci.yml](.github/workflows/ci.yml) — Required checks and regenerated mart comparison.
+
+## Sponsor clients and receipts
+
+- [packages/sim/src/band.ts](packages/sim/src/band.ts) — Room membership, public posts, mention routing, veto and gate.
+- [data/band/requests.json](data/band/requests.json) — First dry-run room's HTTP requests.
+- [data/runs/louis-demo.band.jsonl](data/runs/louis-demo.band.jsonl) — All 30 recorded room transcripts.
+- [packages/sim/src/priors.ts](packages/sim/src/priors.ts) — Contextual Telem requests and validated evidence extraction.
+- [data/telem/requests.json](data/telem/requests.json) — Five documented wire requests.
+- [packages/sim/src/runware.ts](packages/sim/src/runware.ts) — Portrait, texture and GLB requests with asynchronous resolution.
+- [data/runware/requests.json](data/runware/requests.json) — Reference-image and text-only examples, texture and 3D job requests.
+- [docs/SPONSOR-CONTRACTS.md](docs/SPONSOR-CONTRACTS.md) — Official provider references and credential requirements.
+- [docs/SUBMISSION.md](docs/SUBMISSION.md) — Track, short description, public links and film status.
+- [docs/assets/production-http.json](docs/assets/production-http.json) — Anonymous verification of 23 deployed resources and endpoints.
+- [docs/ROADMAP.md](docs/ROADMAP.md) — Remaining production and evidence work.

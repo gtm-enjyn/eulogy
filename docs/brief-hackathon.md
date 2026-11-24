@@ -1,5 +1,7 @@
 # Brief — Multiplayer AI Hackathon (23 nov 2026, AWS Loft SF)
 
+Notes de préparation couvrant plusieurs idées de hackathon. Eulogy concourt en Track 1. Les résultats réalisés figurent dans [EVIDENCE](EVIDENCE.md).
+
 Deadline soumission : **17h30** sur hackathons.crewbasecollective.com (repo public + vidéo AdaL ≤ 3 min). Juges : 20+ personnes qui tournent de table en table pendant 1h (18h-19h). Ta démo doit **tourner en boucle toute seule**, avec le decision log et les logos sponsors visibles sans explication.
 
 Où est l'argent : Bruin 1000 + 500 · Telem 500/300/100 · BAND 500 · Lingcode 200 · Runware 200 · Glasser 100. Tout le reste = crédits/abos.

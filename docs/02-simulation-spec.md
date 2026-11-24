@@ -1,4 +1,4 @@
-# Bloc B — Simulation (Louis)
+# Bloc B — Simulation (Jules)
 
 `packages/sim`. CLI : `npm run sim -- --profile data/profiles/<id>.json --runs 30 --out data/runs`. Sortie : `data/runs/<profile_id>.jsonl` (un `Run` par ligne) + `data/runs/<profile_id>.summary.json`.
 
@@ -9,13 +9,13 @@
 - Chocs Destin : pioche pondérée dans un catalogue (`shocks.ts`) : illness_self, illness_relative, startup_success, startup_failure, breakup, birth, move_abroad, parent_death, burnout, windfall, affair_discovered, lawsuit. Les poids viennent de `priors.json` (bloc D, Telem) sinon des valeurs par défaut du fichier.
 - Prompt : system = rôle "simulateur de vie, tu joues chaque personnage avec sa mémoire et sa rancune, tu réponds uniquement en JSON au schéma donné". user = profil + état + choc + "chapitre k/6, âge X". Demander explicitement 1-2 `private_messages` entre proches, à propos du protagoniste, dans leur voix.
 - Chapitre final (death) : pour chaque proche, `Eulogy { speaks, text, sentiment }`. Règle dure, hors LLM : `speaks = relationship_score ≥ 55`. Le LLM écrit le texte (≤ 60 mots, à la première personne, qui cite un souvenir précis des chapitres). Si `speaks=false`, `text` = ce qu'il/elle pense sans le dire (sera affiché dans le canal privé).
-- Variabilité : `seed` → température 0,9 + choc différent + ordre de parole différent. Même profil, fins différentes : c'est le critère de la track.
+- Variabilité : `seed` → tirage des chocs, âge du décès et ordre de parole. Sonnet 5.5 refuse le paramètre température. Même profil, fins différentes : c'est le critère de la track.
 - `ending_cluster` : règle simple post-hoc : `reconciled` si ≥ 3 proches parlent et sentiment moyen > 0,3 ; `estranged` si ≤ 1 parle ; `admired_not_loved` si le cofondateur/ami parle mais pas enfant/partenaire ; sinon `mixed`.
 
 ## Robustesse
 - Sortie LLM validée par zod. Échec → une relance avec l'erreur zod dans le prompt → échec → fallback déterministe (`fallbackYear()`), jamais de crash.
 - `--runs` plafonné à 50. Concurrence 10. Timeout 40 s par appel.
-- Sans `ANTHROPIC_API_KEY` : mode `--mock` qui produit des runs par mutation de `sampleRun` (déjà en place).
+- Sans `ANTHROPIC_API_KEY` : mode déterministe à six chapitres de `simulateRun`. Un accès Vercel AI Gateway activé peut aussi authentifier le modèle.
 
 ## Interface promise aux autres blocs
 - Fichier `data/runs/<profile_id>.jsonl`, schéma `Run`.

@@ -11,9 +11,10 @@
   ],
   "scripts": {
     "dev": "npm run dev -w apps/web",
-    "build": "npm run build -w apps/web && npm run build -w packages/sim",
+    "vercel-build": "esbuild apps/web/api/simulate.ts apps/web/api/runs.ts apps/web/api/portraits.ts apps/web/api/upload.ts --bundle --platform=node --target=node22 --format=esm --external:@vercel/blob --outdir=apps/web/api/dist --out-extension:.js=.bundle.mjs",
+    "build": "npm run build -w apps/web && npm run build -w packages/sim && npm run vercel-build",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck --workspaces --if-present",
     "test": "vitest run",
     "sim": "npm run start -w packages/sim --",
     "format": "prettier --write .",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "esbuild": "0.21.5",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "globals": "^15.12.0",

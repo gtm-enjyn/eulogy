@@ -1,0 +1,8 @@
+{
+  "fixture": "one transparent PNG pixel",
+  "upload": 200,
+  "signedRead": 200,
+  "sha256Matches": true,
+  "bytes": 68,
+  "unsignedRead": 403
+}

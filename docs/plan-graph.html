@@ -43,8 +43,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;bac
 <main>
 <header>
 <h1>Eulogy Build Graph</h1>
-<p class="sub">Multiplayer AI Hackathon, 23 Nov 2026. Track 1. Thirteen blocks, two builders: Louis on Claude Code (simulation, data, sponsors), Jules on Codex (everything on screen). A block starts when its arrows in are merged on <code>main</code>; a dashed arrow means "start on the shared fixtures, wire the real thing later". Submission 17:15.</p>
-<div class="legend"><span><i class="dot" style="background:var(--louis)"></i>Louis · Claude Code</span><span><i class="dot" style="background:var(--jules)"></i>Jules · Codex</span><span><i class="dot" style="background:var(--both)"></i>Both</span><span>— solid: hard dependency</span><span>- - dashed: mock now, real later</span></div>
+<p class="sub">Multiplayer AI Hackathon, 23 Nov 2026. Track 1. Jules owns blocks A–J, L and M. Louis owns the film, block K. A block starts when its arrows in are merged on <code>main</code>; a dashed arrow means "start on the shared fixtures, wire the real thing later". Submission 17:15.</p>
+<div class="legend"><span><i class="dot" style="background:var(--louis)"></i>Louis · film</span><span><i class="dot" style="background:var(--jules)"></i>Jules · repository</span><span>— solid: hard dependency</span><span>- - dashed: mock now, real later</span></div>
 </header>
 
 <section class="graph" aria-label="Dependency graph">
@@ -72,19 +72,19 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;bac
 <path class="edge" marker-end="url(#ar)" d="M790 268 C815 268 815 268 840 268"/>
 <path class="edge" marker-end="url(#ar)" d="M990 268 C1005 268 1005 268 1010 268"/>
 <!-- nodes -->
-<g class="node louis" transform="translate(40,200)"><rect width="150" height="56"/><text class="id" x="12" y="24">A</text><text x="34" y="24">Shared schemas</text><text class="own" x="12" y="44">Louis · 15 min · done</text></g>
-<g class="node louis" transform="translate(40,400)"><rect width="150" height="56"/><text class="id" x="12" y="24">D</text><text x="34" y="24">Telem priors</text><text class="own" x="12" y="44">Louis · 25 min</text></g>
+<g class="node jules" transform="translate(40,200)"><rect width="150" height="56"/><text class="id" x="12" y="24">A</text><text x="34" y="24">Shared schemas</text><text class="own" x="12" y="44">Jules · 15 min · done</text></g>
+<g class="node jules" transform="translate(40,400)"><rect width="150" height="56"/><text class="id" x="12" y="24">D</text><text x="34" y="24">Telem priors</text><text class="own" x="12" y="44">Jules · 25 min</text></g>
 <g class="node jules" transform="translate(240,60)"><rect width="150" height="56"/><text class="id" x="12" y="24">G</text><text x="34" y="24">Intro + onboarding</text><text class="own" x="12" y="44">Jules · 45 min</text></g>
-<g class="node louis" transform="translate(240,200)"><rect width="150" height="56"/><text class="id" x="12" y="24">B</text><text x="34" y="24">Simulation (Claude)</text><text class="own" x="12" y="44">Louis · 60 min</text></g>
+<g class="node jules" transform="translate(240,200)"><rect width="150" height="56"/><text class="id" x="12" y="24">B</text><text x="34" y="24">Simulation (Claude)</text><text class="own" x="12" y="44">Jules · 60 min</text></g>
 <g class="node jules" transform="translate(240,320)"><rect width="150" height="56"/><text class="id" x="12" y="24">H</text><text x="34" y="24">Chapel 3D</text><text class="own" x="12" y="44">Jules · 90 min</text></g>
 <g class="node jules" transform="translate(240,440)"><rect width="150" height="56"/><text class="id" x="12" y="24">I</text><text x="34" y="24">Lives grid + reveal</text><text class="own" x="12" y="44">Jules · 30 min</text></g>
 <g class="node jules" transform="translate(440,60)"><rect width="150" height="56"/><text class="id" x="12" y="24">J</text><text x="34" y="24">Runware img + 3D</text><text class="own" x="12" y="44">Jules · 40 min</text></g>
-<g class="node louis" transform="translate(440,150)"><rect width="150" height="56"/><text class="id" x="12" y="24">F</text><text x="34" y="24">Vercel API</text><text class="own" x="12" y="44">Louis · 30 min</text></g>
-<g class="node louis" transform="translate(440,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">C</text><text x="34" y="24">BAND rooms</text><text class="own" x="12" y="44">Louis · 30 min</text></g>
-<g class="node louis" transform="translate(440,330)"><rect width="150" height="56"/><text class="id" x="12" y="24">E</text><text x="34" y="24">Bruin pipeline</text><text class="own" x="12" y="44">Louis · 45 min · $1000</text></g>
-<g class="node both" transform="translate(640,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">L</text><text x="34" y="24">Integration</text><text class="own" x="12" y="44">Both · 16:15–16:50</text></g>
-<g class="node jules" transform="translate(840,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">K</text><text x="34" y="24">Video capture</text><text class="own" x="12" y="44">Jules · 30 min</text></g>
-<g class="node louis" transform="translate(1010,240)"><rect width="140" height="56"/><text class="id" x="12" y="24">M</text><text x="34" y="24">AdaL + submit</text><text class="own" x="12" y="44">Louis · 17:15</text></g>
+<g class="node jules" transform="translate(440,150)"><rect width="150" height="56"/><text class="id" x="12" y="24">F</text><text x="34" y="24">Vercel API</text><text class="own" x="12" y="44">Jules · 30 min</text></g>
+<g class="node jules" transform="translate(440,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">C</text><text x="34" y="24">BAND rooms</text><text class="own" x="12" y="44">Jules · 30 min</text></g>
+<g class="node jules" transform="translate(440,330)"><rect width="150" height="56"/><text class="id" x="12" y="24">E</text><text x="34" y="24">Bruin pipeline</text><text class="own" x="12" y="44">Jules · 45 min · $1000</text></g>
+<g class="node jules" transform="translate(640,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">L</text><text x="34" y="24">Integration</text><text class="own" x="12" y="44">Jules · 16:15–16:50</text></g>
+<g class="node louis" transform="translate(840,240)"><rect width="150" height="56"/><text class="id" x="12" y="24">K</text><text x="34" y="24">Video capture</text><text class="own" x="12" y="44">Louis · 30 min</text></g>
+<g class="node jules" transform="translate(1010,240)"><rect width="140" height="56"/><text class="id" x="12" y="24">M</text><text x="34" y="24">Submission</text><text class="own" x="12" y="44">Jules · 17:15</text></g>
 </svg>
 </section>
 
@@ -92,32 +92,28 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;bac
 <h2>Blocks</h2>
 <p class="sub">Each card says what the block receives, the exact path or function it promises, and what "done" means. Full specs live in the repo under <code>docs/</code>.</p>
 <div class="cols" style="margin-top:14px">
-<article class="card louis"><header><h3>A · Shared schemas + fixtures</h3><span class="meta">Louis · done</span></header><dl><dt>Promises</dt><dd><code>packages/shared/src/index.ts</code>: zod Profile, Relative, Run, YearEvent, Eulogy; <code>sampleProfile</code>, <code>sampleRun</code></dd><dt>Done</dt><dd>tests green, merged. Everyone starts here.</dd></dl></article>
-<article class="card louis"><header><h3>B · Simulation</h3><span class="meta">Louis · 60 min · docs/02</span></header><dl><dt>Receives</dt><dd>Profile JSON, priors from D</dd><dt>Promises</dt><dd><code>data/runs/&lt;id&gt;.jsonl</code>, <code>summary.json</code>, <code>simulateProfile()</code></dd><dt>Done</dt><dd>30 real runs, 0 crash, 2+ clusters, eulogies cite chapter events</dd><dt>Degraded</dt><dd><code>--mock</code> mutates sampleRun</dd></dl></article>
-<article class="card louis"><header><h3>C · BAND rooms</h3><span class="meta">Louis · 30 min · docs/05 §C</span></header><dl><dt>Receives</dt><dd>YearEvents from B</dd><dt>Promises</dt><dd><code>band.ts</code>: openRoom, postPublic, postPrivate, veto, humanGate; <code>&lt;id&gt;.band.jsonl</code></dd><dt>Done</dt><dd>room visible in app.band.ai, private @mentions routed, one veto fired</dd></dl></article>
-<article class="card louis"><header><h3>D · Telem priors</h3><span class="meta">Louis · 25 min · docs/05 §D</span></header><dl><dt>Promises</dt><dd><code>data/priors/&lt;id&gt;.json</code> + <code>default.json</code>; every call carries <code>context</code> = Destiny's reasoning</dd><dt>Done</dt><dd>5 searches visible in Telem Observe with reasoning</dd></dl></article>
-<article class="card louis"><header><h3>E · Bruin pipeline</h3><span class="meta">Louis · 45 min · docs/03 · the $1000</span></header><dl><dt>Receives</dt><dd>runs JSONL</dd><dt>Promises</dt><dd><code>bruin/eulogy/</code> raw → stg → marts with checks; <code>public/data/marts.json</code>; lineage screenshot</dd><dt>Done</dt><dd><code>bruin run</code> green, <code>mart_decision_impact</code> has a row with n ≥ 3, CI validate green</dd></dl></article>
-<article class="card louis"><header><h3>F · Vercel API</h3><span class="meta">Louis · 30 min · docs/05 §F</span></header><dl><dt>Promises</dt><dd><code>POST /api/simulate</code> (12 runs, Blob), <code>/api/upload</code>, <code>/api/portraits</code>; 501 without keys</dd><dt>Done</dt><dd>deployed form launches runs and /lives shows them</dd></dl></article>
+<article class="card jules"><header><h3>A · Shared schemas + fixtures</h3><span class="meta">Jules · done</span></header><dl><dt>Promises</dt><dd><code>packages/shared/src/index.ts</code>: zod Profile, Relative, Run, YearEvent, Eulogy; <code>sampleProfile</code>, <code>sampleRun</code></dd><dt>Done</dt><dd>tests green, merged. Everyone starts here.</dd></dl></article>
+<article class="card jules"><header><h3>B · Simulation</h3><span class="meta">Jules · 60 min · docs/02</span></header><dl><dt>Receives</dt><dd>Profile JSON, priors from D</dd><dt>Promises</dt><dd><code>data/runs/&lt;id&gt;.jsonl</code>, <code>summary.json</code>, <code>simulateProfile()</code></dd><dt>Done</dt><dd>30 real runs, 0 crash, 2+ clusters, eulogies cite chapter events</dd><dt>Degraded</dt><dd><code>--mock</code> mutates sampleRun</dd></dl></article>
+<article class="card jules"><header><h3>C · BAND rooms</h3><span class="meta">Jules · 30 min · docs/05 §C</span></header><dl><dt>Receives</dt><dd>YearEvents from B</dd><dt>Promises</dt><dd><code>band.ts</code>: openRoom, postPublic, postPrivate, veto, humanGate; <code>&lt;id&gt;.band.jsonl</code></dd><dt>Done</dt><dd>room visible in app.band.ai, private @mentions routed, one veto fired</dd></dl></article>
+<article class="card jules"><header><h3>D · Telem priors</h3><span class="meta">Jules · 25 min · docs/05 §D</span></header><dl><dt>Promises</dt><dd><code>data/priors/&lt;id&gt;.json</code> + <code>default.json</code>; every call carries <code>context</code> = Destiny's reasoning</dd><dt>Done</dt><dd>5 searches visible in Telem Observe with reasoning</dd></dl></article>
+<article class="card jules"><header><h3>E · Bruin pipeline</h3><span class="meta">Jules · 45 min · docs/03 · the $1000</span></header><dl><dt>Receives</dt><dd>runs JSONL</dd><dt>Promises</dt><dd><code>bruin/eulogy/</code> raw → stg → marts with checks; <code>public/data/marts.json</code>; lineage screenshot</dd><dt>Done</dt><dd><code>bruin run</code> green, <code>mart_decision_impact</code> has a row with n ≥ 3, CI validate green</dd></dl></article>
+<article class="card jules"><header><h3>F · Vercel API</h3><span class="meta">Jules · 30 min · docs/05 §F</span></header><dl><dt>Promises</dt><dd><code>POST /api/simulate</code> (12 runs, Blob), <code>/api/upload</code>, <code>/api/portraits</code>; 501 without keys</dd><dt>Done</dt><dd>deployed form launches runs and /lives shows them</dd></dl></article>
 <article class="card jules"><header><h3>G · Intro + onboarding</h3><span class="meta">Jules · 45 min · docs/01</span></header><dl><dt>Promises</dt><dd>routes <code>/</code> (birth intro ≤ 8 s) and <code>/you</code>; valid Profile in zustand + localStorage; webcam/upload photo; calls F with fixture fallback</dd><dt>Done</dt><dd>invalid profile cannot submit; offline still reaches /lives</dd></dl></article>
 <article class="card jules"><header><h3>H · Chapel 3D</h3><span class="meta">Jules · 90 min · docs/04</span></header><dl><dt>Receives</dt><dd>a Run (mock sampleRun first), textures + busts from J, audio from scripts/voices.ts</dd><dt>Promises</dt><dd><code>/chapel</code>: a full Run plays with no click (stand, walk, speak, sit); Ledger, PrivateFeed, 3 cameras, Next life</dd><dt>Order</dt><dd>light + fog → furniture → RPM avatars → speaker sequence (teleport fallback) → Mixamo → UI</dd><dt>Done</dt><dd>60 fps, both runs play, clean full-screen capture</dd></dl></article>
 <article class="card jules"><header><h3>I · Lives grid + reveal</h3><span class="meta">Jules · 30 min</span></header><dl><dt>Receives</dt><dd>runs (mock first), <code>marts.json</code> from E</dd><dt>Promises</dt><dd><code>/lives</code>: canvas of N life lines scrolling in parallel, real counter, collapse into the one sentence with the real percentage</dd><dt>Done</dt><dd>the number comes from data, transition is smooth</dd></dl></article>
 <article class="card jules"><header><h3>J · Runware images + 3D</h3><span class="meta">Jules · 40 min · docs/05b</span></header><dl><dt>Receives</dt><dd>photoUrl from G</dd><dt>Promises</dt><dd>textures (rose window, floor, wood); 3 aged portraits via FLUX Kontext <code>bfl:3@1</code>; aged bust GLB via TRELLIS.2 <code>microsoft:trellis-2@4b</code> on a plinth by the coffin; relatives' busts if time</dd><dt>Done</dt><dd>bust loads in H with <code>useGLTF</code></dd></dl></article>
-<article class="card jules"><header><h3>K · Video capture</h3><span class="meta">Jules · 30 min · docs/06</span></header><dl><dt>Promises</dt><dd>1080p60 rushes of the 8 shots in <code>video/raw/</code></dd></dl></article>
-<article class="card both"><header><h3>L · Integration</h3><span class="meta">Both · 16:15–16:50</span></header><dl><dt>Does</dt><dd>real runs into H and I, marts into I, voices into H, BAND transcript into PrivateFeed, deploy, play the demo twice end to end</dd></dl></article>
-<article class="card louis"><header><h3>M · AdaL edit + submission</h3><span class="meta">Louis · 16:50–17:15</span></header><dl><dt>Does</dt><dd>edit per storyboard, README, public repo, Vercel link, submission text with the mart sentence. Ends on the decision, never on the grave.</dd></dl></article>
+<article class="card louis"><header><h3>K · Video capture</h3><span class="meta">Louis · 30 min · docs/06</span></header><dl><dt>Promises</dt><dd>1080p60 rushes of the 8 shots in <code>video/raw/</code></dd></dl></article>
+<article class="card jules"><header><h3>L · Integration</h3><span class="meta">Jules · 16:15–16:50</span></header><dl><dt>Does</dt><dd>real runs into H and I, marts into I, voices into H, BAND transcript into PrivateFeed, deploy, play the demo twice end to end</dd></dl></article>
+<article class="card jules"><header><h3>M · Submission package</h3><span class="meta">Jules · 16:50–17:15</span></header><dl><dt>Does</dt><dd>README, public repo, Vercel link, submission text with the mart sentence. Ends on the decision, never on the grave.</dd></dl></article>
 </div>
 </section>
 
 <section>
 <h2>Schedule</h2>
-<div class="wrap"><table class="sched"><thead><tr><th>Time</th><th>Louis · Claude Code</th><th>Jules · Codex</th></tr></thead><tbody>
-<tr><td>15:30</td><td>A merged, start B</td><td>G intro + form</td></tr>
-<tr><td>15:45</td><td>B prompt + loop, D in parallel</td><td>J textures → H light + furniture</td></tr>
-<tr><td>16:00</td><td>B real runs, C BAND</td><td>H avatars + speaker sequence</td></tr>
-<tr><td>16:15</td><td>E Bruin on real runs, F API</td><td>I grid, J portraits + 3D</td></tr>
-<tr><td>16:30</td><td>E export marts, voices</td><td>H polish, K rushes</td></tr>
-<tr><td>16:50</td><td>L + M</td><td>L + K</td></tr>
-<tr><td>17:15</td><td colspan="2">Submitted</td></tr>
+<div class="wrap"><table class="sched"><thead><tr><th>Time in San Francisco</th><th>Jules</th><th>Louis</th></tr></thead><tbody>
+<tr><td>16:30</td><td>Feature freeze. Verification and evidence.</td><td>Video capture and edit.</td></tr>
+<tr><td>17:00</td><td>Final documentation PR.</td><td>Final watch link.</td></tr>
+<tr><td>17:15</td><td>Submission target.</td><td>Film delivery.</td></tr>
 </tbody></table></div>
 </section>
 

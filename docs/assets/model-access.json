@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-11-24T00:33:21.664Z",
+  "deployment": "dpl_88AhXW8s7wTtv22yLQ8hsY8WMbud",
+  "provider": "Vercel AI Gateway",
+  "auth": "Eulogy project OIDC",
+  "model": "anthropic/claude-sonnet-5.5",
+  "endpoint": "https://ai-gateway.vercel.sh/v1/messages",
+  "http_status": 403,
+  "provider_error": "customer_verification_required",
+  "message": "AI Gateway requires a valid credit card on file to service requests. Please visit https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai%3Fmodal%3Dadd-credit-card to add a card and unlock your free credits.",
+  "model_chapters_generated": 0
+}

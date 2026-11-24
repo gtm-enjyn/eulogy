@@ -1,1 +1,1 @@
-export { default } from '../apps/web/api/simulate.js';
+export { default } from '../apps/web/api/dist/simulate.bundle.mjs';

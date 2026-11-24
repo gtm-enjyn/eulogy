@@ -1,5 +1,7 @@
 # Eulogy — le pitch (à lire aux juges et sponsors)
 
+Le profil public est rejoué en mode déterministe. Les intégrations live, les chiffres mesurés et leur provenance sont détaillés dans [EVIDENCE](EVIDENCE.md).
+
 **Une phrase.** Décris-toi en cinq lignes. On simule le reste de ta vie des dizaines de fois avec tes proches en agents, et on te montre ton enterrement : qui se lève pour parler, et ce qu'ils disent. Puis la seule décision, cette année, qui change ce qu'ils diront.
 
 **Track 1 : Agent Animated Film.** Le film de 2 minutes est écrit par les agents : ils décident chaque année de ta vie et chaque éloge. Même profil, fin différente à chaque run. La scène animée est la chapelle 3D où les personnages se lèvent, marchent au pupitre et parlent avec leur voix.
@@ -18,4 +20,4 @@
 - Runware : les portraits générés et vieillis depuis ta photo ; option 3D (voir docs/04).
 - AdaL : le montage de la vidéo.
 
-**Les trois phrases.** "Le scénario n'est écrit par personne, il est vécu." "Dans 68 % de tes vies, ta fille ne parle pas." "Tu as deux ans pour changer ça."
+**Les trois phrases.** "Le scénario n'est écrit par personne, il est vécu." "Dans 13 des 30 vies enregistrées de Louis, Léa garde le silence." "Tu as deux ans pour changer ça."

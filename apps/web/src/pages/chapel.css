@@ -20,7 +20,7 @@
   color: #e3c598;
   text-decoration: none;
 }
-.chapel {
+.theatre .chapel {
   height: calc(100dvh - 56px);
   grid-template-columns: minmax(0, 1fr) clamp(290px, 27vw, 400px);
 }
@@ -28,10 +28,16 @@
   min-height: 0;
   background: #18171b;
 }
-.chapel-side {
+.theatre .chapel-side {
+  display: grid;
+  grid-template-rows: auto minmax(130px, 1fr) minmax(100px, 0.4fr);
   background: #19191d;
   padding: 24px;
   color: #e9dfd0;
+}
+.theatre .chapel-side > section {
+  overflow-y: auto;
+  min-height: 0;
 }
 .chapel-side h1 {
   font:
@@ -96,12 +102,13 @@
   min-height: 100vh;
 }
 @media (max-width: 800px) {
-  .chapel {
+  .theatre .chapel {
     height: auto;
     grid-template-columns: 1fr;
     grid-template-rows: 58dvh auto;
   }
-  .chapel-side {
+  .theatre .chapel-side {
+    display: flex;
     overflow: visible;
   }
   .film-bar {
@@ -110,4 +117,27 @@
   .subtitles {
     padding-bottom: 14px;
   }
+}
+
+.projection-unavailable {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  height: 100%;
+  padding: 60px 28px 120px;
+  text-align: center;
+  background: radial-gradient(ellipse at center, #30252b, #17151a 64%);
+  color: #cbbfae;
+}
+.projection-unavailable img {
+  width: min(22vh, 130px);
+  height: auto;
+}
+.projection-unavailable p {
+  max-width: 30em;
+  margin: 0;
+}
+.chapel-canvas:has(.projection-unavailable) .shot-controls [aria-pressed] {
+  display: none;
 }
