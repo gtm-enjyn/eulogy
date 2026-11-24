@@ -1,0 +1,22 @@
+{
+  "origin": "https://eulogy-ochre.vercel.app",
+  "elapsedMs": 4912,
+  "screens": {
+    "form": "Where you are now.",
+    "atlas": "In 43.3% of these lives, Léa stays silent at the funeral.",
+    "chapel": "Life 1 of 30 · reconciled\nLouis’s service\n\nAge 90 · an accident\n\nNext life →",
+    "next": "Life 28 of 30 · reconciled\nLouis’s service\n\nAge 82 · cancer\n\nNext life →"
+  },
+  "errors": [],
+  "requestedLocalModels": [
+    {
+      "path": "/avatars/visitor.glb",
+      "status": 200
+    },
+    {
+      "path": "/avatars/mourner.glb",
+      "status": 200
+    }
+  ],
+  "httpErrors": []
+}

@@ -1,0 +1,24 @@
+{
+  "origin": "https://eulogy-ochre.vercel.app",
+  "invalidInlineError": "Please fill in this field.",
+  "simulatedDevice": {
+    "preview": true,
+    "format": "data:image/jpeg"
+  },
+  "persistedName": "Screening guest",
+  "fallback": {
+    "offline": "true",
+    "title": "One life, lived 30 ways."
+  },
+  "api": [
+    {
+      "path": "/api/portraits",
+      "status": 501
+    },
+    {
+      "path": "/api/simulate",
+      "status": 501
+    }
+  ],
+  "errors": []
+}
