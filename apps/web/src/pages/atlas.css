@@ -1,0 +1,89 @@
+.atlas article {
+  max-width: 1180px;
+  margin: auto;
+  padding: 38px clamp(18px, 4vw, 52px) 58px;
+}
+.atlas .origin,
+.reveal small {
+  color: #c4a67d;
+  font-size: 13px;
+}
+.atlas h1 {
+  font-size: clamp(43px, 6.3vw, 86px);
+  margin: 18px 0 27px;
+}
+.atlas-chart {
+  background: linear-gradient(135deg, #242126, #1a1a1d);
+  border: 1px solid #49403a;
+  padding: 13px 9px 5px;
+}
+.atlas canvas {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 35vh, 390px);
+}
+.atlas ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 19px;
+  list-style: none;
+  padding: 0 22px;
+  font-size: 13px;
+  color: #cabeb2;
+}
+.atlas li i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.reveal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 28px;
+  opacity: 0.1;
+  transform: translateY(5px);
+  transition:
+    opacity 0.8s,
+    transform 0.8s;
+}
+.reveal.ready {
+  opacity: 1;
+  transform: none;
+}
+.reveal h2 {
+  font:
+    normal clamp(24px, 3vw, 43px)/1.1 Georgia,
+    serif;
+  max-width: 26em;
+  margin: 8px 0;
+}
+.reveal em {
+  color: #dfbc88;
+}
+.reveal p {
+  color: #bdb3a6;
+  font-size: 14px;
+  max-width: 54em;
+}
+.enter {
+  white-space: nowrap;
+  text-decoration: none;
+}
+@media (max-width: 700px) {
+  .reveal {
+    display: block;
+  }
+  .enter {
+    display: inline-block;
+    margin-top: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+  }
+}
