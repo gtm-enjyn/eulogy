@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF, useTexture, Center, Resize } from '@react-three/drei';
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { DoubleSide, Group, Texture, Vector3 } from 'three';
+import { DoubleSide, Group, Object3D, Quaternion, Texture, Vector3 } from 'three';
 import type { Profile, Relative } from '@eulogy/shared';
 
 export type Shot = 'wide' | 'pulpit' | 'front_row';
@@ -65,6 +65,39 @@ function Box({ at, size, color, map }: { at: Vec; size: Vec; color: string; map?
     </mesh>
   );
 }
+// Both RPM rigs use different local bind rotations. Aim each bone in model space once.
+function seatedRig(body: Object3D) {
+  const poses: { bone: Object3D; seated: Quaternion; standing: Quaternion }[] = [];
+  function point(boneName: string, childName: string, direction: Vec) {
+    const bone = body.getObjectByName(boneName);
+    const child = body.getObjectByName(childName);
+    if (!bone?.parent || !child) return;
+    const standing = bone.quaternion.clone();
+    const parentWorld = bone.parent.getWorldQuaternion(new Quaternion());
+    const inv = parentWorld.clone().invert();
+    const from = child
+      .getWorldPosition(new Vector3())
+      .sub(bone.getWorldPosition(new Vector3()))
+      .normalize()
+      .applyQuaternion(inv);
+    const to = new Vector3(...direction).normalize().applyQuaternion(inv);
+    bone.quaternion.premultiply(new Quaternion().setFromUnitVectors(from, to));
+    poses.push({ bone, standing, seated: bone.quaternion.clone() });
+    bone.updateWorldMatrix(false, true);
+  }
+  for (const [side, sign] of [
+    ['Left', 1],
+    ['Right', -1],
+  ] as const) {
+    point(side + 'UpLeg', side + 'Leg', [sign * 0.1, -0.16, 1]);
+    point(side + 'Leg', side + 'Foot', [0, -1, -0.1]);
+    point(side + 'Arm', side + 'ForeArm', [sign * 0.13, -1, 0.12]);
+    point(side + 'ForeArm', side + 'Hand', [-sign * 0.34, -0.3, 0.9]);
+  }
+  for (const pose of poses) pose.bone.quaternion.copy(pose.standing);
+  body.updateWorldMatrix(false, true);
+  return poses;
+}
 const seats = [-2.65, -1.45, 1.45, 2.65];
 function Guest({
   relative,
@@ -81,15 +114,8 @@ function Guest({
     relative.relation === 'cofounder' || relative.relation === 'friend' ? 'visitor' : 'mourner';
   const { scene } = useGLTF('/avatars/' + file + '.glb');
   const body = useMemo(() => clone(scene), [scene]);
-  const joints = useMemo(
-    () =>
-      Object.fromEntries(
-        ['LeftUpLeg', 'RightUpLeg', 'LeftLeg', 'RightLeg', 'LeftArm', 'RightArm', 'Head'].map(
-          (n) => [n, body.getObjectByName(n)],
-        ),
-      ),
-    [body],
-  );
+  const poses = useMemo(() => seatedRig(body), [body]);
+  const head = useMemo(() => body.getObjectByName('Head'), [body]);
   const root = useRef<Group>(null);
   const seat = seats[index] ?? 0;
   const target = useMemo(() => new Vector3(), []);
@@ -98,21 +124,14 @@ function Guest({
     const standing = active && (beat === 'approach' || beat === 'speak');
     const f = 1 - Math.exp(-4 * dt);
     const t = clock.elapsedTime;
-    target.set(standing ? 1.25 : seat, standing ? 0.08 : -0.3, standing ? -2.72 : 1.25);
+    target.set(standing ? 1.25 : seat, standing ? 0.08 : -0.54, standing ? -2.72 : 1.25);
     root.current.position.lerp(target, f);
     root.current.rotation.y += ((standing ? 0 : Math.PI) - root.current.rotation.y) * f;
-    for (const side of ['Left', 'Right']) {
-      const thigh = joints[side + 'UpLeg'],
-        leg = joints[side + 'Leg'],
-        arm = joints[side + 'Arm'];
-      if (thigh) thigh.rotation.x += ((standing ? 0 : -1.3) - thigh.rotation.x) * f;
-      if (leg) leg.rotation.x += ((standing ? 0 : 1.4) - leg.rotation.x) * f;
-      if (arm) arm.rotation.z = (side === 'Left' ? -1 : 1) * 0.65;
-    }
-    if (joints.Head) joints.Head.rotation.x = standing ? 0.035 * Math.sin(t * 3.6) : 0.2;
+    for (const pose of poses) pose.bone.quaternion.slerp(standing ? pose.standing : pose.seated, f);
+    if (head) head.rotation.x = standing ? 0.035 * Math.sin(t * 3.6) : 0.2;
   });
   return (
-    <group ref={root} position={[seat, -0.3, 1.25]} rotation={[0, Math.PI, 0]}>
+    <group ref={root} position={[seat, -0.54, 1.25]} rotation={[0, Math.PI, 0]}>
       <primitive object={body} dispose={null} />
     </group>
   );

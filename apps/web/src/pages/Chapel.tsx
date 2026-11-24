@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Link } from 'react-router-dom';
 import ChapelScene, { type Beat, type Shot } from '../components/ChapelScene';
@@ -7,7 +7,7 @@ import PrivateFeed from '../components/PrivateFeed';
 import { getScreening } from '../data/screening';
 import './chapel.css';
 import audioFiles from '../data/audio.json';
-const recordings: Record<string,string> = audioFiles;
+const recordings: Record<string, string> = audioFiles;
 export default function Chapel() {
   const { profile, runs, summary } = getScreening();
   const initial = Math.max(
@@ -22,10 +22,19 @@ export default function Chapel() {
   const run = runs[index]!,
     speech = run.eulogies[part],
     speaker = profile.relatives.find((r) => r.id === speech?.relative_id);
+  const sidebar = useRef<HTMLElement>(null);
+  const phase = beat === 'approach' ? 0 : beat === 'return' ? 0.95 : 0.5;
   const chapter = Math.min(
     run.years.length - 1,
-    Math.floor((part * run.years.length) / Math.max(1, run.eulogies.length)),
+    Math.floor(((part + phase) * run.years.length) / Math.max(1, run.eulogies.length)),
   );
+  useEffect(() => {
+    const active = sidebar.current?.querySelector<HTMLElement>('.ledger-year.active');
+    const ledger = active?.parentElement;
+    if (!active || !ledger || ledger.clientHeight >= ledger.scrollHeight) return;
+    const top = active.getBoundingClientRect().top - ledger.getBoundingClientRect().top;
+    if (top < 0 || top + active.offsetHeight > ledger.clientHeight) ledger.scrollTop += top - 10;
+  }, [chapter, run]);
   const next = () => {
     const best = runs.findIndex((r) => r.run_id === summary.best_run_id);
     setIndex((i) => (i === initial && best >= 0 && best !== i ? best : (i + 1) % runs.length));
@@ -63,7 +72,9 @@ export default function Chapel() {
             timer = setTimeout(finish, audio!.duration * 1000 + 900);
           }
         };
-        void audio.play().catch(() => {});
+        void audio.play().catch((error: DOMException) => {
+          if (error.name === 'NotAllowedError') setSound(false);
+        });
       } else if (sound && 'speechSynthesis' in window) {
         utterance = new SpeechSynthesisUtterance(speech.text);
         utterance.lang = 'en-US';
@@ -127,7 +138,7 @@ export default function Chapel() {
             <p>{speech?.text}</p>
           </div>
         </div>
-        <aside className="chapel-side">
+        <aside className="chapel-side" ref={sidebar}>
           <div className="run-title">
             <small>
               Life {index + 1} of {runs.length} · {run.ending_cluster?.replaceAll('_', ' ')}
