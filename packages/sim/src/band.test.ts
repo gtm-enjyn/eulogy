@@ -61,6 +61,8 @@ describe('BAND room routing', () => {
     const calls: { url: string; init?: RequestInit }[] = [];
     const fetcher: typeof fetch = async (url, init) => {
       calls.push({ url: String(url), init });
+      if (String(url).endsWith('/me'))
+        return Response.json({ data: { id: director, name: 'Destiny', handle: 'owner/destiny' } });
       if (init?.method === 'GET')
         return Response.json({
           data: [
@@ -92,5 +94,58 @@ describe('BAND room routing', () => {
     await band.humanGate('louis-0001');
     expect(band.messages.at(-1)).toMatchObject({ channel: 'gate', from: 'human', to: 'destiny' });
     expect(JSON.stringify(band.requests)).not.toContain('-token');
+  });
+  it('recruits the project cast across all peer pages and leaves unrelated directory members out', async () => {
+    const profile = { ...sampleProfile, relatives: [sampleProfile.relatives[0]!] };
+    const director = randomUUID(),
+      louis = randomUUID(),
+      camille = randomUUID(),
+      outsider = randomUUID(),
+      unrelated = randomUUID();
+    const added: string[] = [];
+    const calls: string[] = [];
+    const fetcher: typeof fetch = async (url, init) => {
+      const path = new URL(String(url));
+      calls.push(path.pathname + path.search);
+      if (path.pathname.endsWith('/me'))
+        return Response.json({ data: { id: director, name: 'Destiny', handle: 'eulogy/destiny' } });
+      if (path.pathname.endsWith('/peers')) {
+        const peers =
+          path.searchParams.get('page') === '1'
+            ? [
+                { id: outsider, name: 'Camille', handle: 'another-team/camille', type: 'Agent' },
+                { id: louis, name: 'Louis', handle: 'eulogy/louis', type: 'Agent' },
+              ]
+            : [{ id: camille, name: 'Camille', handle: 'eulogy/camille', type: 'Agent' }];
+        return Response.json({ data: peers, metadata: { total_pages: 2 } });
+      }
+      if (path.pathname.endsWith('/participants'))
+        added.push(JSON.parse(String(init?.body)).participant.participant_id);
+      return Response.json({ data: { id: randomUUID() } });
+    };
+    const env = {
+      BAND_AGENT_ID: director,
+      BAND_AGENT_KEY: 'example',
+      BAND_CAST_JSON: JSON.stringify({
+        another_cast: { id: unrelated, name: 'Another cast', handle: 'other/role' },
+      }),
+    };
+    const band = await BandRooms.connect(profile, { env, noGate: true, fetcher });
+    await band.openRoom('louis-0002');
+    expect(calls).toContain('/api/v1/agent/peers?page=2&page_size=100');
+    expect(added.sort()).toEqual([louis, camille].sort());
+  });
+  it('rejects a credential for a different director before opening a room', async () => {
+    const fetcher = vi.fn(async () =>
+      Response.json({ data: { id: randomUUID(), name: 'Different', handle: 'team/director' } }),
+    );
+    await expect(
+      BandRooms.connect(sampleProfile, {
+        env: { BAND_AGENT_ID: randomUUID(), BAND_AGENT_KEY: 'example' },
+        noGate: true,
+        fetcher,
+      }),
+    ).rejects.toThrow('does not match');
+    expect(fetcher).toHaveBeenCalledTimes(1);
   });
 });
