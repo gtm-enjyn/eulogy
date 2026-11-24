@@ -5,6 +5,7 @@ dist
 .env.*
 !.env.example
 data/runs/*.jsonl
+!data/runs/louis-demo.jsonl
 !data/runs/.gitkeep
 bruin/**/*.duckdb
 .DS_Store

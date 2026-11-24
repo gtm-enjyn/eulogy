@@ -1,44 +1,35 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { ProfileSchema, sampleProfile, type Profile } from '@eulogy/shared';
-import { generateRuns, writeOutputs } from './generate';
+import { ProfileSchema, sampleProfile } from '@eulogy/shared';
+import { simulateProfile, writeOutputs } from './generate';
+import { defaultPriors, PriorsSchema } from './shocks';
 
-// npm runs workspace scripts from the package dir; INIT_CWD is where the user invoked npm.
-const BASE_DIR = process.env.INIT_CWD ?? process.cwd();
-
-function loadProfile(path: string | undefined): Profile {
-  if (!path) return sampleProfile;
-  const raw = readFileSync(resolve(BASE_DIR, path), 'utf8');
-  return ProfileSchema.parse(JSON.parse(raw));
-}
-
-function main(): void {
+const root = process.env.INIT_CWD ?? process.cwd();
+async function main() {
+  if (existsSync(resolve(root, '.env'))) process.loadEnvFile(resolve(root, '.env'));
   const { values } = parseArgs({
     options: {
       profile: { type: 'string' },
-      runs: { type: 'string', default: '20' },
+      runs: { type: 'string', default: '30' },
       out: { type: 'string', default: 'data/runs' },
+      mock: { type: 'boolean' },
     },
   });
-
-  const n = Number.parseInt(values.runs ?? '20', 10);
-  if (!Number.isFinite(n) || n <= 0) {
-    console.error(`--runs must be a positive integer, got "${values.runs}"`);
-    process.exit(1);
-  }
-
-  const profile = loadProfile(values.profile);
-  const runs = generateRuns(profile, n);
-  const { jsonlPath, summaryPath, summary } = writeOutputs(
-    resolve(BASE_DIR, values.out ?? 'data/runs'),
-    profile.id,
-    runs,
-  );
-
-  console.log(`wrote ${runs.length} runs -> ${jsonlPath}`);
-  console.log(`summary -> ${summaryPath}`);
-  console.log(JSON.stringify(summary, null, 2));
+  const profile = values.profile
+    ? ProfileSchema.parse(JSON.parse(readFileSync(resolve(root, values.profile), 'utf8')))
+    : sampleProfile;
+  const priorPath = resolve(root, 'data/priors', profile.id + '.json');
+  const priors = existsSync(priorPath)
+    ? PriorsSchema.parse(JSON.parse(readFileSync(priorPath, 'utf8')))
+    : defaultPriors;
+  const mock = values.mock || !process.env.ANTHROPIC_API_KEY;
+  if (mock) console.log('DEGRADED · deterministic offline simulation');
+  const runs = await simulateProfile(profile, { runs: Number(values.runs), mock, priors });
+  const { jsonlPath, summary } = writeOutputs(resolve(root, values.out!), profile, runs);
+  console.log(jsonlPath, JSON.stringify(summary, null, 2));
 }
-
-main();
+main().catch((error) => {
+  console.error(error.message);
+  process.exitCode = 1;
+});
