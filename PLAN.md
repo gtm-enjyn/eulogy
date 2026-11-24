@@ -23,7 +23,7 @@ H + I + G + B + E ──→ L intégration ──→ K vidéo ──→ M soumis
 | G, H, I | Jules | Démo publique jouée dans Chrome, six pistes audio, mesure à 30 images/s. |
 | J, D, C | Jules | Clients Runware, Telem et BAND et requêtes de démo étiquetées dry-run. |
 | F, L | Jules | Routes Vercel et Blob privé vérifiés, ensemble de mille vies reproductible. |
-| K | Louis | Sources du film dans la PR vidéo. Lien public du montage attendu. |
+| K | Louis | Montage final remis à 17 h 05. Lecteur public et séquence source dans [le dossier de soumission](docs/SUBMISSION.md). |
 | M | Jules | Liens publics et description préparés pour la soumission. |
 
 [Preuves](docs/EVIDENCE.md) · [Dossier de soumission](docs/SUBMISSION.md)
