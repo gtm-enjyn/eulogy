@@ -1,0 +1,72 @@
+Analyzed the pipeline 'eulogy' with 12 assets.
+
+Pipeline: eulogy (.)
+  No issues found
+
+✓ Successfully validated 12 assets across 1 pipeline, all good.
+
+Interval: 2026-11-23T00:00:00Z - 2026-11-23T23:59:59Z
+
+Starting the pipeline execution...
+
+[16:16:06] Running:  raw.runs
+[16:16:06] Running:  raw.relatives
+[16:16:06] Finished: raw.relatives (6ms)
+[16:16:06] Finished: raw.runs (7ms)
+[16:16:06] Running:  raw.runs:death_age:positive
+[16:16:06] Running:  raw.runs:run_id:unique
+[16:16:06] Running:  raw.runs:run_id:not_null
+[16:16:06] Finished: raw.runs:run_id:not_null (1ms)
+[16:16:06] Finished: raw.runs:run_id:unique (1ms)
+[16:16:06] Finished: raw.runs:death_age:positive (1ms)
+[16:16:06] Running:  raw.years
+[16:16:06] Running:  raw.eulogies
+[16:16:06] Finished: raw.years (2ms)
+[16:16:06] Running:  raw.relative_states
+[16:16:06] Running:  raw.decisions
+[16:16:06] Running:  raw.private_messages
+[16:16:06] Finished: raw.eulogies (2ms)
+[16:16:06] Running:  raw.eulogies:custom-check:sentiment_in_range
+[16:16:06] Finished: raw.eulogies:custom-check:sentiment_in_range (0s)
+[16:16:06] Running:  stg.eulogies
+[16:16:06] Finished: raw.private_messages (1ms)
+[16:16:06] Finished: raw.decisions (2ms)
+[16:16:06] Finished: stg.eulogies (1ms)
+[16:16:06] Running:  stg.eulogies:relation:accepted_values
+[16:16:06] Running:  stg.eulogies:relation:not_null
+[16:16:06] Finished: stg.eulogies:relation:not_null (0s)
+[16:16:06] Finished: raw.relative_states (2ms)
+[16:16:06] Running:  raw.relative_states:custom-check:relationship_score_in_range
+[16:16:06] Finished: raw.relative_states:custom-check:relationship_score_in_range (0s)
+[16:16:06] Running:  mart_turning_points
+[16:16:06] Finished: stg.eulogies:relation:accepted_values (0s)
+[16:16:06] Running:  stg.outcomes
+[16:16:06] Finished: mart_turning_points (1ms)
+[16:16:06] Finished: stg.outcomes (2ms)
+[16:16:06] Running:  mart_outcome_distribution
+[16:16:06] Running:  mart_decision_impact
+[16:16:06] Finished: mart_outcome_distribution (2ms)
+[16:16:06] Finished: mart_decision_impact (3ms)
+[16:16:06] Running:  mart_decision_impact:custom-check:both_cohorts_have_three_lives
+[16:16:06] Finished: mart_decision_impact:custom-check:both_cohorts_have_three_lives (0s)
+
+==================================================
+
+PASS raw.relatives 
+PASS raw.runs ...
+PASS raw.years 
+PASS raw.eulogies .
+PASS raw.private_messages 
+PASS raw.decisions 
+PASS stg.eulogies ..
+PASS raw.relative_states .
+PASS mart_turning_points 
+PASS stg.outcomes 
+PASS mart_outcome_distribution 
+PASS mart_decision_impact .
+
+
+bruin run completed successfully in 20ms
+
+ ✓ Assets executed      12 succeeded
+ ✓ Quality checks       8 succeeded

@@ -1,0 +1,19 @@
+
+Lineage: 'mart_decision_impact'
+
+Upstream Dependencies
+========================
+- raw.decisions (assets/raw_decisions.sql)
+- raw.years (assets/raw_years.sql)
+- raw.runs (assets/raw_runs.sql)
+- stg.outcomes (assets/stg_outcomes.sql)
+- stg.eulogies (assets/stg_eulogies.sql)
+- raw.eulogies (assets/raw_eulogies.sql)
+- raw.relatives (assets/raw_relatives.sql)
+
+Total: 7
+
+
+Downstream Dependencies
+========================
+Asset has no downstream dependencies.
