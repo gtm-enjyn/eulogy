@@ -6,10 +6,10 @@
 
 **One-liner:** Who will be at your table when you're seventy? Eulogy turns the people in your life into AI agents, plays your life a thousand times, and shows you the one decision that fills the table.
 
-**Demo video (2:26):** https://eulogy-hackathon-film.vercel.app/ · direct file: https://github.com/gtm-enjyn/eulogy/releases/download/v1.0/eulogy-final-web.mp4
-(full quality: https://github.com/gtm-enjyn/eulogy/releases/download/v1.0/eulogy-final.mp4)
+**Demo video (2:26):** https://eulogy-hackathon-film.vercel.app/ · direct file: https://github.com/louisktj/eulogy/releases/download/v1.0/eulogy-final-web.mp4
+(full quality: https://github.com/louisktj/eulogy/releases/download/v1.0/eulogy-final.mp4)
 
-**Public repo:** https://github.com/gtm-enjyn/eulogy
+**Public repo:** https://github.com/louisktj/eulogy
 
 **Live app:** https://eulogy-ochre.vercel.app/
 
